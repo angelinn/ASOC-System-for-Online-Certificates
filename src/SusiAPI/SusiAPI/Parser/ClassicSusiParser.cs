@@ -7,7 +7,7 @@ using System.Net;
 using System.IO;
 using HtmlAgilityPack;
 
-namespace SusiAPI
+namespace SusiAPI.Parser
 {
     public class ClassicSusiParser : ISusiParser
     {
