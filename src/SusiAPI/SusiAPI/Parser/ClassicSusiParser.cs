@@ -22,7 +22,7 @@ namespace SusiAPI.Parser
 
         public ClassicSusiParser()
         {
-            handler.CookieContainer = new CookieContainer();
+            handler = new HttpClientHandler { CookieContainer = new CookieContainer() };
             client = new HttpClient(handler);
         }
 
