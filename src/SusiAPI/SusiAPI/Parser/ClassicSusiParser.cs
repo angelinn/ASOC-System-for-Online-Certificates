@@ -16,6 +16,16 @@ namespace SusiAPI.Parser
 
         private const string USERNAME_KEY = "txtUserName";
         private const string PASSWORD_KEY = "txtPassword";
+
+        private HttpClient client;
+        private HttpClientHandler handler;
+
+        public ClassicSusiParser()
+        {
+            handler.CookieContainer = new CookieContainer();
+            client = new HttpClient(handler);
+        }
+
         public bool Authenticated => throw new NotImplementedException();
 
         public StudentInfo GetStudentInfo()
@@ -30,26 +40,19 @@ namespace SusiAPI.Parser
 
         public bool Login(string username, string password)
         {
-            CookieContainer cookies = new CookieContainer();
+            HtmlDocument rootDocument = new HtmlWeb().Load(SUSI_URL);
+            HtmlNodeCollection nodes = rootDocument.DocumentNode.SelectNodes("//input");
 
-            using (HttpClientHandler handler = new HttpClientHandler())
-            using (HttpClient client = new HttpClient(handler))
-            {
-                handler.CookieContainer = cookies;
+            Dictionary<string, string> formData = new Dictionary<string, string>();
+            foreach (HtmlNode node in nodes)
+                formData.Add(node.Id.TrimStart('\r', '\n'), (node.Attributes["value"] == null) ? String.Empty : node.Attributes["value"].Value);
 
-                HtmlDocument rootDocument = new HtmlWeb().Load(SUSI_URL);
-                HtmlNodeCollection nodes = rootDocument.DocumentNode.SelectNodes("//input");
+            formData[USERNAME_KEY] = username;
+            formData[PASSWORD_KEY] = password;
 
-                Dictionary<string, string> formData = new Dictionary<string, string>();
-                foreach (HtmlNode node in nodes)
-                    formData.Add(node.Id.TrimStart('\r', '\n'), (node.Attributes["value"] == null) ? String.Empty : node.Attributes["value"].Value);
+            string result = client.PostAsync(LOGIN_URL, new FormUrlEncodedContent(formData)).Result.Content.ReadAsStringAsync().Result;
+            File.WriteAllText("file.txt", result);
 
-                formData[USERNAME_KEY] = username;
-                formData[PASSWORD_KEY] = password;
-
-                string result = client.PostAsync(LOGIN_URL, new FormUrlEncodedContent(formData)).Result.Content.ReadAsStringAsync().Result;
-                File.WriteAllText("file.txt", result);
-            }
             return true;
         }
     }
