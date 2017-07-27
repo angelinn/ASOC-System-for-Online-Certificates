@@ -12,8 +12,8 @@ namespace SusiAPI.Parser
 {
     public class ClassicSusiParser : ISusiParser
     {
-        private static string SUSI_URL = "https://susi.uni-sofia.bg/";
-        private static string LOGIN_URL = $"{SUSI_URL}ISSU/forms/Login.aspx";
+        private static readonly string SUSI_URL = "https://susi.uni-sofia.bg/";
+        private static readonly string LOGIN_URL = $"{SUSI_URL}ISSU/forms/Login.aspx";
 
         private const string USERNAME_KEY = "txtUserName";
         private const string PASSWORD_KEY = "txtPassword";
