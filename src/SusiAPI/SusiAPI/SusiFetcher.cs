@@ -1,6 +1,7 @@
 ﻿using SusiAPI.Models;
 using SusiAPI.Parser;
 using System;
+using System.Threading.Tasks;
 
 namespace SusiAPI
 {
@@ -11,12 +12,12 @@ namespace SusiAPI
         {
             this.parser = new ClassicSusiParser();
         }
-
-        public bool Login(string username, string password)
+        
+        public async Task<bool> Login(string username, string password)
         {
-            return parser.Login(username, password);
+            return await parser.LoginAsync(username, password);
         }
-
+        
         public bool IsCurrentlyAStudent()
         {
             if (!parser.Authenticated)
