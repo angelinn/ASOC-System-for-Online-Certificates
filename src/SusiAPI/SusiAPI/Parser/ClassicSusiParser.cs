@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Net;
 using System.IO;
 using HtmlAgilityPack;
+using System.Threading.Tasks;
 
 namespace SusiAPI.Parser
 {
@@ -37,8 +38,8 @@ namespace SusiAPI.Parser
         {
             throw new NotImplementedException();
         }
-
-        public bool Login(string username, string password)
+        
+        public async Task<bool> LoginAsync(string username, string password)
         {
             HtmlDocument rootDocument = new HtmlWeb().Load(SUSI_URL);
             HtmlNodeCollection nodes = rootDocument.DocumentNode.SelectNodes("//input");
@@ -46,12 +47,13 @@ namespace SusiAPI.Parser
             Dictionary<string, string> formData = new Dictionary<string, string>();
             foreach (HtmlNode node in nodes)
                 formData.Add(node.Id.TrimStart('\r', '\n'), (node.Attributes["value"] == null) ? String.Empty : node.Attributes["value"].Value);
-
+            
             formData[USERNAME_KEY] = username;
             formData[PASSWORD_KEY] = password;
 
-            string result = client.PostAsync(LOGIN_URL, new FormUrlEncodedContent(formData)).Result.Content.ReadAsStringAsync().Result;
-            File.WriteAllText("file.txt", result);
+            HttpResponseMessage response = await client.PostAsync(LOGIN_URL, new FormUrlEncodedContent(formData));
+            string stringResult = await response.Content.ReadAsStringAsync();
+            File.WriteAllText("file.txt", stringResult);
 
             return true;
         }
