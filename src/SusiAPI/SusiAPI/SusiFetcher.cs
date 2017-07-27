@@ -8,9 +8,9 @@ namespace SusiAPI
     public class SusiFetcher
     {
         private ISusiParser parser;
-        public SusiFetcher(ISusiParser parser)
+        public SusiFetcher(ISusiParser parser = null)
         {
-            this.parser = new ClassicSusiParser();
+            this.parser = parser ?? new ClassicSusiParser();
         }
         
         public async Task<bool> Login(string username, string password)
