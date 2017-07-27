@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SusiAPI", "SusiAPI\SusiAPI.csproj", "{72CB88F8-536A-415D-AF54-A9FD7A5D1605}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SusiAPI.Test", "SusiAPI.Test\SusiAPI.Test.csproj", "{FBB53DCF-2613-4969-9B44-2F34F334122E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SusiAPI.CLI", "SusiAPI.CLI\SusiAPI.CLI.csproj", "{FBB53DCF-2613-4969-9B44-2F34F334122E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
