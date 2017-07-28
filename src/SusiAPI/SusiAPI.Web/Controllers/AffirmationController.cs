@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using SusiAPI.Web.ViewModels;
 using System.Net;
 using Microsoft.AspNetCore.Http;
+using SusiAPI.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -25,7 +26,10 @@ namespace SusiAPI.Web.Controllers
         public async Task<IActionResult> GetAffirmation([FromBody]LoginViewModel login)
         {
             if (await susiService.LoginAsync(login.Username, login.Password))
+            {
+                StudentInfo info = await susiService.GetStudentInfoAsync();
                 return new SusiAPIResponse(StatusCodes.Status200OK, new { Result = "Login successful" });
+            }
             
             return new SusiAPIResponse(StatusCodes.Status422UnprocessableEntity, new { Result = "Username or password is wrong" });
         }
