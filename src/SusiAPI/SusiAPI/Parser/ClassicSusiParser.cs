@@ -40,7 +40,76 @@ namespace SusiAPI.Parser
 
         public Task<StudentInfo> GetStudentInfoAsync()
         {
-            throw new NotImplementedException();
+            StudentInfo student = new StudentInfo();
+
+            try
+            {
+
+                var rootDocument = new HtmlDocument();
+                rootDocument.Load("file1.txt");
+
+                HtmlNode node = rootDocument.DocumentNode.SelectSingleNode("//*[@id=\"HeaderMenu1_HeaderLeft1_lblFacultyName\"]");
+                student.Faculty = node.InnerText;
+
+                node = rootDocument.DocumentNode.SelectSingleNode("//*[@id=\"StudentPersonalData1_lblFullName\"]");
+                student.Names = node.InnerText;
+
+                node = rootDocument.DocumentNode.SelectSingleNode("//*[@id=\"StudentPersonalData1_lblPersonalNumber\"]");
+                student.EGN = node.InnerText;
+
+                node = rootDocument.DocumentNode.SelectSingleNode("//*[@id=\"StudentPersonalData1_pnlAddresses\"]/table[2]/tbody/tr[3]/td[5]");
+                student.City = node.InnerText;
+
+                node = rootDocument.DocumentNode.SelectSingleNode("//*[@id=\"StudentPersonalData1_pnlAddresses\"]/table[2]/tbody/tr[3]/td[3]");
+                student.Region = node.InnerText;
+
+                node = rootDocument.DocumentNode.SelectSingleNode("//*[@id=\"StudentPersonalData1_lblSex\"]");
+                student.Gender = node.InnerText;
+
+
+                if ( (DateTime.Now.Month >=2 && DateTime.Now.Day>=20) && (DateTime.Now.Month <= 7 && DateTime.Now.Day<=7))
+                {
+                    student.Semester = "летен";
+                    student.StartYear = DateTime.Now.Year - YEAR - 1;
+                }
+
+                else
+                {
+                    student.Semester = "зимен";
+                    student.StartYear = DateTime.Now.Year - YEAR;
+                }
+
+                student.EndYear = student.StartYear + 1;
+
+                node = rootDocument.DocumentNode.SelectSingleNode("//*[@id=\"StudentPersonalData1_lblEducationPlan\"]");
+                string educationPlan = node.InnerText;
+
+                int educationYear = student.EndYear + YEAR - Convert.ToInt32(educationPlan.Substring(0, educationPlan.LastIndexOf(' ')));
+
+                switch (educationYear)
+                {
+                    case 4: student.Year = "четвърти"; break;
+                    case 3: student.Year = "трети"; break;
+                    case 2: student.Year = "втори"; break;
+                    default: student.Year = "първи"; break;
+                }
+
+                student.Program = educationPlan.Substring(5, educationPlan.IndexOf('-') - 5);
+
+                node = rootDocument.DocumentNode.SelectSingleNode("//*[@id=\"StudentPersonalData1_lblStudentEntranceTypeName\"]");
+                student.Degree = node.InnerText;
+
+                node = rootDocument.DocumentNode.SelectSingleNode("//*[@id=\"StudentPersonalData1_lblFacultyNumber\"]");
+                student.FacultyNumber = Convert.ToInt32(node.InnerText);
+            }
+            catch (Exception)
+            {
+
+                throw new NotImplementedException();
+            }
+
+            return student;
+
         }
 
         public bool IsCurrentlyAStudent()
