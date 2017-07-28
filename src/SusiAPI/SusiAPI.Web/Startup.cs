@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Mvc;
 
 namespace SusiAPI.Web
 {
@@ -29,7 +30,6 @@ namespace SusiAPI.Web
         {
             // Add framework services.
             services.AddMvc();
-
             services.AddTransient<SusiService>();
         }
 
