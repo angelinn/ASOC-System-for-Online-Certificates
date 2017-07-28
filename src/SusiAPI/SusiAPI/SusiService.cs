@@ -5,15 +5,15 @@ using System.Threading.Tasks;
 
 namespace SusiAPI
 {
-    public class SusiFetcher
+    public class SusiService
     {
         private ISusiParser parser;
-        public SusiFetcher(ISusiParser parser = null)
+        public SusiService(ISusiParser parser = null)
         {
             this.parser = parser ?? new ClassicSusiParser();
         }
         
-        public async Task<bool> Login(string username, string password)
+        public async Task<bool> LoginAsync(string username, string password)
         {
             return await parser.LoginAsync(username, password);
         }

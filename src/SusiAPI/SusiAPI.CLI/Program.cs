@@ -6,7 +6,7 @@ namespace SusiAPI.Test
     {
         public static void Main(string[] args)
         {
-            new SusiFetcher();
+            new SusiService();
         }
     }
 }
