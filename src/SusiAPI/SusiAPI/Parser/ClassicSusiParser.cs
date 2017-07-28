@@ -21,6 +21,15 @@ namespace SusiAPI.Parser
         private HttpClient client;
         private HttpClientHandler handler;
 
+        private bool isAuthenticated;
+        public bool IsAuthenticated
+        {
+            get
+            {
+                return isAuthenticated;
+            }
+        }
+
         public ClassicSusiParser()
         {
             handler = new HttpClientHandler { CookieContainer = new CookieContainer() };
@@ -29,7 +38,7 @@ namespace SusiAPI.Parser
 
         public bool Authenticated => throw new NotImplementedException();
 
-        public StudentInfo GetStudentInfo()
+        public Task<StudentInfo> GetStudentInfoAsync()
         {
             throw new NotImplementedException();
         }
@@ -53,9 +62,10 @@ namespace SusiAPI.Parser
 
             HttpResponseMessage response = await client.PostAsync(LOGIN_URL, new FormUrlEncodedContent(formData));
             string stringResult = await response.Content.ReadAsStringAsync();
-            File.WriteAllText("file.txt", stringResult);
 
-            return true;
+            // Insert logic to confirm login 
+            isAuthenticated = true;
+            return isAuthenticated;
         }
     }
 }

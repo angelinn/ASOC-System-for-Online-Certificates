@@ -26,12 +26,12 @@ namespace SusiAPI
             return parser.IsCurrentlyAStudent();
         }
 
-        public StudentInfo GetStudentInfo()
+        public async Task<StudentInfo> GetStudentInfoAsync()
         {
             if (!parser.Authenticated)
                 throw new Exception("Use login method first.");
 
-            return parser.GetStudentInfo();
+            return await parser.GetStudentInfoAsync();
         }
     }
 }
