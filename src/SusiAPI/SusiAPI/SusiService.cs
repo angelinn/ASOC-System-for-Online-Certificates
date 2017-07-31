@@ -20,15 +20,15 @@ namespace SusiAPI
         
         public bool IsCurrentlyAStudent()
         {
-            if (!parser.Authenticated)
+            if (!parser.IsAuthenticated)
                 throw new Exception("Use login method first.");
 
-            return parser.IsCurrentlyAStudent();
+            return parser.IsCurrentlyAStudent;
         }
 
         public async Task<StudentInfo> GetStudentInfoAsync()
         {
-            if (!parser.Authenticated)
+            if (!parser.IsAuthenticated)
                 throw new Exception("Use login method first.");
 
             return await parser.GetStudentInfoAsync();
