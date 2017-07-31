@@ -26,14 +26,10 @@ namespace SusiAPI.Parser
         StudentInfo student = new StudentInfo();
 
         private bool isAuthenticated;
+        public bool IsAuthenticated => isAuthenticated;
+
         private bool isCurrentlyAStudent;
-        public bool IsAuthenticated
-        {
-            get
-            {
-                return isAuthenticated;
-            }
-        }
+        public bool IsCurrentlyAStudent => isCurrentlyAStudent;
 
         public ClassicSusiParser()
         {
@@ -64,7 +60,7 @@ namespace SusiAPI.Parser
                 student.Region = node.InnerText;
 
                 node = rootDocument.DocumentNode.SelectSingleNode("//*[@id=\"StudentPersonalData1_lblSex\"]");
-                student.Gender = node.InnerText;
+                student.Gender = node.InnerText;    
 
 
                 if ( (DateTime.Now.Month >=2 && DateTime.Now.Day>=20) && (DateTime.Now.Month <= 7 && DateTime.Now.Day<=7))
@@ -95,11 +91,6 @@ namespace SusiAPI.Parser
 
             return Task.FromResult<StudentInfo>(student);
 
-        }
-
-        public bool IsCurrentlyAStudent()
-        {
-            return isCurrentlyAStudent;
         }
         
         public async Task<bool> LoginAsync(string username, string password)
