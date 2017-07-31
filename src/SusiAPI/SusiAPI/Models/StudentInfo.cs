@@ -10,8 +10,8 @@ namespace SusiAPI.Models
         public string Names { get; set; }
         public string EGN { get; set; }
         public string City { get; set; }
-        public string State { get; set; }
-        public char Gender { get; set; }
+        public string Region { get; set; }
+        public string Gender { get; set; }
         public string Semester { get; set; }
         public int StartYear { get; set; }
         public int EndYear { get; set; }

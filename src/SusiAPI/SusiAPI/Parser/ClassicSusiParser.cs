@@ -14,6 +14,7 @@ namespace SusiAPI.Parser
     {
         private static readonly string SUSI_URL = "https://susi.uni-sofia.bg/";
         private static readonly string LOGIN_URL = $"{SUSI_URL}ISSU/forms/Login.aspx";
+        private static readonly int YEAR = 2000;
 
         private const string USERNAME_KEY = "txtUserName";
         private const string PASSWORD_KEY = "txtPassword";
@@ -21,7 +22,11 @@ namespace SusiAPI.Parser
         private HttpClient client;
         private HttpClientHandler handler;
 
+        //(poolparty)..may be :D
+        StudentInfo student = new StudentInfo();
+
         private bool isAuthenticated;
+        private bool isCurrentlyAStudent;
         public bool IsAuthenticated
         {
             get
@@ -40,11 +45,6 @@ namespace SusiAPI.Parser
 
         public Task<StudentInfo> GetStudentInfoAsync()
         {
-            StudentInfo student = new StudentInfo();
-
-            try
-            {
-
                 var rootDocument = new HtmlDocument();
                 rootDocument.Load("file1.txt");
 
@@ -84,16 +84,6 @@ namespace SusiAPI.Parser
                 node = rootDocument.DocumentNode.SelectSingleNode("//*[@id=\"StudentPersonalData1_lblEducationPlan\"]");
                 string educationPlan = node.InnerText;
 
-                int educationYear = student.EndYear + YEAR - Convert.ToInt32(educationPlan.Substring(0, educationPlan.LastIndexOf(' ')));
-
-                switch (educationYear)
-                {
-                    case 4: student.Year = "четвърти"; break;
-                    case 3: student.Year = "трети"; break;
-                    case 2: student.Year = "втори"; break;
-                    default: student.Year = "първи"; break;
-                }
-
                 student.Program = educationPlan.Substring(5, educationPlan.IndexOf('-') - 5);
 
                 node = rootDocument.DocumentNode.SelectSingleNode("//*[@id=\"StudentPersonalData1_lblStudentEntranceTypeName\"]");
@@ -101,20 +91,15 @@ namespace SusiAPI.Parser
 
                 node = rootDocument.DocumentNode.SelectSingleNode("//*[@id=\"StudentPersonalData1_lblFacultyNumber\"]");
                 student.FacultyNumber = Convert.ToInt32(node.InnerText);
-            }
-            catch (Exception)
-            {
+            
 
-                throw new NotImplementedException();
-            }
-
-            return student;
+            return Task.FromResult<StudentInfo>(student);
 
         }
 
         public bool IsCurrentlyAStudent()
         {
-            throw new NotImplementedException();
+            return isCurrentlyAStudent;
         }
         
         public async Task<bool> LoginAsync(string username, string password)
@@ -132,8 +117,32 @@ namespace SusiAPI.Parser
             HttpResponseMessage response = await client.PostAsync(LOGIN_URL, new FormUrlEncodedContent(formData));
             string stringResult = await response.Content.ReadAsStringAsync();
 
-            // Insert logic to confirm login 
-            isAuthenticated = true;
+            if (stringResult.Contains("header start"))
+            {
+                isAuthenticated = true;
+
+                //get student year
+                HtmlAgilityPack.HtmlDocument htmlDocument = new HtmlAgilityPack.HtmlDocument();
+                htmlDocument.LoadHtml(stringResult);
+
+                HtmlNode nodeTemp = htmlDocument.DocumentNode.SelectSingleNode("//*[@id=\"StudentInfo1_lblCourse\"]");
+                string educationYear=nodeTemp.InnerText;
+
+                switch (educationYear)
+                {
+                    case "Курс 4": student.Year = "четвърти"; break;
+                    case "Курс 3": student.Year = "трети"; break;
+                    case "Курс 2": student.Year = "втори"; break;
+                    case "Курс 1": student.Year = "първи"; break;
+                    default: student.Year = "Няма студентски права"; break;
+                }
+
+                //check is currently a student
+                if (student.Year != "Няма студентски права") isCurrentlyAStudent = true;
+                else isCurrentlyAStudent = false;
+            }
+            else isAuthenticated = false;
+
             return isAuthenticated;
         }
     }
