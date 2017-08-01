@@ -12,10 +12,10 @@ namespace SusiAPI.Parser
 {
     public class ClassicSusiParser : ISusiParser
     {
-        private static readonly string SUSI_URL = "https://susi.uni-sofia.bg/";
+        private const string SUSI_URL = "https://susi.uni-sofia.bg/";
         private static readonly string LOGIN_URL = $"{SUSI_URL}ISSU/forms/Login.aspx";
-        private static readonly int YEAR = 2000;
 
+        private const int YEAR = 2000;
         private const string USERNAME_KEY = "txtUserName";
         private const string PASSWORD_KEY = "txtPassword";
 
@@ -36,8 +36,6 @@ namespace SusiAPI.Parser
             handler = new HttpClientHandler { CookieContainer = new CookieContainer() };
             client = new HttpClient(handler);
         }
-
-        public bool Authenticated => throw new NotImplementedException();
 
         public Task<StudentInfo> GetStudentInfoAsync()
         {
