@@ -109,7 +109,7 @@ namespace SusiAPI.Parser
 				isAuthenticated = true;
 
 				//get student year
-				HtmlDocument htmlDocument = new HtmlAgilityPack.HtmlDocument();
+				HtmlDocument htmlDocument = new HtmlDocument();
 				htmlDocument.LoadHtml(stringResult);
 
 				HtmlNode nodeTemp = htmlDocument.DocumentNode.SelectSingleNode("//*[@id=\"StudentInfo1_lblCourse\"]");
