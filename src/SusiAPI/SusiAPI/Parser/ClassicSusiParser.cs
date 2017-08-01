@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using SusiAPI.Models;
 using System.Net.Http;
 using System.Net;
-using System.IO;
 using HtmlAgilityPack;
 using System.Threading.Tasks;
 
@@ -142,7 +140,8 @@ namespace SusiAPI.Parser
 				else
 					isCurrentlyAStudent = false;
 			}
-			else isAuthenticated = false;
+			else
+				isAuthenticated = false;
 
 			return isAuthenticated;
 		}
