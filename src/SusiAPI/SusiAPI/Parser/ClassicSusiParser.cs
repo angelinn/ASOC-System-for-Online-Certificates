@@ -46,7 +46,7 @@ namespace SusiAPI.Parser
             rootDocument.LoadHtml(stringResult);
 
             HtmlNode node = rootDocument.DocumentNode.SelectSingleNode("//*[@id=\"HeaderMenu1_HeaderLeft1_lblFacultyName\"]");
-            student.Faculty = node.InnerText;
+            student.FacultyName = node.InnerText;
 
             node = rootDocument.DocumentNode.SelectSingleNode("//*[@id=\"StudentPersonalData1_lblFullName\"]");
             student.Names = node.InnerText;
@@ -64,19 +64,17 @@ namespace SusiAPI.Parser
             student.Gender = node.InnerText;
 
 
+            student.Semester = new Semester();
             if ((DateTime.Now.Month >= 2 && DateTime.Now.Day >= 20) && (DateTime.Now.Month <= 7 && DateTime.Now.Day <= 7))
             {
-                student.Semester = Semester.Summer;
-                student.StartYear = DateTime.Now.Year - YEAR - 1;
+                student.Semester.Type = SemesterType.Summer;
+                student.Semester.Begins = DateTime.Now.Year - YEAR - 1;
             }
-
             else
             {
-                student.Semester = Semester.Winter;
-                student.StartYear = DateTime.Now.Year - YEAR;
+                student.Semester.Type = SemesterType.Winter;
+                student.Semester.Begins = DateTime.Now.Year - YEAR;
             }
-
-            student.EndYear = student.StartYear + 1;
 
             node = rootDocument.DocumentNode.SelectSingleNode("//*[@id=\"StudentPersonalData1_lblEducationPlan\"]");
             string educationPlan = node.InnerText;

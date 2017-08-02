@@ -4,10 +4,10 @@ using System.Text;
 
 namespace SusiAPI.Models
 {
-    public enum Semester
+    public class Semester
     {
-        MissingNo = -1,
-        Summer,
-        Winter
+        public SemesterType Type { get; set; }
+        public int Begins { get; set; }
+        public int Ends => Begins + 1;
     }
 }
