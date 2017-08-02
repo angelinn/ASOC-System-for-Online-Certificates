@@ -12,10 +12,10 @@ namespace SusiAPI.Models
         public string City { get; set; }
         public string Region { get; set; }
         public string Gender { get; set; }
-        public string Semester { get; set; }
+        public Semester Semester { get; set; }
         public int StartYear { get; set; }
         public int EndYear { get; set; }
-        public string Year { get; set; }
+        public StudyYear Year { get; set; }
         public string FormOfEducation { get; set; }
         public string Degree { get; set; }
         public string Program { get; set; }
