@@ -7,6 +7,7 @@ using SusiAPI.Web.ViewModels;
 using System.Net;
 using Microsoft.AspNetCore.Http;
 using SusiAPI.Models;
+using Newtonsoft.Json;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -28,7 +29,7 @@ namespace SusiAPI.Web.Controllers
             if (await susiService.LoginAsync(login.Username, login.Password))
             {
                 StudentInfo info = await susiService.GetStudentInfoAsync();
-                return new SusiAPIResponse(StatusCodes.Status200OK, new { Result = "Login successful" });
+                return new SusiAPIResponse(StatusCodes.Status200OK, new { Result = JsonConvert.SerializeObject(info) });
             }
             
             return new SusiAPIResponse(StatusCodes.Status422UnprocessableEntity, new { Result = "Username or password is wrong" });
