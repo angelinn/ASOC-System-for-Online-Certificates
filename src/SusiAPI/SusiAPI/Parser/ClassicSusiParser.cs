@@ -12,8 +12,9 @@ namespace SusiAPI.Parser
 	{
 		private const string SUSI_URL = "https://susi.uni-sofia.bg/";
 		private static readonly string LOGIN_URL = $"{SUSI_URL}ISSU/forms/Login.aspx";
+        private static readonly string PERSONALDATA_URL = $"{SUSI_URL}ISSU/forms/Students/PersonalData.aspx";
 
-		private const int YEAR = 2000;
+        private const int YEAR = 2000;
 		private const string USERNAME_KEY = "txtUserName";
 		private const string PASSWORD_KEY = "txtPassword";
 
@@ -37,10 +38,14 @@ namespace SusiAPI.Parser
 
 		public Task<StudentInfo> GetStudentInfoAsync()
 		{
-			var rootDocument = new HtmlDocument();
-			rootDocument.Load("file1.txt");
 
-			HtmlNode node = rootDocument.DocumentNode.SelectSingleNode("//*[@id=\"HeaderMenu1_HeaderLeft1_lblFacultyName\"]");
+            HttpResponseMessage response = client.GetAsync(PERSONALDATA_URL).Result;
+            string stringResult =  response.Content.ReadAsStringAsync().Result;
+
+            HtmlDocument rootDocument = new HtmlDocument();
+            rootDocument.LoadHtml(stringResult);
+
+            HtmlNode node = rootDocument.DocumentNode.SelectSingleNode("//*[@id=\"HeaderMenu1_HeaderLeft1_lblFacultyName\"]");
 			student.Faculty = node.InnerText;
 
 			node = rootDocument.DocumentNode.SelectSingleNode("//*[@id=\"StudentPersonalData1_lblFullName\"]");
@@ -49,10 +54,12 @@ namespace SusiAPI.Parser
 			node = rootDocument.DocumentNode.SelectSingleNode("//*[@id=\"StudentPersonalData1_lblPersonalNumber\"]");
 			student.EGN = node.InnerText;
 
-			node = rootDocument.DocumentNode.SelectSingleNode("//*[@id=\"StudentPersonalData1_pnlAddresses\"]/table[2]/tbody/tr[3]/td[5]");
+            
+            node = rootDocument.DocumentNode.SelectSingleNode("//*[@id=\"StudentPersonalData1_pnlAddresses\"]/table[2]/tr[3]/td[5]");
 			student.City = node.InnerText;
 
-			node = rootDocument.DocumentNode.SelectSingleNode("//*[@id=\"StudentPersonalData1_pnlAddresses\"]/table[2]/tbody/tr[3]/td[3]");
+            
+			node = rootDocument.DocumentNode.SelectSingleNode("//*[@id=\"StudentPersonalData1_pnlAddresses\"]/table[2]/tr[3]/td[3]");
 			student.Region = node.InnerText;
 
 			node = rootDocument.DocumentNode.SelectSingleNode("//*[@id=\"StudentPersonalData1_lblSex\"]");
