@@ -1,4 +1,5 @@
 ﻿using AffirmationBar.ViewModels;
+using SusiAPICommon.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +21,15 @@ namespace AffirmationBar.Views
 
         private async void OnLoginClicked(object sender, EventArgs e)
         {
-            if (await LoginViewModel.LoginAsync())
+            StudentInfo studentInfo = await LoginViewModel.GetStudentInfoAsync();
+            if (studentInfo != null)
             {
-                await Navigation.PushAsync(new StudentInfoPage());
+                LoginViewModel.Password = String.Empty;
+                await Navigation.PushAsync(new StudentInfoPage(studentInfo));
+            }
+            else
+            {
+                await DisplayAlert("Грешка", "Възникна грешка. Проверете името и паролата си.", "ОК");
             }
         }
     }

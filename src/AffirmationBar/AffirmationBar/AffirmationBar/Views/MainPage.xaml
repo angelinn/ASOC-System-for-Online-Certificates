@@ -23,6 +23,11 @@
             <Button Text="Влизане" Clicked="OnLoginClicked" IsEnabled="{Binding IsLoading, Converter={StaticResource InverseBool}}"/>
             <ActivityIndicator IsEnabled="{Binding IsLoading}" IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" />
         </StackLayout>
+
+        <StackLayout VerticalOptions="End">
+            <Label Text="Това приложение е open source." HorizontalOptions="Center" />
+            <Label HorizontalOptions="Center" Text="http://github.com/betrakiss/SUSI-API-v2" TextColor="DodgerBlue" />
+        </StackLayout>
     </Grid>
 
 </ContentPage>

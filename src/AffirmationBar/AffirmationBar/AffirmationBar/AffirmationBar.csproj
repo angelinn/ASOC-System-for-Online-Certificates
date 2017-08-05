@@ -42,6 +42,7 @@
     <Compile Include="Converters\InverseBoolConverter.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\StudentInfoViewModel.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -64,6 +65,10 @@
     <ProjectReference Include="..\..\..\SUSIAPIClient\SusiAPIClient.csproj">
       <Project>{1674685f-970f-4198-89e6-d5c49aa6fdf0}</Project>
       <Name>SusiAPIClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\SusiAPICommon\SusiAPICommon.csproj">
+      <Project>{82f8fde8-529d-4760-a0d9-e434fc4b7a92}</Project>
+      <Name>SusiAPICommon</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

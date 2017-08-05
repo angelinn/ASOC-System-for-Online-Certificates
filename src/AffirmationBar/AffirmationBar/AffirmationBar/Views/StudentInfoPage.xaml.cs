@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AffirmationBar.ViewModels;
+using SusiAPICommon.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +14,13 @@ namespace AffirmationBar.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class StudentInfoPage : ContentPage
 	{
-		public StudentInfoPage ()
+        public StudentInfoViewModel StudentInfoViewModel { get; set; }
+        public StudentInfoPage(StudentInfo studentInfo)
 		{
-			InitializeComponent ();
+			InitializeComponent();
+
+            StudentInfoViewModel = new StudentInfoViewModel(studentInfo);
+            BindingContext = StudentInfoViewModel;
 		}
 	}
 }

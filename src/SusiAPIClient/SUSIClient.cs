@@ -9,13 +9,13 @@ namespace SusiAPIClient
 {
     public class SusiClient
     {
-        private const string API_URL = "";
-        private static readonly string LOGIN_URL = "";
-        private static readonly string STUDENT_INFO_URL = "";
+        private const string API_URL = "http://192.168.0.102:49953";
+        private static readonly string LOGIN_URL = $"{API_URL}/api/login";
+        private static readonly string STUDENT_INFO_URL = $"{API_URL}/api/affirmation";
 
         private const string JSON_MEDIA_TYPE = "application/json";
-        private HttpClient client = new HttpClient();
 
+        private HttpClient client = new HttpClient();
         private bool isAuthenticated;
 
         public async Task<bool> LoginAsync(string username, string password)
@@ -26,15 +26,22 @@ namespace SusiAPIClient
             return true;
         }
         
-        public async Task<StudentInfo> GetStudentInfoAsync()
+        public async Task<StudentInfo> GetStudentInfoAsync(string username, string password)
         {
-            if (!isAuthenticated)
+
+            try
+            {
+                string json = JsonConvert.SerializeObject(new { Username = username, Password = password });
+
+                HttpResponseMessage response = await client.PostAsync(STUDENT_INFO_URL, new StringContent(json, Encoding.UTF8, JSON_MEDIA_TYPE));
+                string resJson = await response.Content.ReadAsStringAsync();
+
+                return JsonConvert.DeserializeObject<StudentInfo>(resJson);
+            }
+            catch (Exception e)
+            {
                 return null;
-
-            HttpResponseMessage response = await client.GetAsync(STUDENT_INFO_URL);
-            string json = await response.Content.ReadAsStringAsync();
-
-            return JsonConvert.DeserializeObject<StudentInfo>(json);
+            }
         }
     }
 }
