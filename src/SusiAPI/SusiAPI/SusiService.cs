@@ -1,5 +1,5 @@
-﻿using SusiAPI.Models;
-using SusiAPI.Parser;
+﻿using SusiAPI.Parser;
+using SusiAPICommon.Models;
 using System;
 using System.Threading.Tasks;
 

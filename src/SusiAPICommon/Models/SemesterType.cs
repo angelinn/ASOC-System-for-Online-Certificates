@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SusiAPI.Models
+namespace SusiAPICommon.Models
 {
     public enum SemesterType
     {

@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using SusiAPI.Web.ViewModels;
 using System.Net;
 using Microsoft.AspNetCore.Http;
-using SusiAPI.Models;
 using Newtonsoft.Json;
+using SusiAPICommon.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 

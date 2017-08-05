@@ -1,4 +1,4 @@
-﻿using SusiAPI.Models;
+﻿using SusiAPICommon.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;

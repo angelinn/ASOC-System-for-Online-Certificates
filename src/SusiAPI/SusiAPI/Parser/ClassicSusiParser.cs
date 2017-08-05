@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using SusiAPI.Models;
 using System.Net.Http;
 using System.Net;
 using HtmlAgilityPack;
 using System.Threading.Tasks;
+using SusiAPICommon.Models;
 
 namespace SusiAPI.Parser
 {
@@ -20,7 +20,7 @@ namespace SusiAPI.Parser
 
         private HttpClient client;
         private HttpClientHandler handler;
-
+        
         //(poolparty)..may be :D
         private StudentInfo student = new StudentInfo();
 
