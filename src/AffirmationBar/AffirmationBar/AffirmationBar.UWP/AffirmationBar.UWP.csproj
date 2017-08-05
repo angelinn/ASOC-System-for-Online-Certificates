@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{83ADF389-0B79-49E9-9E48-65F969EDC792}</ProjectGuid>
+    <ProjectGuid>{0A742271-2A11-438A-ACEF-17F5D37BC5B9}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AffirmationBar.UWP</RootNamespace>
