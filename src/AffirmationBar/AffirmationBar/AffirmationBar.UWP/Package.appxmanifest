@@ -7,11 +7,11 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="52a3055c-2e99-45cb-8bfb-3516e5349ba4"
+    Name="f540e355-b523-4b1d-b57d-770586b05523"
     Publisher="CN=betra"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="52a3055c-2e99-45cb-8bfb-3516e5349ba4" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="f540e355-b523-4b1d-b57d-770586b05523" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>AffirmationBar.UWP</DisplayName>

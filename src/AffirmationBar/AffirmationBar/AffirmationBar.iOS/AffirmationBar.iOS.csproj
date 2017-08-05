@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{3E41F0AB-1AED-4A8E-8500-BDAA078E877A}</ProjectGuid>
+    <ProjectGuid>{B7E4015B-59BB-4E4B-8558-BFA5E9BE1CE7}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
     <RootNamespace>AffirmationBar.iOS</RootNamespace>
@@ -135,7 +135,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AffirmationBar\AffirmationBar.csproj">
-      <Project>{9e6949bf-e456-4dd9-bed2-08294439d429}</Project>
+      <Project>{5a82fa68-7398-442e-b850-5de316f999f9}</Project>
       <Name>AffirmationBar</Name>
     </ProjectReference>
   </ItemGroup>

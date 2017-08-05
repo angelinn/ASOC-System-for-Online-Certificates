@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{BB1D8558-3D44-4FE2-92C9-181DB480DF79}</ProjectGuid>
+    <ProjectGuid>{D3A3C881-3A56-4B39-AADD-5A57E5A1DB7F}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -121,7 +121,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AffirmationBar\AffirmationBar.csproj">
-      <Project>{9e6949bf-e456-4dd9-bed2-08294439d429}</Project>
+      <Project>{5a82fa68-7398-442e-b850-5de316f999f9}</Project>
       <Name>AffirmationBar</Name>
     </ProjectReference>
   </ItemGroup>

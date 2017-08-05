@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AffirmationBar.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,9 +10,12 @@ namespace AffirmationBar
 {
     public partial class MainPage : ContentPage
     {
+        public LoginViewModel LoginViewModel { get; set; } = new LoginViewModel();
         public MainPage()
         {
             InitializeComponent();
+
+            BindingContext = LoginViewModel;
         }
     }
 }
