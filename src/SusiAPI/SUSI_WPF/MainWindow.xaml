@@ -1,0 +1,29 @@
+﻿<Window x:Class="SUSI_WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SUSI_WPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+	<Grid  x:Name="SUSI_APP" Margin="0,0,0,-143">
+		<Grid.Background>
+			<ImageBrush ImageSource="Resources/bckgr.jpg">
+				<ImageBrush.RelativeTransform>
+					<TransformGroup>
+						<ScaleTransform/>
+						<SkewTransform/>
+						<RotateTransform/>
+						<TranslateTransform/>
+					</TransformGroup>
+				</ImageBrush.RelativeTransform>
+			</ImageBrush>
+		</Grid.Background>
+		<Label x:Name="nameLbl" Content="Бар за уверения" HorizontalAlignment="Left" VerticalAlignment="Top" Height="50" Width="517" Foreground="#FF2355D8" Background="#FFF5F3F3" VerticalContentAlignment="Bottom" FontFamily="Sitka Small" FontSize="24"/>
+		<Label x:Name="lblUsername" Content="Потребителско име" HorizontalAlignment="Left" Margin="10,55,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Semibold" FontSize="16" Foreground="#FFEAF0EF"/>
+		<Label x:Name="lblPassword" Content="Парола" HorizontalAlignment="Left" Margin="10,149,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Semibold" FontSize="16" Foreground="#FFEAF0EF" RenderTransformOrigin="0.179,0.548"/>
+		<PasswordBox x:Name="txtBoxPassword" HorizontalAlignment="Left" Margin="10,185,0,0" VerticalAlignment="Top" Width="213" Height="36"/>
+		<TextBox x:Name="txtUsername" HorizontalAlignment="Left" Height="36" Margin="9,91,0,0" TextWrapping="Wrap" Text="Въведете потребителско име" VerticalAlignment="Top" Width="213" VerticalContentAlignment="Center" GotFocus="clearText" Foreground="#FFC3C2C2"/>
+		<Button x:Name="getDocBttn" Content="Вземи уверение" HorizontalAlignment="Left" Margin="182,271,0,0" VerticalAlignment="Top" Width="158" Height="43" Background="#FFF0EAC9" Foreground="#FF2355D8" FontSize="16" FontFamily="Sitka Small" Click="getDocBttn_Click"/>
+	</Grid>
+</Window>
