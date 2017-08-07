@@ -14,5 +14,7 @@ namespace AffirmationBar.ViewModels
         {
             this.studentInfo = studentInfo;
         }
+
+        public string FacultyName => studentInfo.FacultyName;
     }
 }
