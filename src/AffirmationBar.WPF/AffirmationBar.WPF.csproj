@@ -55,23 +55,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-<<<<<<< HEAD
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-=======
->>>>>>> 73f721bce9390cccaa9bc166f771bf5bc3c065bc
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-<<<<<<< HEAD
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\StudentInfoViewModel.cs" />
-=======
->>>>>>> 73f721bce9390cccaa9bc166f771bf5bc3c065bc
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -103,7 +97,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <ProjectReference Include="..\SUSIAPIClient\SusiAPIClient.csproj">
       <Project>{1674685f-970f-4198-89e6-d5c49aa6fdf0}</Project>
       <Name>SusiAPIClient</Name>
@@ -115,12 +108,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\bckgr.jpg" />
-=======
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
->>>>>>> 73f721bce9390cccaa9bc166f771bf5bc3c065bc
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
