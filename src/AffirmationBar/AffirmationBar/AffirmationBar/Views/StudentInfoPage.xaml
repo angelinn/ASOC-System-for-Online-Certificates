@@ -4,7 +4,18 @@
              x:Class="AffirmationBar.Views.StudentInfoPage"
              Title="{Binding Names}">
     
-    <StackLayout>
+    <StackLayout Padding="10">
         <Label Text="{Binding FacultyName}" />
+        <Label Text="{Binding FormOfEducation}" />
+        <StackLayout Orientation="Horizontal">
+            <Label Text="ЕГН: " />
+            <Label Text="{Binding Egn}" />
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Град: " />
+            <Label Text="{Binding City}" />
+            <Label Text=", област " />
+            <Label Text="{Binding Region}" />
+        </StackLayout>
     </StackLayout>
 </ContentPage>

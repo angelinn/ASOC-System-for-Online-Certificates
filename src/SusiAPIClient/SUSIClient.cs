@@ -36,7 +36,7 @@ namespace SusiAPIClient
                 HttpResponseMessage response = await client.PostAsync(STUDENT_INFO_URL, new StringContent(json, Encoding.UTF8, JSON_MEDIA_TYPE));
                 string resJson = await response.Content.ReadAsStringAsync();
 
-                return new StudentInfo { FacultyName = resJson };
+                return JsonConvert.DeserializeObject<StudentInfo>(resJson);
             }
             catch (Exception e)
             {

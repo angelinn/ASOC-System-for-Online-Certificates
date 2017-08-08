@@ -16,5 +16,10 @@ namespace AffirmationBar.ViewModels
         }
 
         public string FacultyName => studentInfo.FacultyName;
+        public string Names => studentInfo.Names;
+        public string Egn => studentInfo.EGN;
+        public string City => studentInfo.City;
+        public string Region => studentInfo.Region;
+        public string FormOfEducation => studentInfo.FormOfEducation;
     }
 }
