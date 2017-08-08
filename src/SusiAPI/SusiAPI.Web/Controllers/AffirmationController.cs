@@ -29,7 +29,7 @@ namespace SusiAPI.Web.Controllers
             if (await susiService.LoginAsync(login.Username, login.Password))
             {
                 StudentInfo info = await susiService.GetStudentInfoAsync();
-                return new SusiAPIResponse(StatusCodes.Status200OK, new { Result = JsonConvert.SerializeObject(info) });
+                return new SusiAPIResponse(StatusCodes.Status200OK, info);
             }
             
             return new SusiAPIResponse(StatusCodes.Status422UnprocessableEntity, new { Result = "Username or password is wrong" });

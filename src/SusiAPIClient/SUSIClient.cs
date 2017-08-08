@@ -9,7 +9,7 @@ namespace SusiAPIClient
 {
     public class SusiClient
     {
-        private const string API_URL = "http://192.168.0.102:49953";
+        private const string API_URL = "http://susiapi.azurewebsites.net";
         private static readonly string LOGIN_URL = $"{API_URL}/api/login";
         private static readonly string STUDENT_INFO_URL = $"{API_URL}/api/affirmation";
 
@@ -36,7 +36,7 @@ namespace SusiAPIClient
                 HttpResponseMessage response = await client.PostAsync(STUDENT_INFO_URL, new StringContent(json, Encoding.UTF8, JSON_MEDIA_TYPE));
                 string resJson = await response.Content.ReadAsStringAsync();
 
-                return JsonConvert.DeserializeObject<StudentInfo>(resJson);
+                return new StudentInfo { FacultyName = resJson };
             }
             catch (Exception e)
             {

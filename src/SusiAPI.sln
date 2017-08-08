@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SusiAPI", "SusiAPI\SusiAPI.csproj", "{72CB88F8-536A-415D-AF54-A9FD7A5D1605}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SusiAPI", "SusiAPI\SusiAPI\SusiAPI.csproj", "{72CB88F8-536A-415D-AF54-A9FD7A5D1605}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SusiAPI.CLI", "SusiAPI.CLI\SusiAPI.CLI.csproj", "{FBB53DCF-2613-4969-9B44-2F34F334122E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SusiAPI.CLI", "SusiAPI\SusiAPI.CLI\SusiAPI.CLI.csproj", "{FBB53DCF-2613-4969-9B44-2F34F334122E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SusiAPI.Web", "SusiAPI.Web\SusiAPI.Web.csproj", "{57EB58B5-50C8-40FD-923C-829C85267669}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SusiAPI.Web", "SusiAPI\SusiAPI.Web\SusiAPI.Web.csproj", "{57EB58B5-50C8-40FD-923C-829C85267669}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SusiAPICommon", "..\SusiAPICommon\SusiAPICommon.csproj", "{B1351587-71C7-4EB3-B826-479430F334CF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SusiAPICommon", "SusiAPICommon\SusiAPICommon.csproj", "{B1351587-71C7-4EB3-B826-479430F334CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
