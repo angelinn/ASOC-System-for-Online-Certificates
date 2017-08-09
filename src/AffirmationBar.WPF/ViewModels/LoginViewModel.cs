@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AffirmationBar.WPF.ViewModels
 {
-	class LoginViewModel
+	class LoginViewModel:BaseViewModel
 	{
 		private SusiClient susiClient = new SusiClient();
 

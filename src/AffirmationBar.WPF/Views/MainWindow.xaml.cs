@@ -24,5 +24,17 @@ namespace AffirmationBar.WPF
 		{
 			InitializeComponent();
 		}
+
+		private void clearText(object sender, RoutedEventArgs e)
+		{
+			TextBox tb = (TextBox)sender;
+			tb.Text = string.Empty;
+			tb.GotFocus -= clearText;
+		}
+
+		private void getDocBttn_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
 	}
 }
