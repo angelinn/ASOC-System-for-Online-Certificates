@@ -6,22 +6,46 @@
         mc:Ignorable="d"
         Title="StudentInfoWindow" Height="300" Width="300">
     <Grid>
-		<StackPanel>
-            <Label Content="Име: " />
+        <StackPanel>
+            <Label Content="Име на факултет: " />
             <Label Content="{Binding FacultyName}" />
+
+            <Label Content="Име на студент: " />
+            <Label Content="{Binding Names}" />
+
+            <Label Content="ЕГН: " />
+            <Label Content="{Binding EGN}" />
+
+            <Label Content="Град: " />
+            <Label Content="{Binding City}" />
+
+            <Label Content="Област: " />
+            <Label Content="{Binding Region}" />
 
             <Label Content="Форма на обучение: " />
             <Label Content="{Binding FormOfEducation}" />
-            
-            <Label Content="ЕГН: " />
-            <Label Content="{Binding Egn}" />
 
-			<Label Content="Град: " />
-			<Label Content="{Binding City}" />
-            
-			<Label Content="Област " />
-			<Label Content="{Binding Region}" />
+            <Label Content="Пол: " />
+            <Label Content="{Binding Gender}" />
 
-		</StackPanel>
-	</Grid>
+            <Label Content="Семестър: " />
+            <Label Content="{Binding Semester}" />
+
+            <!--<Label Content="Година: " />
+            <Label Content="{Binding Year}" />-->
+
+            <Label Content="Степен: " />
+            <Label Content="{Binding Degree}" />
+
+            <Label Content="Специалност: " />
+            <Label Content="{Binding Program}" />
+
+            <Label Content="ФН: " />
+            <Label Content="{Binding FacultyNumber}" />
+
+            <Label Content="Причина: " />
+            <Label Content="{Binding Reason}" />
+
+        </StackPanel>
+    </Grid>
 </Window>
