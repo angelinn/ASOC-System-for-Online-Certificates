@@ -8,9 +8,10 @@ using SusiAPICommon.Models;
 
 namespace AffirmationBar.WPF.ViewModels
 {
-	class StudentInfoViewModel: BaseViewModel
+	public class StudentInfoViewModel: BaseViewModel
 	{
 		private StudentInfo studentInfo;
+
 		public StudentInfoViewModel(StudentInfo studentInfo)
 		{
 			this.studentInfo = studentInfo;
