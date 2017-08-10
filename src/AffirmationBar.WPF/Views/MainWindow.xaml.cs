@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AffirmationBar.WPF.ViewModels;
+using AffirmationBar.WPF.Views;
+using SusiAPICommon.Models;
+using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace AffirmationBar.WPF
 {
@@ -20,9 +13,13 @@ namespace AffirmationBar.WPF
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		LoginViewModel LoginViewModel { get; set; } = new LoginViewModel();
+
 		public MainWindow()
 		{
 			InitializeComponent();
+
+			DataContext = LoginViewModel;
 		}
 
 		private void clearText(object sender, RoutedEventArgs e)
@@ -32,9 +29,19 @@ namespace AffirmationBar.WPF
 			tb.GotFocus -= clearText;
 		}
 
-		private void getDocBttn_Click(object sender, RoutedEventArgs e)
+		private async void getDocBttn_Click(object sender, RoutedEventArgs e)
 		{
-
+			LoginViewModel.Password = txtBoxPassword.Password;
+			StudentInfo studentInfo = await LoginViewModel.GetStudentInfoAsync();
+			if (studentInfo != null)
+			{
+                var newForm = new StudentInfoWindow(studentInfo); //create your new form.
+                newForm.Show(); //show the new form.
+            }
+			else
+			{
+				MessageBox.Show("Грешка", "Възникна грешка. Проверете името и паролата си.");
+			}
 		}
 	}
 }

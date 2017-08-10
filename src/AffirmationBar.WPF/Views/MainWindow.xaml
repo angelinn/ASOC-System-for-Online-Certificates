@@ -9,16 +9,19 @@
     <Grid>
 		
 			<Grid.Background>
-				<ImageBrush ImageSource="AffirmationBar.WPF/Resources/bckgr.jpg">
+				<ImageBrush ImageSource="../Resources/bckgr.jpg">
 				</ImageBrush>
 			</Grid.Background>
 
-		  <StackPanel>
+		<StackPanel>
 			<Label x:Name="nameLbl" Content="Бар за уверения" HorizontalAlignment="Left" VerticalAlignment="Top" Height="50" Width="517" Foreground="#FF2355D8" Background="#FFF5F3F3" VerticalContentAlignment="Bottom" FontFamily="Sitka Small" FontSize="24"/>
+
 			<Label x:Name="lblUsername" Content="Потребителско име" HorizontalAlignment="Left" FontFamily="Segoe UI Semibold" FontSize="16" Foreground="#FFEAF0EF"/>
-			<TextBox x:Name="txtUsername" HorizontalAlignment="Left" Height="36"  TextWrapping="Wrap" Text="Въведете потребителско име"  Width="213" VerticalContentAlignment="Center" GotFocus="clearText" Foreground="#FFC3C2C2"/>
+			<TextBox x:Name="txtUsername" HorizontalAlignment="Left" Height="36"  TextWrapping="Wrap" Text="{Binding Path=Username}"  Width="213" VerticalContentAlignment="Center" GotFocus="clearText" Foreground="#FFC3C2C2"/>
+
 			<Label x:Name="lblPassword" Content="Парола" HorizontalAlignment="Left"  FontFamily="Segoe UI Semibold" FontSize="16" Foreground="#FFEAF0EF" RenderTransformOrigin="0.179,0.548"/>
 			<PasswordBox x:Name="txtBoxPassword" HorizontalAlignment="Left"  Width="213" Height="36"/>
+
 			<Button x:Name="getDocBttn" Content="Вземи уверение" HorizontalAlignment="Left"   Width="158" Height="43" Background="#FFF0EAC9" Foreground="#FF2355D8" FontSize="16" FontFamily="Sitka Small" Click="getDocBttn_Click"/>
 		</StackPanel>
 	</Grid>
