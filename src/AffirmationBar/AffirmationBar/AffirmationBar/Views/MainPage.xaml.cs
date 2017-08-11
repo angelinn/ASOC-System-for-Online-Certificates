@@ -21,6 +21,16 @@ namespace AffirmationBar.Views
 
         private async void OnLoginClicked(object sender, EventArgs e)
         {
+            await LoginAsync();
+        }
+
+        private async void OnPasswordCompleted(object sender, EventArgs e)
+        {
+            await LoginAsync();
+        }
+        
+        private async Task LoginAsync()
+        {
             StudentInfo studentInfo = await LoginViewModel.GetStudentInfoAsync();
             if (studentInfo != null)
             {

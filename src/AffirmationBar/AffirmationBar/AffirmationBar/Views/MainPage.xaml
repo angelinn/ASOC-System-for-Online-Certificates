@@ -18,7 +18,7 @@
             <Entry Text="{Binding Username}" />
 
             <Label Text="Парола" />
-            <Entry Text="{Binding Password}" IsPassword="True" />
+            <Entry Text="{Binding Password}" IsPassword="True" Completed="OnPasswordCompleted" />
 
             <Button Text="Влизане" Clicked="OnLoginClicked" IsEnabled="{Binding IsLoading, Converter={StaticResource InverseBool}}"/>
             <ActivityIndicator IsEnabled="{Binding IsLoading}" IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" />
