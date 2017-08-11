@@ -1,21 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cv="clr-namespace:AffirmationBar.Converters"
              x:Class="AffirmationBar.Views.StudentInfoPage"
              Title="{Binding Names}">
-    
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <cv:StudyYearConverter x:Key="StudyYear" />
+            <cv:SemesterTypeConverter x:Key="SemesterType" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <StackLayout Padding="10">
         <Label Text="{Binding FacultyName}" />
+        <Label Text="{Binding FacultyNumber, StringFormat='Факултетен номер: {0}'}" />
+        <Label Text="{Binding Program, StringFormat='Специалност: {0}'}" />
         <Label Text="{Binding FormOfEducation}" />
-        <StackLayout Orientation="Horizontal">
-            <Label Text="ЕГН: " />
-            <Label Text="{Binding Egn}" />
-        </StackLayout>
-        <StackLayout Orientation="Horizontal">
-            <Label Text="Град: " />
-            <Label Text="{Binding City}" />
-            <Label Text=", област " />
-            <Label Text="{Binding Region}" />
+        <Label Text="{Binding Egn, StringFormat='ЕГН: {0}'}"  />
+        <Label Text="{Binding Home, StringFormat='Град: {0}'}" />
+        <Label Text="{Binding Year, Converter={StaticResource StudyYear}, StringFormat='Година: {0}'}" />
+        <Label Text="{Binding Gender, StringFormat='Пол: {0}'}" />
+        <Label Text="{Binding Degree, StringFormat='Специалност: {0}'}" />
+        <Label Text="{Binding Reason}" />
+        <StackLayout BindingContext="{Binding Semester}" Orientation="Horizontal">
+            <Label Text="{Binding Type, Converter={StaticResource SemesterType}, StringFormat='Семестър: {0}, '}" />
+            <Label Text="{Binding Begins, StringFormat='{0} /'}" />
+            <Label Text="{Binding Ends}" />
         </StackLayout>
     </StackLayout>
 </ContentPage>

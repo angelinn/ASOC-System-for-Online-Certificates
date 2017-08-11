@@ -40,6 +40,8 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\InverseBoolConverter.cs" />
+    <Compile Include="Converters\SemesterTypeConverter.cs" />
+    <Compile Include="Converters\StudyYearConverter.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\StudentInfoViewModel.cs" />

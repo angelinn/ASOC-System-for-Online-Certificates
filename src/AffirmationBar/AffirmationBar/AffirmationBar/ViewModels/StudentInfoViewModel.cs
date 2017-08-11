@@ -21,5 +21,13 @@ namespace AffirmationBar.ViewModels
         public string City => studentInfo.City;
         public string Region => studentInfo.Region;
         public string FormOfEducation => studentInfo.FormOfEducation;
+        public Semester Semester => studentInfo.Semester;
+        public StudyYear Year => studentInfo.Year;
+        public string Degree => studentInfo.Degree;
+        public string Program => studentInfo.Program;
+        public string Reason => studentInfo.Reason;
+        public int FacultyNumber => studentInfo.FacultyNumber;
+        public string Home => $"{studentInfo.City}, {studentInfo.Region}";
+        public string Gender => studentInfo.Gender;
     }
 }
