@@ -21,7 +21,7 @@
         <Label Text="{Binding Home, StringFormat='Град: {0}'}" />
         <Label Text="{Binding Year, Converter={StaticResource StudyYear}, StringFormat='Година: {0}'}" />
         <Label Text="{Binding Gender, StringFormat='Пол: {0}'}" />
-        <Label Text="{Binding Degree, StringFormat='Специалност: {0}'}" />
+        <Label Text="{Binding Degree, StringFormat='Квалификационна степен: {0}'}" />
         <Label Text="{Binding Reason}" />
         <StackLayout BindingContext="{Binding Semester}" Orientation="Horizontal">
             <Label Text="{Binding Type, Converter={StaticResource SemesterType}, StringFormat='Семестър: {0}, '}" />

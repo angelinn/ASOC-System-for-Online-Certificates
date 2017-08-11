@@ -14,7 +14,7 @@
     
     <Grid Padding="10">
         <StackLayout>
-            <Label Text="Поребителско име" />
+            <Label Text="Потребителско име" />
             <Entry Text="{Binding Username}" />
 
             <Label Text="Парола" />
