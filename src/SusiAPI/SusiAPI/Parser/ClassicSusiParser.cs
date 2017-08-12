@@ -119,7 +119,7 @@ namespace SusiAPI.Parser
                 string educationYear = nodeTemp.InnerText;
 
                 if (educationYear.Contains("Курс"))
-                    student.Year = (StudyYear)educationYear[educationYear.Length - 1];
+                    student.Year = (StudyYear)educationYear[educationYear.Length - 1] - '0';
                 else
                     student.Year = StudyYear.NoStudentAccess;
 
