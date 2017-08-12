@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SUSIAPIClient\SusiAPIClient.csproj" />
+    <ProjectReference Include="..\SusiAPIClient\SusiAPIClient.csproj" />
     <ProjectReference Include="..\SusiAPICommon\SusiAPICommon.csproj" />
   </ItemGroup>
 
