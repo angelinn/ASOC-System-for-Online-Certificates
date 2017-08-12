@@ -20,7 +20,7 @@ namespace AffirmationBar.ViewModels
         public string Egn => studentInfo.EGN;
         public string City => studentInfo.City;
         public string Region => studentInfo.Region;
-        public string FormOfEducation => studentInfo.FormOfEducation;
+        public FormOfEducation FormOfEducation => studentInfo.FormOfEducation;
         public Semester Semester => studentInfo.Semester;
         public StudyYear Year => studentInfo.Year;
         public string Degree => studentInfo.Degree;
