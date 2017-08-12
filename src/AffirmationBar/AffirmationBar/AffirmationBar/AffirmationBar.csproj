@@ -42,9 +42,6 @@
     <Compile Include="Converters\InverseBoolConverter.cs" />
     <Compile Include="Converters\SemesterTypeConverter.cs" />
     <Compile Include="Converters\StudyYearConverter.cs" />
-    <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\LoginViewModel.cs" />
-    <Compile Include="ViewModels\StudentInfoViewModel.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -64,6 +61,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\AffirmationBar.ViewModels\AffirmationBar.ViewModels.csproj">
+      <Project>{d6543a14-dbbd-4336-874f-c4a87dd528b7}</Project>
+      <Name>AffirmationBar.ViewModels</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\SUSIAPIClient\SusiAPIClient.csproj">
       <Project>{1674685f-970f-4198-89e6-d5c49aa6fdf0}</Project>
       <Name>SusiAPIClient</Name>
@@ -82,6 +83,7 @@
   <ItemGroup>
     <None Include="project.json" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
