@@ -11,7 +11,7 @@
             <cv:SemesterTypeConverter x:Key="SemesterType" />
         </ResourceDictionary>
     </ContentPage.Resources>
-
+    
     <StackLayout Padding="10">
         <Label Text="{Binding FacultyName}" />
         <Label Text="{Binding FacultyNumber, StringFormat='Факултетен номер: {0}'}" />
@@ -25,8 +25,8 @@
         <Label Text="{Binding Reason}" />
         <StackLayout BindingContext="{Binding Semester}" Orientation="Horizontal">
             <Label Text="{Binding Type, Converter={StaticResource SemesterType}, StringFormat='Семестър: {0}, '}" />
-            <Label Text="{Binding Begins, StringFormat='{0} /'}" />
-            <Label Text="{Binding Ends}" />
+            <Label Text="{Binding Begins, StringFormat='20{0} /'}" />
+            <Label Text="{Binding Ends, StringFormat='20{0}'}" />
         </StackLayout>
     </StackLayout>
 </ContentPage>
