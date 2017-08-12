@@ -15,41 +15,41 @@
 		<StackPanel>
 			<Label Content="{Binding FacultyName}"  ContentStringFormat="Име на факултет: {0}"/>
 
-			<Label Content="Име на студент: " />
-			<Label Content="{Binding Names}" />
+			<Label Content="{Binding Names}" ContentStringFormat="Име на студент: {0}" />
 
-			<Label Content="ЕГН: " />
-			<Label Content="{Binding EGN}" />
+			<Label Content="{Binding Egn}" ContentStringFormat="ЕГН: {0}" />
 
-			<Label Content="Град: " />
-			<Label Content="{Binding City}" />
+			<Label Content="{Binding City}" ContentStringFormat="Град: {0}" />
 
-			<Label Content="Област: " />
-			<Label Content="{Binding Region}" />
+			<Label Content="{Binding Region}" ContentStringFormat="Област {0}" />
 
-			<Label Content="Форма на обучение: " />
-			<Label Content="{Binding FormOfEducation}" />
+			<Label Content="{Binding FormOfEducation}" ContentStringFormat="Форма на обучение: {0}" />
 
-			<Label Content="Пол: " />
-			<Label Content="{Binding Gender}" />
+			<Label Content="{Binding Gender}" ContentStringFormat="Пол: {0}" />
 
-			<Label Content="Семестър: " />
-			<Label Content="{Binding Semester}" />
+			<StackPanel DataContext="{Binding Semester}">
+				<Label>
+					<TextBlock>
+						<TextBlock.Text>
+							<MultiBinding StringFormat="20{0} / 20{1}">
+								<Binding Path="Begins" />
+								<Binding Path="Ends" />
+							</MultiBinding>
+						</TextBlock.Text>
+					</TextBlock>
+				</Label>
+			</StackPanel>
 
-			<Label Content="Година: " />
-			<Label Content="{Binding Year, Converter={StaticResource yearConverter}}" />
 
-			<Label Content="Степен: " />
-			<Label Content="{Binding Degree}" />
+			<Label Content="{Binding Year,Converter={StaticResource yearConverter}}" ContentStringFormat="Година: " />
 
-			<Label Content="Специалност: " />
-			<Label Content="{Binding Program}" />
+			<Label Content="{Binding Degree}" ContentStringFormat="Степен: {0}" />
 
-			<Label Content="ФН: " />
-			<Label Content="{Binding FacultyNumber}" />
+			<Label Content="{Binding Program}" ContentStringFormat="Специалност: {0}" />
 
-			<Label Content="Причина: " />
-			<Label Content="{Binding Reason}" />
+			<Label Content="{Binding FacultyNumber}" ContentStringFormat="ФН: {0}" />
+
+			<Label Content="{Binding Reason}" ContentStringFormat="Причина: {0}" />
 
 		</StackPanel>
 	</Grid>

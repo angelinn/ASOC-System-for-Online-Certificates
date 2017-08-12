@@ -12,25 +12,26 @@
 			<vc:VisibilityConverter x:Key="visibleConverter" />
 		</ResourceDictionary>
 	</Window.Resources>
-    <Grid>
+    <StackPanel>
 		
-			<Grid.Background>
+			<StackPanel.Background>
 				<ImageBrush ImageSource="../Resources/bckgr.jpg">
 				</ImageBrush>
-			</Grid.Background>
+			</StackPanel.Background>
 
 		<StackPanel>
 			<Label x:Name="nameLbl" Content="Бар за уверения" HorizontalAlignment="Left" VerticalAlignment="Top" Height="50" Width="517" Foreground="#FF2355D8" Background="#FFF5F3F3" VerticalContentAlignment="Bottom" FontFamily="Sitka Small" FontSize="24"/>
-
+		</StackPanel>
+		<StackPanel Margin="10">
 			<Label x:Name="lblUsername" Content="Потребителско име" HorizontalAlignment="Left" FontFamily="Segoe UI Semibold" FontSize="16" Foreground="#FFEAF0EF"/>
 			<TextBox x:Name="txtUsername" HorizontalAlignment="Left" Height="36"  TextWrapping="Wrap" Text="{Binding Username}"  Width="213" VerticalContentAlignment="Center" GotFocus="clearText" Foreground="#FFC3C2C2"/>
 
 			<Label x:Name="lblPassword" Content="Парола" HorizontalAlignment="Left"  FontFamily="Segoe UI Semibold" FontSize="16" Foreground="#FFEAF0EF" RenderTransformOrigin="0.179,0.548"/>
-			<PasswordBox x:Name="txtBoxPassword" HorizontalAlignment="Left"  Width="213" Height="36"/>
+			<PasswordBox x:Name="txtBoxPassword" HorizontalAlignment="Left"  Width="213" Height="36" KeyUp="OnPasswordKeyUp"/>
 
-			<Button x:Name="getDocBttn" Content="Вземи уверение" HorizontalAlignment="Left"   Width="158" Height="43" FontSize="16" FontFamily="Sitka Small" Click="getDocBttn_Click"/>
+			<Button x:Name="getDocBttn" Content="Вземи уверение" HorizontalAlignment="Left"  Click="getDocBttn_Click" Margin="0,10,0,0"/>
 			
 			<ProgressBar IsIndeterminate="True" IsEnabled="{Binding IsLoading}" Visibility="{Binding IsLoading, Converter={StaticResource visibleConverter}}"/>
 		</StackPanel>
-	</Grid>
+	</StackPanel>
 </Window>
