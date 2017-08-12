@@ -4,6 +4,13 @@
              xmlns:local="clr-namespace:AffirmationBar.WPF"
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
-         
-    </Application.Resources>
+		<Style TargetType="Button">
+			<Setter Property="Foreground" Value="Black" />
+			<Setter Property="Background" Value="#FFF0EAC9"/>
+		</Style>
+		<Style TargetType="ProgressBar">
+			<Setter Property="Height" Value="20" />
+			<Setter Property="Margin" Value="0,10,0,0" />
+		</Style>
+	</Application.Resources>
 </Application>

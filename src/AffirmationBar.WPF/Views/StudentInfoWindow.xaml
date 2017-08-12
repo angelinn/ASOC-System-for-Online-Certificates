@@ -3,49 +3,54 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:cv="clr-namespace:AffirmationBar.WPF.Converters"
         mc:Ignorable="d"
         Title="StudentInfoWindow" Height="300" Width="300">
-    <Grid>
-        <StackPanel>
-            <Label Content="Име на факултет: " />
-            <Label Content="{Binding FacultyName}" />
+	<Window.Resources>
+		<ResourceDictionary>
+			<cv:StudyYearConverter x:Key="yearConverter"/>
+		</ResourceDictionary>
+	</Window.Resources>
+	<Grid>
+		<StackPanel>
+			<Label Content="{Binding FacultyName}"  ContentStringFormat="Име на факултет: {0}"/>
 
-            <Label Content="Име на студент: " />
-            <Label Content="{Binding Names}" />
+			<Label Content="Име на студент: " />
+			<Label Content="{Binding Names}" />
 
-            <Label Content="ЕГН: " />
-            <Label Content="{Binding EGN}" />
+			<Label Content="ЕГН: " />
+			<Label Content="{Binding EGN}" />
 
-            <Label Content="Град: " />
-            <Label Content="{Binding City}" />
+			<Label Content="Град: " />
+			<Label Content="{Binding City}" />
 
-            <Label Content="Област: " />
-            <Label Content="{Binding Region}" />
+			<Label Content="Област: " />
+			<Label Content="{Binding Region}" />
 
-            <Label Content="Форма на обучение: " />
-            <Label Content="{Binding FormOfEducation}" />
+			<Label Content="Форма на обучение: " />
+			<Label Content="{Binding FormOfEducation}" />
 
-            <Label Content="Пол: " />
-            <Label Content="{Binding Gender}" />
+			<Label Content="Пол: " />
+			<Label Content="{Binding Gender}" />
 
-            <Label Content="Семестър: " />
-            <Label Content="{Binding Semester}" />
+			<Label Content="Семестър: " />
+			<Label Content="{Binding Semester}" />
 
-            <!--<Label Content="Година: " />
-            <Label Content="{Binding Year}" />-->
+			<Label Content="Година: " />
+			<Label Content="{Binding Year, Converter={StaticResource yearConverter}}" />
 
-            <Label Content="Степен: " />
-            <Label Content="{Binding Degree}" />
+			<Label Content="Степен: " />
+			<Label Content="{Binding Degree}" />
 
-            <Label Content="Специалност: " />
-            <Label Content="{Binding Program}" />
+			<Label Content="Специалност: " />
+			<Label Content="{Binding Program}" />
 
-            <Label Content="ФН: " />
-            <Label Content="{Binding FacultyNumber}" />
+			<Label Content="ФН: " />
+			<Label Content="{Binding FacultyNumber}" />
 
-            <Label Content="Причина: " />
-            <Label Content="{Binding Reason}" />
+			<Label Content="Причина: " />
+			<Label Content="{Binding Reason}" />
 
-        </StackPanel>
-    </Grid>
+		</StackPanel>
+	</Grid>
 </Window>

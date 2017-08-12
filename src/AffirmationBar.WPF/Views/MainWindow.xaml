@@ -4,8 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AffirmationBar.WPF"
+		xmlns:vc="clr-namespace:AffirmationBar.WPF.Converters"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
+	<Window.Resources>
+		<ResourceDictionary>
+			<vc:VisibilityConverter x:Key="visibleConverter" />
+		</ResourceDictionary>
+	</Window.Resources>
     <Grid>
 		
 			<Grid.Background>
@@ -17,12 +23,14 @@
 			<Label x:Name="nameLbl" Content="Бар за уверения" HorizontalAlignment="Left" VerticalAlignment="Top" Height="50" Width="517" Foreground="#FF2355D8" Background="#FFF5F3F3" VerticalContentAlignment="Bottom" FontFamily="Sitka Small" FontSize="24"/>
 
 			<Label x:Name="lblUsername" Content="Потребителско име" HorizontalAlignment="Left" FontFamily="Segoe UI Semibold" FontSize="16" Foreground="#FFEAF0EF"/>
-			<TextBox x:Name="txtUsername" HorizontalAlignment="Left" Height="36"  TextWrapping="Wrap" Text="{Binding Path=Username}"  Width="213" VerticalContentAlignment="Center" GotFocus="clearText" Foreground="#FFC3C2C2"/>
+			<TextBox x:Name="txtUsername" HorizontalAlignment="Left" Height="36"  TextWrapping="Wrap" Text="{Binding Username}"  Width="213" VerticalContentAlignment="Center" GotFocus="clearText" Foreground="#FFC3C2C2"/>
 
 			<Label x:Name="lblPassword" Content="Парола" HorizontalAlignment="Left"  FontFamily="Segoe UI Semibold" FontSize="16" Foreground="#FFEAF0EF" RenderTransformOrigin="0.179,0.548"/>
 			<PasswordBox x:Name="txtBoxPassword" HorizontalAlignment="Left"  Width="213" Height="36"/>
 
-			<Button x:Name="getDocBttn" Content="Вземи уверение" HorizontalAlignment="Left"   Width="158" Height="43" Background="#FFF0EAC9" Foreground="#FF2355D8" FontSize="16" FontFamily="Sitka Small" Click="getDocBttn_Click"/>
+			<Button x:Name="getDocBttn" Content="Вземи уверение" HorizontalAlignment="Left"   Width="158" Height="43" FontSize="16" FontFamily="Sitka Small" Click="getDocBttn_Click"/>
+			
+			<ProgressBar IsIndeterminate="True" IsEnabled="{Binding IsLoading}" Visibility="{Binding IsLoading, Converter={StaticResource visibleConverter}}"/>
 		</StackPanel>
 	</Grid>
 </Window>
