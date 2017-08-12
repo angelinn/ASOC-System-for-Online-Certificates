@@ -13,35 +13,34 @@ namespace AffirmationBar.WPF.ViewModels
         private StudentInfo studentInfo;
         public StudentInfoViewModel(StudentInfo studentInfo)
 		{
-			this.studentInfo = studentInfo;
-            
+			this.studentInfo = studentInfo;    
 		}
 
 
-        public string FacultyName => this.studentInfo.FacultyName;
-        public string Names => this.studentInfo.Names;
+        public string FacultyName => studentInfo.FacultyName;
+        public string Names => studentInfo.Names;
 
-        public string EGN => this.studentInfo.EGN;
+        public string EGN => studentInfo.EGN;
 
-        public string City => this.studentInfo.City;
+        public string City => studentInfo.City;
 
-        public string Region => this.studentInfo.Region;
+        public string Region => studentInfo.Region;
 
-        public string Gender => this.studentInfo.Gender;
+        public string Gender => studentInfo.Gender;
 
-        public Semester Semester => this.studentInfo.Semester;
+        public Semester Semester => studentInfo.Semester;
 
-        //public string Year => this.studentInfo.Year;
+        public StudyYear Year => studentInfo.Year;
 
-        public string FormOfEducation => this.studentInfo.FormOfEducation;
+        public string FormOfEducation => studentInfo.FormOfEducation;
 
-        public string Degree => this.studentInfo.Degree;
+        public string Degree => studentInfo.Degree;
 
-        public string Program => this.studentInfo.Program;
+        public string Program => studentInfo.Program;
 
-        public int FacultyNumber => this.studentInfo.FacultyNumber;
+        public int FacultyNumber => studentInfo.FacultyNumber;
 
-        public string Reason => this.studentInfo.Reason;
+        public string Reason => studentInfo.Reason;
 
     }
 }
