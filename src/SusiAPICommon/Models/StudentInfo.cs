@@ -14,7 +14,7 @@ namespace SusiAPICommon.Models
         public string Gender { get; set; }
         public Semester Semester { get; set; }
         public StudyYear Year { get; set; }
-        public string FormOfEducation { get; set; }
+        public FormOfEducation FormOfEducation { get; set; }
         public string Degree { get; set; }
         public string Program { get; set; }
         public int FacultyNumber { get; set; }
