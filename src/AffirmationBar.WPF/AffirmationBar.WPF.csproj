@@ -80,6 +80,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\StudyYearConverter.cs" />
+    <Compile Include="Converters\VisibilityConverter.cs" />
     <Compile Include="Views\StudentInfoWindow.xaml.cs">
       <DependentUpon>StudentInfoWindow.xaml</DependentUpon>
     </Compile>
@@ -130,17 +132,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SUSIAPIClient\SusiAPIClient.csproj">
-      <Project>{1674685f-970f-4198-89e6-d5c49aa6fdf0}</Project>
+    <Resource Include="Resources\bckgr.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SusiAPIClient\SusiAPIClient.csproj">
+      <Project>{075a3490-2804-4804-83e8-6525edc78404}</Project>
       <Name>SusiAPIClient</Name>
     </ProjectReference>
     <ProjectReference Include="..\SusiAPICommon\SusiAPICommon.csproj">
-      <Project>{82f8fde8-529d-4760-a0d9-e434fc4b7a92}</Project>
+      <Project>{8CEF2953-AD9E-4EF2-A315-9488510282B4}</Project>
       <Name>SusiAPICommon</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\bckgr.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
