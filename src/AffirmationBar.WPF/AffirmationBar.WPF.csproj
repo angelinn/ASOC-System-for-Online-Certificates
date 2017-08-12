@@ -93,9 +93,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\LoginViewModel.cs" />
-    <Compile Include="ViewModels\StudentInfoViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -135,6 +132,10 @@
     <Resource Include="Resources\bckgr.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AffirmationBar.ViewModels\AffirmationBar.ViewModels.csproj">
+      <Project>{22220669-ddee-47f2-90bb-a3255f0cc2b2}</Project>
+      <Name>AffirmationBar.ViewModels</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SusiAPIClient\SusiAPIClient.csproj">
       <Project>{075a3490-2804-4804-83e8-6525edc78404}</Project>
       <Name>SusiAPIClient</Name>

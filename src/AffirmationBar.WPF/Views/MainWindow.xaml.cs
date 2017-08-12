@@ -1,4 +1,4 @@
-﻿using AffirmationBar.WPF.ViewModels;
+﻿using AffirmationBar.ViewModels;
 using AffirmationBar.WPF.Views;
 using SusiAPICommon.Models;
 using System;
