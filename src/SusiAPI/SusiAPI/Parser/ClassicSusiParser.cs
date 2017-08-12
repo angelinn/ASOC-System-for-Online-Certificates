@@ -79,6 +79,8 @@ namespace SusiAPI.Parser
             node = rootDocument.DocumentNode.SelectSingleNode("//*[@id=\"StudentPersonalData1_lblEducationPlan\"]");
             string educationPlan = node.InnerText;
 
+            string form = educationPlan.Substring(educationPlan.LastIndexOf("(") + 1, 2);
+            student.FormOfEducation = (form == "рб") ? FormOfEducation.Regular : FormOfEducation.Distance;
             student.Program = educationPlan.Substring(5, educationPlan.IndexOf('-') - 5);
 
             node = rootDocument.DocumentNode.SelectSingleNode("//*[@id=\"StudentPersonalData1_lblStudentEntranceTypeName\"]");
