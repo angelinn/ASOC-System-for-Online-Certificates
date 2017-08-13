@@ -9,7 +9,7 @@ namespace SusiAPIClient
 {
     public class SusiClient
     {
-        private const string API_URL = "http://susiapi.azurewebsites.net";
+        private const string API_URL = "https://susiapi.azurewebsites.net";
         private static readonly string LOGIN_URL = $"{API_URL}/api/login";
         private static readonly string STUDENT_INFO_URL = $"{API_URL}/api/affirmation";
 
