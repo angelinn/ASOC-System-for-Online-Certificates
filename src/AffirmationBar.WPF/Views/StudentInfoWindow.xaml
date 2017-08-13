@@ -6,13 +6,19 @@
 		xmlns:cv="clr-namespace:AffirmationBar.WPF.Converters"
         mc:Ignorable="d"
         Title="StudentInfoWindow" Height="300" Width="300">
+
 	<Window.Resources>
 		<ResourceDictionary>
 			<cv:StudyYearConverter x:Key="yearConverter"/>
 			<cv:FormOFEducationConverter x:Key="formOfEducationConverter" />
 		</ResourceDictionary>
 	</Window.Resources>
+
 	<Grid>
+		<Grid.Background>
+			<ImageBrush ImageSource="../Resources/bckgr.jpg" />
+		</Grid.Background>
+
 		<StackPanel>
 			<Label Content="{Binding FacultyName}"  ContentStringFormat="Име на факултет: {0}"/>
 
