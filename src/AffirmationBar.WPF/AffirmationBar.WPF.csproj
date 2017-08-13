@@ -80,7 +80,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Converters\EnableButtonConverter.cs" />
+    <Compile Include="Converters\BoolValuesConverter.cs" />
     <Compile Include="Converters\FormOFEducationConverter.cs" />
     <Compile Include="Converters\SemesterTypeConverter.cs" />
     <Compile Include="Converters\StudyYearConverter.cs" />

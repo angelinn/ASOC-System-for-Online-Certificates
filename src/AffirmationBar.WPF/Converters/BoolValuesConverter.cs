@@ -4,7 +4,7 @@ using System.Windows.Data;
 
 namespace AffirmationBar.WPF.Converters
 {
-	class EnableButtonConverter : IValueConverter
+	class BoolValuesConverter : IValueConverter
 	{
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{

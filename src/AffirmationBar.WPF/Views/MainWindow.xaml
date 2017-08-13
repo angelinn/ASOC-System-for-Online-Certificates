@@ -10,7 +10,7 @@
 	<Window.Resources>
 		<ResourceDictionary>
 			<vc:VisibilityConverter x:Key="visibleConverter" />
-			<vc:EnableButtonConverter x:Key="enableButtonConverter" />
+			<vc:BoolValuesConverter x:Key="enableButtonConverter" />
 		</ResourceDictionary>
 	</Window.Resources>
 
