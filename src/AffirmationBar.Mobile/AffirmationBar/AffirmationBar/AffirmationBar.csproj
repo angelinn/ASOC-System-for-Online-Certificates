@@ -65,10 +65,6 @@
       <Project>{d6543a14-dbbd-4336-874f-c4a87dd528b7}</Project>
       <Name>AffirmationBar.ViewModels</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\SUSIAPIClient\SusiAPIClient.csproj">
-      <Project>{1674685f-970f-4198-89e6-d5c49aa6fdf0}</Project>
-      <Name>SusiAPIClient</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\SusiAPICommon\SusiAPICommon.csproj">
       <Project>{82f8fde8-529d-4760-a0d9-e434fc4b7a92}</Project>
       <Name>SusiAPICommon</Name>
