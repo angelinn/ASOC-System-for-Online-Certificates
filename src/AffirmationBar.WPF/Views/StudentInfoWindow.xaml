@@ -9,6 +9,7 @@
 	<Window.Resources>
 		<ResourceDictionary>
 			<cv:StudyYearConverter x:Key="yearConverter"/>
+			<cv:FormOFEducationConverter x:Key="formOfEducationConverter" />
 		</ResourceDictionary>
 	</Window.Resources>
 	<Grid>
@@ -23,7 +24,7 @@
 
 			<Label Content="{Binding Region}" ContentStringFormat="Област {0}" />
 
-			<Label Content="{Binding FormOfEducation}" ContentStringFormat="Форма на обучение: {0}" />
+			<Label Content="{Binding FormOfEducation, Converter={StaticResource formOfEducationConverter}}" ContentStringFormat="Форма на обучение: {0}" />
 
 			<Label Content="{Binding Gender}" ContentStringFormat="Пол: {0}" />
 

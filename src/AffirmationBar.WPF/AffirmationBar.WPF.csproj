@@ -80,6 +80,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\FormOFEducationConverter.cs" />
     <Compile Include="Converters\StudyYearConverter.cs" />
     <Compile Include="Converters\VisibilityConverter.cs" />
     <Compile Include="Views\StudentInfoWindow.xaml.cs">
