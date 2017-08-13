@@ -11,6 +11,7 @@
 		<ResourceDictionary>
 			<cv:StudyYearConverter x:Key="yearConverter"/>
 			<cv:FormOFEducationConverter x:Key="formOfEducationConverter" />
+			<cv:SemesterTypeConverter x:Key="semesterTypeConverter" />
 		</ResourceDictionary>
 	</Window.Resources>
 
@@ -47,7 +48,8 @@
 				</Label>
 			</StackPanel>
 
-
+			<Label Content="{Binding Semester,Converter={StaticResource semesterTypeConverter}}" ContentStringFormat="Семестър: " />
+			
 			<Label Content="{Binding Year,Converter={StaticResource yearConverter}}" ContentStringFormat="Година: " />
 
 			<Label Content="{Binding Degree}" ContentStringFormat="Степен: {0}" />
