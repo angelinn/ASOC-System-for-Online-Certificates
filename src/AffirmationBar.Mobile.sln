@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AffirmationBar.Android", "AffirmationBar\AffirmationBar\AffirmationBar.Android\AffirmationBar.Android.csproj", "{D3A3C881-3A56-4B39-AADD-5A57E5A1DB7F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AffirmationBar.Android", "AffirmationBar.Mobile\AffirmationBar\AffirmationBar.Android\AffirmationBar.Android.csproj", "{D3A3C881-3A56-4B39-AADD-5A57E5A1DB7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AffirmationBar", "AffirmationBar\AffirmationBar\AffirmationBar\AffirmationBar.csproj", "{6A8028F7-8869-4948-92F4-730941168B5C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AffirmationBar", "AffirmationBar.Mobile\AffirmationBar\AffirmationBar\AffirmationBar.csproj", "{6A8028F7-8869-4948-92F4-730941168B5C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AffirmationBar.UWP", "AffirmationBar\AffirmationBar\AffirmationBar.UWP\AffirmationBar.UWP.csproj", "{0A742271-2A11-438A-ACEF-17F5D37BC5B9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AffirmationBar.UWP", "AffirmationBar.Mobile\AffirmationBar\AffirmationBar.UWP\AffirmationBar.UWP.csproj", "{0A742271-2A11-438A-ACEF-17F5D37BC5B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AffirmationBar.iOS", "AffirmationBar\AffirmationBar\AffirmationBar.iOS\AffirmationBar.iOS.csproj", "{B7E4015B-59BB-4E4B-8558-BFA5E9BE1CE7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AffirmationBar.iOS", "AffirmationBar.Mobile\AffirmationBar\AffirmationBar.iOS\AffirmationBar.iOS.csproj", "{B7E4015B-59BB-4E4B-8558-BFA5E9BE1CE7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SusiAPIClient", "SUSIAPIClient\SusiAPIClient.csproj", "{1674685F-970F-4198-89E6-D5C49AA6FDF0}"
 EndProject
