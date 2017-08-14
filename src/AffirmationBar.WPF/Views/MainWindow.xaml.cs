@@ -37,8 +37,11 @@ namespace AffirmationBar.WPF
 			StudentInfo studentInfo = await LoginViewModel.GetStudentInfoAsync();
 			if (studentInfo != null)
 			{
+				
 				var newForm = new StudentInfoWindow(studentInfo); //create your new form.
-				newForm.Show(); //show the new form.
+				newForm.ShowInTaskbar = false;
+				newForm.Owner = Application.Current.MainWindow;
+				newForm.ShowDialog(); //show the new form.
 			}
 			else
 			{
