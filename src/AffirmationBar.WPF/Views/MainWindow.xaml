@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:AffirmationBar.WPF"
 		xmlns:vc="clr-namespace:AffirmationBar.WPF.Converters"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="ASOC" Height="350" Width="525">
 	<Window.Resources>
 		<ResourceDictionary>
 			<vc:VisibilityConverter x:Key="visibleConverter" />
