@@ -12,6 +12,7 @@ namespace SusiAPIClient
         private const string API_URL = "https://susiapi.azurewebsites.net";
         private static readonly string LOGIN_URL = $"{API_URL}/api/login";
         private static readonly string STUDENT_INFO_URL = $"{API_URL}/api/affirmation";
+        private static readonly string CERTIFICATE_URL = $"{API_URL}/api/affirmation/generate";
 
         private const string JSON_MEDIA_TYPE = "application/json";
 
@@ -25,7 +26,7 @@ namespace SusiAPIClient
 
             return true;
         }
-        
+
         public async Task<StudentInfo> GetStudentInfoAsync(string username, string password)
         {
 
@@ -37,6 +38,21 @@ namespace SusiAPIClient
                 string resJson = await response.Content.ReadAsStringAsync();
 
                 return JsonConvert.DeserializeObject<StudentInfo>(resJson);
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        } 
+
+        public async Task<string> GetCertificate(string username, string password)
+        {
+            try
+            {
+                string json = JsonConvert.SerializeObject(new { Username = username, Password = password });
+
+                HttpResponseMessage response = await client.PostAsync(CERTIFICATE_URL, new StringContent(json, Encoding.UTF8, JSON_MEDIA_TYPE));
+                return await response.Content.ReadAsStringAsync();
             }
             catch (Exception e)
             {
