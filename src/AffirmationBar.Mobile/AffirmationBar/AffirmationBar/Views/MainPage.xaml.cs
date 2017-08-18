@@ -31,11 +31,11 @@ namespace AffirmationBar.Views
         
         private async Task LoginAsync()
         {
-            StudentInfo studentInfo = await LoginViewModel.GetStudentInfoAsync();
+            string studentInfo = await LoginViewModel.GetCertificate();
             if (studentInfo != null)
-            {
+            { 
                 LoginViewModel.Password = String.Empty;
-                await Navigation.PushAsync(new StudentInfoPage(studentInfo));
+                await Navigation.PushAsync(new CertificatePage(studentInfo));
             }
             else
             {
