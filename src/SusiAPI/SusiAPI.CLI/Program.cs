@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using SusiAPICommon.Models;
 using System;
 using System.IO;
 using System.Net.Http;
@@ -10,13 +11,14 @@ namespace SusiAPI.Test
     {
         public static void Main(string[] args)
         {
-            HttpClient client = new HttpClient();
-            string result = client.PostAsync("http://localhost:49953/api/affirmation", new StringContent(
-                                       JsonConvert.SerializeObject(new { Username = "", Password = "" }), 
-                                                                   Encoding.UTF8, "application/json"))
-                                   .Result.Content.ReadAsStringAsync().Result;
+            string username = Console.ReadLine();
+            string password = Console.ReadLine();
 
-            File.WriteAllText("D:\\temp.txt", result);
+            SusiService susi = new SusiService();
+            susi.LoginAsync(username, password).Wait();
+
+            StudentInfo studentInfo = susi.GetStudentInfoAsync().Result;
+            File.WriteAllText("D:\\cert.html", CertificateService.GetCertificate(studentInfo));
         }
     }
 }
