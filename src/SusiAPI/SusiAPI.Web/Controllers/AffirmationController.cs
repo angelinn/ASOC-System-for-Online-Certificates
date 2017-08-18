@@ -22,17 +22,32 @@ namespace SusiAPI.Web.Controllers
         {
             this.susiService = susiService;
         }
-        
+
         [HttpPost]
-        public async Task<IActionResult> GetAffirmation([FromBody]LoginViewModel login)
+        [Route("")]
+        public async Task<IActionResult> GetStudentInfo([FromBody]LoginViewModel login)
         {
             if (await susiService.LoginAsync(login.Username, login.Password))
             {
                 StudentInfo info = await susiService.GetStudentInfoAsync();
                 return new SusiAPIResponse(StatusCodes.Status200OK, info);
             }
-            
+
             return new SusiAPIResponse(StatusCodes.Status422UnprocessableEntity, new { Result = "Username or password is wrong" });
+        }
+
+        [HttpPost]
+        [Route("Generate")]
+        [Produces("text/html")]
+        public async Task<string> GetAffirmation([FromBody]LoginViewModel login)
+        {
+            if (await susiService.LoginAsync(login.Username, login.Password))
+            {
+                StudentInfo info = await susiService.GetStudentInfoAsync();
+                return CertificateService.GetCertificate(info);
+            }
+
+            return String.Empty;
         }
     }
 }
