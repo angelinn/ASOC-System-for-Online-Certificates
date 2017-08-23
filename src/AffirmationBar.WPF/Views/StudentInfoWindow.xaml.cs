@@ -15,7 +15,10 @@ namespace AffirmationBar.WPF.Views
 			InitializeComponent();
 			StudentInfoViewModel = new StudentInfoViewModel(studentInfo);
             this.DataContext = StudentInfoViewModel;
-            //this.Show();
+        }
+
+        private void getDoc_Click(object sender, RoutedEventArgs e)
+        {
         }
     }
 }
