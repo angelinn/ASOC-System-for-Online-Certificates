@@ -13,13 +13,6 @@ namespace AffirmationBar.ViewModels
     public class LoginViewModel : BaseViewModel
     {
         private SusiClient susiClient = new SusiClient();
-        public event LoginEventHandler OnLoginCompleted;
-
-        public ICommand LoginCommand;
-
-        public LoginViewModel()
-        {
-        }
 
         public async Task<StudentInfo> GetStudentInfoAsync()
         {
@@ -47,15 +40,6 @@ namespace AffirmationBar.ViewModels
             }
 
             return studentInfo;
-        }
-
-        public async Task LoginAsync()
-        {
-            StudentInfo studentInfo = await GetStudentInfoAsync();
-            LoginEventArgs args = new LoginEventArgs(studentInfo != null, studentInfo);
-            Password = String.Empty;
-
-            OnLoginCompleted.Invoke(this, args);
         }
 
         private bool isLoading;
