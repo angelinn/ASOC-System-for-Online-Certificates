@@ -1,5 +1,4 @@
-﻿using AffirmationBar.ViewModels.Events;
-using SusiAPIClient;
+﻿using SusiAPIClient;
 using SusiAPICommon.Models;
 using System;
 using System.Collections.Generic;
