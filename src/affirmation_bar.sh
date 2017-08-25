@@ -9,8 +9,10 @@ echo 'Парола:'
 read -s password
 
 echo
-echo 'Аутентикиране...'
+echo 'Свързване...'
 
-data=$(curl -s -H "Content-Type: application/json" -X POST -d "{ \"username\": \"$username\", \"password\":\"$password\" }" https://susiapi.azurewebsites.net/api/affirmation)
+wget --quiet --header="Content-Type: application/json" --post-data="{ \"username\": \"$username\", \"password\":\"$password\" }" https://susiapi.azurewebsites.net/api/affirmation
 
-echo $data
+cat ./affirmation
+rm ./affirmation
+
