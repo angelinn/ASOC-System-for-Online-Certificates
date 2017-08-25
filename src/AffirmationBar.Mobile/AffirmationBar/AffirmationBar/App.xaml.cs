@@ -1,6 +1,4 @@
-﻿using AffirmationBar.Services;
-using AffirmationBar.Views;
-using SusiAPICommon.Services;
+﻿using AffirmationBar.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,15 +10,12 @@ namespace AffirmationBar
 {
     public partial class App : Application
     {
-        public Page Page { get; set; }
-        public INavigationService NavigationService { get; } = new NavigationService();
 
         public App()
         {
             InitializeComponent();
 
             MainPage = new NavigationPage(new MainPage());
-            Page = MainPage;
         }
 
         protected override void OnStart()
