@@ -16,8 +16,8 @@
 
             <ComboBox  x:Name="txtReason"  HorizontalAlignment="Center" VerticalAlignment="Center" ItemsSource ="{Binding Reason}" ItemStringFormat="Да послужи пред: {0}"  VerticalContentAlignment="Center"  Foreground="#FF171313" Width="409" Height="41">
                 <ComboBoxItem Content="БДЖ"/>
-                <ComboBoxItem Content="ПСБО"/>
                 <ComboBoxItem Content="Градски транспорт"/>
+                <ComboBoxItem Content="ПСБО"/>
                 <ComboBoxItem Content="НОИ"/>
             </ComboBox>
 

@@ -19,6 +19,7 @@ namespace AffirmationBar.WPF.Views
 
         private void getDoc_Click(object sender, RoutedEventArgs e)
         {
+
         }
     }
 }
