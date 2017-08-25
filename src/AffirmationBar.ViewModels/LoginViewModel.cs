@@ -1,16 +1,25 @@
-﻿using SusiAPIClient;
+﻿using AffirmationBar.ViewModels.Events;
+using SusiAPIClient;
 using SusiAPICommon.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace AffirmationBar.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
         private SusiClient susiClient = new SusiClient();
+        public event LoginEventHandler OnLoginCompleted;
+
+        public ICommand LoginCommand;
+
+        public LoginViewModel()
+        {
+        }
 
         public async Task<StudentInfo> GetStudentInfoAsync()
         {
@@ -38,6 +47,15 @@ namespace AffirmationBar.ViewModels
             }
 
             return studentInfo;
+        }
+
+        public async Task LoginAsync()
+        {
+            StudentInfo studentInfo = await GetStudentInfoAsync();
+            LoginEventArgs args = new LoginEventArgs(studentInfo != null, studentInfo);
+            Password = String.Empty;
+
+            OnLoginCompleted.Invoke(this, args);
         }
 
         private bool isLoading;
