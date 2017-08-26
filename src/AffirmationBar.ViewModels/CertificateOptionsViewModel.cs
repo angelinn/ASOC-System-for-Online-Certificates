@@ -11,7 +11,9 @@ namespace AffirmationBar.ViewModels
         public IList<string> Reasons { get; set; } = new List<string>()
         {
             "БДЖ",
-            "СКГТ (градски транспорт)"
+            "Градски транспорт",
+            "НОИ",
+            "ПСБО"
         };
 
         public string FirstName
