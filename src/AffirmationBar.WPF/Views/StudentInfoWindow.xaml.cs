@@ -9,16 +9,19 @@ namespace AffirmationBar.WPF.Views
 	/// </summary>
 	public partial class StudentInfoWindow : Window
 	{
-		public StudentInfoViewModel StudentInfoViewModel { get; set; }
+        public CertificateOptionsViewModel certificateOptions { get; set; } 
 		public StudentInfoWindow(StudentInfo studentInfo)
 		{
-			InitializeComponent();
-			StudentInfoViewModel = new StudentInfoViewModel(studentInfo);
-            this.DataContext = StudentInfoViewModel;
+            InitializeComponent();
+
+            certificateOptions = new CertificateOptionsViewModel(studentInfo);
+
+            this.DataContext = certificateOptions;
         }
 
         private void getDoc_Click(object sender, RoutedEventArgs e)
         {
+            MessageBox.Show(certificateOptions.Student.Reason);
         }
     }
 }

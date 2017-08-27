@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:cv="clr-namespace:AffirmationBar.WPF.Converters"
+        xmlns:m="clr-namespace:AffirmationBar.ViewModels;assembly=AffirmationBar.ViewModels"
         mc:Ignorable="d"
         Title="{Binding Names}" Height="500" Width="500" >
 
@@ -24,12 +25,7 @@
             <ImageBrush ImageSource="../Resources/bckgr.jpg" />
         </Grid.Background>
 
-            <ComboBox  x:Name="txtReason"  Grid.Column="1" Grid.Row="0" Text="Изберете къде да послужи" ItemsSource ="{Binding Reason}">
-                <ComboBoxItem Content="БДЖ"/>
-                <ComboBoxItem Content="Градски транспорт"/>
-                <ComboBoxItem Content="НОИ"/>
-                <ComboBoxItem Content="ПСБО"/>
-            </ComboBox>
-            <Button x:Name="getDoc"  Grid.Column="1" Grid.Row="1" Content="Вземи уверение" Click="getDoc_Click" />
+        <ComboBox  x:Name="txtReason"  Grid.Column="1" Grid.Row="0" Text="Изберете къде да послужи" ItemsSource ="{Binding Reasons}" SelectedItem="{Binding Student.Reason}" />
+        <Button x:Name="getDoc"  Grid.Column="1" Grid.Row="1" Content="Вземи уверение" Click="getDoc_Click" />
     </Grid>
 </Window>

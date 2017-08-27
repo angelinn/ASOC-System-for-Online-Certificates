@@ -1,13 +1,19 @@
 ﻿using SusiAPICommon.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace AffirmationBar.ViewModels
 {
     public class CertificateOptionsViewModel : BaseViewModel
     {
+        public CertificateOptionsViewModel(StudentInfo studentInfo)
+        {
+            this.Student = studentInfo;
+        }
         public StudentInfo Student { get; set; }
+
         public IList<string> Reasons { get; set; } = new List<string>()
         {
             "БДЖ",
