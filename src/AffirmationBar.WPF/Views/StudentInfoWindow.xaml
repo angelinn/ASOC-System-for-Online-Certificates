@@ -6,7 +6,7 @@
 		xmlns:cv="clr-namespace:AffirmationBar.WPF.Converters"
         xmlns:m="clr-namespace:AffirmationBar.ViewModels;assembly=AffirmationBar.ViewModels"
         mc:Ignorable="d"
-        Title="{Binding Names}" Height="500" Width="500" >
+        Title="Избор на институция" Height="500" Width="500" >
 
     <Grid>
         <Grid.RowDefinitions>
@@ -25,7 +25,11 @@
             <ImageBrush ImageSource="../Resources/bckgr.jpg" />
         </Grid.Background>
 
-        <ComboBox  x:Name="txtReason"  Grid.Column="1" Grid.Row="0" Text="Изберете къде да послужи" ItemsSource ="{Binding Reasons}" SelectedItem="{Binding Student.Reason}" />
-        <Button x:Name="getDoc"  Grid.Column="1" Grid.Row="1" Content="Вземи уверение" Click="getDoc_Click" />
+        <StackPanel Grid.Column="1" Grid.Row="0">
+            <Label Content="{Binding FirstName}" ContentStringFormat="Здравей, {0}!" HorizontalAlignment="Center" />
+            <ComboBox  x:Name="txtReason"  Grid.Column="1" Grid.Row="0" Text="Изберете къде да послужи" ItemsSource ="{Binding Reasons}" SelectedItem="{Binding Student.Reason}" />
+        </StackPanel>
+        <Label Content="Picture" Grid.Column="1" Grid.Row="1"/>
+        <Button x:Name="getDoc"  Grid.Column="1" Grid.Row="2" Content="Вземи уверение" Click="getDoc_Click" />
     </Grid>
 </Window>
