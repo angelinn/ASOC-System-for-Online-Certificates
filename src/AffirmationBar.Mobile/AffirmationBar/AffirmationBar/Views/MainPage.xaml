@@ -11,7 +11,7 @@
             <cv:InverseBoolConverter x:Key="InverseBool" />
         </ResourceDictionary>
     </ContentPage.Resources>
-    
+
     <Grid Padding="10">
         <StackLayout>
             <Label Text="Потребителско име" />
@@ -24,10 +24,7 @@
             <ActivityIndicator IsEnabled="{Binding IsLoading}" IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" />
         </StackLayout>
 
-        <StackLayout VerticalOptions="End">
-            <Label Text="Това приложение е open source." HorizontalOptions="Center" />
-            <Label HorizontalOptions="Center" Text="http://github.com/betrakiss/SUSI-API-v2" TextColor="DodgerBlue" />
-        </StackLayout>
+        <Label VerticalOptions="End" Text="Това приложение е open source." TextColor="DodgerBlue" HorizontalOptions="Center" />
     </Grid>
 
 </ContentPage>

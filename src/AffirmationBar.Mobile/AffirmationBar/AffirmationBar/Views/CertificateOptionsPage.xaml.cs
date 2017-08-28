@@ -14,10 +14,10 @@ namespace AffirmationBar.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CertificateOptionsPage : ContentPage
     {
-        public CertificateOptionsViewModel CertificateOptionsViewModel { get; set; } = new CertificateOptionsViewModel();
+        public CertificateOptionsViewModel CertificateOptionsViewModel { get; set; }
         public CertificateOptionsPage(StudentInfo info)
         {
-            CertificateOptionsViewModel.Student = info;
+            CertificateOptionsViewModel = new CertificateOptionsViewModel(info);
             CertificateOptionsViewModel.Selected = CertificateOptionsViewModel.Reasons[0];
 
             BindingContext = CertificateOptionsViewModel;

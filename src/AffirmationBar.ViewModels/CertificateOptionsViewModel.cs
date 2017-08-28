@@ -12,6 +12,7 @@ namespace AffirmationBar.ViewModels
         {
             this.Student = studentInfo;
         }
+
         public StudentInfo Student { get; set; }
 
         public IList<string> Reasons { get; set; } = new List<string>()
