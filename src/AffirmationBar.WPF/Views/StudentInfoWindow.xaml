@@ -7,10 +7,18 @@
         xmlns:m="clr-namespace:AffirmationBar.ViewModels;assembly=AffirmationBar.ViewModels"
         mc:Ignorable="d"
         Title="Избор на институция" Height="500" Width="500" >
-
+    
+    <Window.Resources>
+        <ResourceDictionary>
+            <cv:VisibilityConverter x:Key="visibleConverter" />
+            <cv:BoolValuesConverter x:Key="enableButtonConverter" />
+        </ResourceDictionary>
+    </Window.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -30,6 +38,9 @@
             <ComboBox  x:Name="txtReason"  Grid.Column="1" Grid.Row="0" Text="Изберете къде да послужи" ItemsSource ="{Binding Reasons}" SelectedItem="{Binding Student.Reason}" />
         </StackPanel>
         <Label Content="Picture" Grid.Column="1" Grid.Row="1"/>
-        <Button x:Name="getDoc"  Grid.Column="1" Grid.Row="2" Content="Вземи уверение" Click="getDoc_Click" />
+        <Button x:Name="getDoc"  Grid.Column="1" Grid.Row="2" Content="Вземи уверение" IsEnabled="{Binding IsLoading, Converter={StaticResource enableButtonConverter}}" Click="getDoc_Click" />
+
+        <ProgressBar Grid.Column="1" Grid.Row="3" IsIndeterminate="True" IsEnabled="{Binding IsLoading}" Visibility="{Binding IsLoading, Converter={StaticResource visibleConverter}}"/>
+
     </Grid>
 </Window>
