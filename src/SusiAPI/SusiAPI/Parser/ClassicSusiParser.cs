@@ -51,7 +51,7 @@ namespace SusiAPI.Parser
             }
 
             HtmlNode nodeEventTarget = htmlDocument.DocumentNode.SelectSingleNode("//*[@id=\"rptRoles_ctl02_lblRoleName\"]");
-            formData.Add("__EVENTTARGET", nodeEventTarget.Attributes["id"].Value.Replace('_','$'));
+            formData.Add("__EVENTTARGET", nodeEventTarget.Attributes["id"].Value.Replace('_', '$'));
             formData.Add("__EVENTARGUMENT", String.Empty);
 
             HttpResponseMessage response = await client.PostAsync(ROLES_URL, new FormUrlEncodedContent(formData));
@@ -109,11 +109,13 @@ namespace SusiAPI.Parser
             string educationPlan = node.InnerText;
 
             string form = educationPlan.Substring(educationPlan.LastIndexOf("(") + 1, 2);
-            student.FormOfEducation = (form == "рб") ? FormOfEducation.Regular : FormOfEducation.Distance;
-            student.Program = educationPlan.Substring(5, educationPlan.IndexOf('-') - 5);
+            student.FormOfEducation = (form.Contains("р")) ? FormOfEducation.Regular : FormOfEducation.Distance;
+
+            int programStartIndex= educationPlan.LastIndexOf("-") + 1;
+            student.Program = educationPlan.Substring(programStartIndex, educationPlan.LastIndexOf("(") - programStartIndex);
 
             node = rootDocument.DocumentNode.SelectSingleNode("//*[@id=\"StudentPersonalData1_lblStudentEntranceTypeName\"]");
-            student.Degree = node.InnerText;
+            student.Degree = node.InnerText.Contains("магистър") ? "магистър" : "бакалавър";
 
             node = rootDocument.DocumentNode.SelectSingleNode("//*[@id=\"StudentPersonalData1_lblFacultyNumber\"]");
             student.FacultyNumber = Convert.ToInt32(node.InnerText);
@@ -140,7 +142,7 @@ namespace SusiAPI.Parser
 
             if (stringResult.Contains("Избор на роля"))
             {
-               stringResult = await ProcessMasterAsync(stringResult);
+                stringResult = await ProcessMasterAsync(stringResult);
             }
 
             if (stringResult.Contains("header start"))
