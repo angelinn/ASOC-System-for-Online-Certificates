@@ -26,21 +26,6 @@ namespace AffirmationBar.ViewModels
 
             return studentInfo;
         }
-        
-        public async Task<string> GetCertificate()
-        {
-            string studentInfo = null;
-
-
-            if (!String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(password))
-            {
-                IsLoading = true;
-                studentInfo = await susiClient.GetCertificate(username, password);
-                IsLoading = false;
-            }
-
-            return studentInfo;
-        }
 
         private bool isLoading;
         public bool IsLoading
