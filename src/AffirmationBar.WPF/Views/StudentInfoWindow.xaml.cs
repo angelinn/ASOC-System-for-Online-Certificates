@@ -32,7 +32,9 @@ namespace AffirmationBar.WPF.Views
             byte[] certificate = await certificateOptions.GetCertificateAsync();
 
             SaveFileDialog openFileDialog = new SaveFileDialog();
-            openFileDialog.DefaultExt = "html";
+            openFileDialog.Filter = "HTML Files (*.html)|*.html";
+            openFileDialog.AddExtension = true;
+
             if (openFileDialog.ShowDialog() == true)
             {
                 File.WriteAllBytes(openFileDialog.FileName, certificate);
