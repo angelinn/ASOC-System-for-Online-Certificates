@@ -13,6 +13,7 @@ namespace SusiAPI.Parser
         private const string SUSI_URL = "https://susi.uni-sofia.bg/";
         private static readonly string LOGIN_URL = $"{SUSI_URL}ISSU/forms/Login.aspx";
         private static readonly string PERSONALDATA_URL = $"{SUSI_URL}ISSU/forms/Students/PersonalData.aspx";
+        private static readonly string ROLES_URL = $"{SUSI_URL}ISSU/forms/Roles.aspx";
 
         private const int YEAR = 2000;
         private const string USERNAME_KEY = "txtUserName";
@@ -20,7 +21,7 @@ namespace SusiAPI.Parser
 
         private HttpClient client;
         private HttpClientHandler handler;
-        
+
         //(poolparty)..may be :D
         private StudentInfo student = new StudentInfo();
 
@@ -29,6 +30,34 @@ namespace SusiAPI.Parser
 
         private bool isCurrentlyAStudent;
         public bool IsCurrentlyAStudent => isCurrentlyAStudent;
+
+        private async Task<string> ProcessMasterAsync(string loginHtml)
+        {
+            HtmlDocument htmlDocument = new HtmlDocument();
+            htmlDocument.LoadHtml(loginHtml);
+
+            HtmlNodeCollection nodes = htmlDocument.DocumentNode.SelectNodes("//input");
+
+            Dictionary<string, string> formData = new Dictionary<string, string>();
+            foreach (HtmlNode node in nodes)
+            {
+                string id = node.Id.TrimStart('\r', '\n');
+                if (id.Contains("rptRoles"))
+                {
+                    id = id.Replace('_', '$');
+                }
+
+                formData.Add(id, (node.Attributes["value"] == null) ? String.Empty : node.Attributes["value"].Value);
+            }
+
+            HtmlNode nodeEventTarget = htmlDocument.DocumentNode.SelectSingleNode("//*[@id=\"rptRoles_ctl02_lblRoleName\"]");
+            formData.Add("__EVENTTARGET", nodeEventTarget.Attributes["id"].Value.Replace('_','$'));
+            formData.Add("__EVENTARGUMENT", String.Empty);
+
+            HttpResponseMessage response = await client.PostAsync(ROLES_URL, new FormUrlEncodedContent(formData));
+
+            return await response.Content.ReadAsStringAsync();
+        }
 
         public ClassicSusiParser()
         {
@@ -108,6 +137,11 @@ namespace SusiAPI.Parser
 
             HttpResponseMessage response = await client.PostAsync(LOGIN_URL, new FormUrlEncodedContent(formData));
             string stringResult = await response.Content.ReadAsStringAsync();
+
+            if (stringResult.Contains("Избор на роля"))
+            {
+               stringResult = await ProcessMasterAsync(stringResult);
+            }
 
             if (stringResult.Contains("header start"))
             {
