@@ -35,7 +35,7 @@
 
         <StackPanel Grid.Column="1" Grid.Row="0">
             <Label Content="{Binding FirstName}" ContentStringFormat="Здравей, {0}!" HorizontalAlignment="Center" />
-            <ComboBox  x:Name="txtReason"  Grid.Column="1" Grid.Row="0" Text="Изберете къде да послужи" ItemsSource ="{Binding Reasons}" SelectedItem="{Binding Student.Reason}" />
+            <ComboBox  x:Name="txtReason"  Grid.Column="1" Grid.Row="0" Text="Изберете къде да послужи" ItemsSource ="{Binding Reasons}" SelectedValue="{Binding Student.Reason}" />
         </StackPanel>
         <Label Content="Picture" Grid.Column="1" Grid.Row="1"/>
         <Button x:Name="getDoc"  Grid.Column="1" Grid.Row="2" Content="Вземи уверение" IsEnabled="{Binding IsLoading, Converter={StaticResource enableButtonConverter}}" Click="getDoc_Click" />

@@ -1,4 +1,5 @@
-﻿using SusiAPICommon.Models;
+﻿using SusiAPIClient;
+using SusiAPICommon.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,6 +13,8 @@ namespace AffirmationBar.ViewModels
 {
     public class CertificateOptionsViewModel : BaseViewModel
     {
+        private SusiClient susiClient = new SusiClient();
+
         public CertificateOptionsViewModel(StudentInfo studentInfo)
         {
             this.Student = studentInfo;
@@ -26,14 +29,14 @@ namespace AffirmationBar.ViewModels
             "НОИ",
             "ПСБО"
         };
-
-        public async Task GetCertificateAsync()
+        
+        public async Task<byte[]> GetCertificateAsync()
         {
             IsLoading = true;
-            HttpClient wb = new HttpClient();
-            HttpResponseMessage response = await wb.GetAsync("https://cdn-ssl.img.disneystore.com/content/ds/skyway/2014/category/full/fwb_frozen_20140110.jpg");
-            File.WriteAllBytes("D:\\test.jpg", await response.Content.ReadAsByteArrayAsync());
+            byte[] bytes = await susiClient.GetCertificate(Student);
             IsLoading = false;
+
+            return bytes;
         }
 
         private bool isLoading;

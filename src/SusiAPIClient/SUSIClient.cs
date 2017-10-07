@@ -45,14 +45,14 @@ namespace SusiAPIClient
             }
         } 
 
-        public async Task<string> GetCertificate(StudentInfo studentInfo)
+        public async Task<byte[]> GetCertificate(StudentInfo studentInfo)
         {
             try
             {
                 string json = JsonConvert.SerializeObject(studentInfo);
 
                 HttpResponseMessage response = await client.PostAsync(CERTIFICATE_URL, new StringContent(json, Encoding.UTF8, JSON_MEDIA_TYPE));
-                return await response.Content.ReadAsStringAsync();
+                return await response.Content.ReadAsByteArrayAsync();
             }
             catch (Exception e)
             {

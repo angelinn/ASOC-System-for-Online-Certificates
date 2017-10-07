@@ -1,21 +1,23 @@
 ﻿using AffirmationBar.ViewModels;
+using Microsoft.Win32;
 using SusiAPICommon.Models;
+using System.IO;
 using System.Net;
 using System.Threading.Tasks;
 using System.Windows;
 
 namespace AffirmationBar.WPF.Views
 {
-	/// <summary>
-	/// Interaction logic for StudentInfoWindow.xaml
-	/// </summary>
-	public partial class StudentInfoWindow : Window
-	{
-        
-        public CertificateOptionsViewModel certificateOptions { get; set; } 
+    /// <summary>
+    /// Interaction logic for StudentInfoWindow.xaml
+    /// </summary>
+    public partial class StudentInfoWindow : Window
+    {
 
-		public StudentInfoWindow(StudentInfo studentInfo)
-		{
+        public CertificateOptionsViewModel certificateOptions { get; set; }
+
+        public StudentInfoWindow(StudentInfo studentInfo)
+        {
             InitializeComponent();
 
             certificateOptions = new CertificateOptionsViewModel(studentInfo);
@@ -23,13 +25,20 @@ namespace AffirmationBar.WPF.Views
             this.DataContext = certificateOptions;
         }
 
-        
+
 
         private async void getDoc_Click(object sender, RoutedEventArgs e)
         {
-            await certificateOptions.GetCertificateAsync();
+            byte[] certificate = await certificateOptions.GetCertificateAsync();
+
+            SaveFileDialog openFileDialog = new SaveFileDialog();
+            openFileDialog.DefaultExt = "html";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                File.WriteAllBytes(openFileDialog.FileName, certificate);
+            }
         }
 
-        
+
     }
 }
