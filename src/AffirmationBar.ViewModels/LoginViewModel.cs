@@ -31,6 +31,7 @@ namespace AffirmationBar.ViewModels
         {
             string studentInfo = null;
 
+
             if (!String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(password))
             {
                 IsLoading = true;
