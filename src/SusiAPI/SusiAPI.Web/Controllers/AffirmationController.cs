@@ -39,15 +39,9 @@ namespace SusiAPI.Web.Controllers
         [HttpPost]
         [Route("Generate")]
         [Produces("text/html")]
-        public async Task<string> GetAffirmation([FromBody]LoginViewModel login)
+        public string GetAffirmation([FromBody]StudentInfo studentInfo)
         {
-            if (await susiService.LoginAsync(login.Username, login.Password))
-            {
-                StudentInfo info = await susiService.GetStudentInfoAsync();
-                return CertificateService.GetCertificate(info);
-            }
-
-            return String.Empty;
+            return CertificateService.GetCertificate(studentInfo);
         }
     }
 }

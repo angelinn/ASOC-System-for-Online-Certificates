@@ -45,11 +45,11 @@ namespace SusiAPIClient
             }
         } 
 
-        public async Task<string> GetCertificate(string username, string password)
+        public async Task<string> GetCertificate(StudentInfo studentInfo)
         {
             try
             {
-                string json = JsonConvert.SerializeObject(new { Username = username, Password = password });
+                string json = JsonConvert.SerializeObject(studentInfo);
 
                 HttpResponseMessage response = await client.PostAsync(CERTIFICATE_URL, new StringContent(json, Encoding.UTF8, JSON_MEDIA_TYPE));
                 return await response.Content.ReadAsStringAsync();
