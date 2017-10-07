@@ -33,6 +33,7 @@ namespace AffirmationBar.WPF.Views
 
             SaveFileDialog openFileDialog = new SaveFileDialog();
             openFileDialog.Filter = "HTML Files (*.html)|*.html";
+            openFileDialog.FileName = $"certificate_{certificateOptions.Student.FacultyNumber}.html";
             openFileDialog.AddExtension = true;
 
             if (openFileDialog.ShowDialog() == true)
