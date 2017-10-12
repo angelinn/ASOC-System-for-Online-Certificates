@@ -7,9 +7,9 @@
         <Label Text="{Binding FirstName, StringFormat='Здравей, {0}!'}" />
 
         <Label Text="Избери причина за уверението:" />
-        <Picker ItemsSource="{Binding Reasons}" SelectedItem="{Binding Selected}" />
+        <Picker ItemsSource="{Binding Reasons}" SelectedItem="{Binding Student.Reason}" />
 
-        <Button Text="Генерирай уверение" />
+        <Button Text="Генерирай уверение" Clicked="OnGenerateClicked" />
         
         <ActivityIndicator IsRunning="{Binding IsLoading}" IsEnabled="{Binding IsLoading}" IsVisible="{Binding IsLoading}" />
     </StackLayout>

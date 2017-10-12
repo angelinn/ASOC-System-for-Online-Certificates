@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AffirmationBar.UWP.Services;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -55,10 +56,12 @@ namespace AffirmationBar.UWP
             {
                 // Create a Frame to act as the navigation context and navigate to the first page
                 rootFrame = new Frame();
-
+                
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
                 Xamarin.Forms.Forms.Init(e);
+                Xamarin.Forms.DependencyService.Register<StorageService>();
+
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {

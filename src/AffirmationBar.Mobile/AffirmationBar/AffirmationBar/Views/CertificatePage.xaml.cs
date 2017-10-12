@@ -18,7 +18,6 @@ namespace AffirmationBar.Views
         {
             InitializeComponent();
 
-            wv.Source = new HtmlWebViewSource() { Html = html };
         }
 	}
 }

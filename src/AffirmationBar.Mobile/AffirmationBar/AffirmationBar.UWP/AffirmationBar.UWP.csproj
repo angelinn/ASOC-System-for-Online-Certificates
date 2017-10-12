@@ -101,6 +101,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\StorageService.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -154,7 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AffirmationBar\AffirmationBar.csproj">
-      <Project>{5a82fa68-7398-442e-b850-5de316f999f9}</Project>
+      <Project>{6a8028f7-8869-4948-92f4-730941168b5c}</Project>
       <Name>AffirmationBar</Name>
     </ProjectReference>
   </ItemGroup>
