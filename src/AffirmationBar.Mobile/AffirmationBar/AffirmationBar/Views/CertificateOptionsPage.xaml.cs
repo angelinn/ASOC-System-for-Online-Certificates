@@ -35,7 +35,7 @@ namespace AffirmationBar.Views
             IStorageService storageService = DependencyService.Get<IStorageService>();
 
             if (await storageService.SaveFile($"certificate_{CertificateOptionsViewModel.Student.FacultyNumber}.html", certificate))
-                await DisplayAlert("Успех", $"Файлът беше запазен.", "OK");
+                await DisplayAlert("Успех", $"Файлът беше запазен в {storageService.FilePath}.", "OK");
         }
     }
 }

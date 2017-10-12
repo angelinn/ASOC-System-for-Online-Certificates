@@ -14,6 +14,8 @@ namespace AffirmationBar.UWP.Services
 {
     public class StorageService : IStorageService
     {
+        public string FilePath { get; private set; }
+
         public async Task<bool> SaveFile(string fileName, byte[] bytes)
         {
             FileSavePicker savePicker = new FileSavePicker();
@@ -25,6 +27,7 @@ namespace AffirmationBar.UWP.Services
             StorageFile file = await savePicker.PickSaveFileAsync();
             if (file != null)
             {
+                FilePath = file.Path;
                 CachedFileManager.DeferUpdates(file);
                 await FileIO.WriteBytesAsync(file, bytes);
 
