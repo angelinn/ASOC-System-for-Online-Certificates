@@ -1,19 +1,18 @@
 ﻿using AffirmationBar.ViewModels;
 using AffirmationBar.WPF.Views;
+using MahApps.Metro.Controls;
 using SusiAPICommon.Models;
-using System;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Navigation;
 
 namespace AffirmationBar.WPF
 {
-	/// <summary>
-	/// Interaction logic for MainWindow.xaml
-	/// </summary>
-	public partial class MainWindow : Window
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : MetroWindow
 	{
 		LoginViewModel LoginViewModel { get; set; } = new LoginViewModel();
 
