@@ -1,41 +1,43 @@
-﻿<mh:MetroWindow
+﻿<Window
         x:Class="AffirmationBar.WPF.MainWindow"
-        xmlns:mh="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:vc="clr-namespace:AffirmationBar.WPF.Converters"
-        mc:Ignorable="d"
-        Title="ASOC" Height="350" Width="525">
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{StaticResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{StaticResource MaterialDesignPaper}"
+        FontFamily="{StaticResource MaterialDesignFont}"
+    Width="517">
     <Window.Resources>
 		<ResourceDictionary>
 			<vc:VisibilityConverter x:Key="visibleConverter" />
             <vc:BoolValuesConverter x:Key="enableButtonConverter" />
-            <mh:MetroProgressBar x:Key="progressBar" />
         </ResourceDictionary>
 	</Window.Resources>
 
-	<StackPanel>
+    <StackPanel>
+        <StackPanel.Background>
+            <SolidColorBrush Color="AliceBlue"/>
+        </StackPanel.Background>
 
-		<StackPanel.Background>
-			<ImageBrush ImageSource="../Resources/bckgr.jpg" />
-		</StackPanel.Background>
-
-		<StackPanel>
-			<Label x:Name="nameLbl" Content="Бар за уверения" HorizontalAlignment="Left" VerticalAlignment="Top" Height="50" Width="517" Foreground="#FF2355D8" Background="#FFF5F3F3" VerticalContentAlignment="Bottom" FontFamily="Sitka Small" FontSize="24"/>
+        <StackPanel>
+            <Label x:Name="nameLbl" Content="Бар за уверения" Foreground="White" Background="DarkCyan" FontFamily="Sitka Small" FontSize="24" VerticalAlignment="Top" VerticalContentAlignment="Bottom" />
 		</StackPanel>
 
 		<StackPanel Margin="10">
-			<Label x:Name="lblUsername" Content="Потребителско име" />
-			<TextBox x:Name="txtUsername" HorizontalAlignment="Left" Height="36"  TextWrapping="Wrap" Text="{Binding Username}"  Width="213" VerticalContentAlignment="Center" GotFocus="clearText" Foreground="#FFC3C2C2"/>
+            <Label x:Name="lblUsername" Content="Потребителско име" Style="{StaticResource MaterialDesignLabel}"/>
+            <TextBox x:Name="txtUsername"  Style="{StaticResource  MaterialDesignTextBox}" TextWrapping="Wrap" Text="{Binding Username}" GotFocus="clearText" />
 
-			<Label x:Name="lblPassword" Content="Парола" RenderTransformOrigin="0.179,0.548"/>
-			<PasswordBox x:Name="txtBoxPassword" HorizontalAlignment="Left"  Width="213" Height="36" KeyUp="OnPasswordKeyUp"/>
+            <Label x:Name="lblPassword" Content="Парола" RenderTransformOrigin="0.179,0.548" Style="{StaticResource MaterialDesignLabel}" />
+            <PasswordBox x:Name="txtBoxPassword" KeyUp="OnPasswordKeyUp" Style="{StaticResource MaterialDesignPasswordBox}"/>
 
-            <Button x:Name="getDocBttn" Content="Вход" IsEnabled="{Binding IsLoading, Converter={StaticResource enableButtonConverter}}" HorizontalAlignment="Left"  Click="getDocBttn_Click" Margin="0,10,0,0" />
+            <Button x:Name="getDocBttn" Content="Вход" Style="{StaticResource MaterialDesignRaisedButton}" IsEnabled="{Binding IsLoading, Converter={StaticResource enableButtonConverter}}" Background="DarkCyan" Click="getDocBttn_Click" Margin="0,10,0,0" />
 
-			<mh:MetroProgressBar IsIndeterminate="True" IsEnabled="{Binding IsLoading}" Visibility="{Binding IsLoading, Converter={StaticResource visibleConverter}}"/>
+            <ProgressBar IsIndeterminate="True" Style="{StaticResource MaterialDesignCircularProgressBar}" IsEnabled="{Binding IsLoading}" Visibility="{Binding IsLoading, Converter={StaticResource visibleConverter}}"/>
 		</StackPanel>
 	</StackPanel>
-</mh:MetroWindow>
+</Window>

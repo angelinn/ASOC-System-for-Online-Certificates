@@ -1,6 +1,5 @@
 ﻿using AffirmationBar.ViewModels;
 using AffirmationBar.WPF.Views;
-using MahApps.Metro.Controls;
 using SusiAPICommon.Models;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,7 +11,7 @@ namespace AffirmationBar.WPF
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : MetroWindow
+    public partial class MainWindow : Window
 	{
 		LoginViewModel LoginViewModel { get; set; } = new LoginViewModel();
 
