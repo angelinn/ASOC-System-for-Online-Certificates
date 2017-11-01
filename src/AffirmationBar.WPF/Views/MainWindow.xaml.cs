@@ -33,7 +33,7 @@ namespace AffirmationBar.WPF
 		{
 			LoginViewModel.Password = txtBoxPassword.Password;
 			StudentInfo studentInfo = await LoginViewModel.GetStudentInfoAsync();
-			if (studentInfo != null)
+			if (studentInfo.FacultyNumber != 0)
 			{
 				
 				var newForm = new StudentInfoWindow(studentInfo); //create your new form.
