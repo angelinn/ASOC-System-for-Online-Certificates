@@ -1,11 +1,14 @@
 ﻿<Window x:Class="AffirmationBar.WPF.Views.StudentInfoWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        TextElement.Foreground="{StaticResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{StaticResource MaterialDesignPaper}"
+        FontFamily="{StaticResource MaterialDesignFont}"
 		xmlns:cv="clr-namespace:AffirmationBar.WPF.Converters"
-        xmlns:m="clr-namespace:AffirmationBar.ViewModels;assembly=AffirmationBar.ViewModels"
-        mc:Ignorable="d"
         Title="Избор на институция" Height="500" Width="500" >
     
     <Window.Resources>
@@ -30,17 +33,17 @@
         </Grid.ColumnDefinitions>
         
         <Grid.Background>
-            <ImageBrush ImageSource="../Resources/bckgr.jpg" />
+            <SolidColorBrush Color="AliceBlue"/>
         </Grid.Background>
 
         <StackPanel Grid.Column="1" Grid.Row="0">
-            <Label Content="{Binding FirstName}" ContentStringFormat="Здравей, {0}!" HorizontalAlignment="Center" />
+            <Label Content="{Binding FirstName}" ContentStringFormat="Здравей, {0}!" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignLabel}" />
             <ComboBox  x:Name="txtReason"  Grid.Column="1" Grid.Row="0" Text="Изберете къде да послужи" ItemsSource ="{Binding Reasons}" SelectedValue="{Binding Student.Reason}" />
         </StackPanel>
-        <Label Content="Picture" Grid.Column="1" Grid.Row="1"/>
-        <Button x:Name="getDoc"  Grid.Column="1" Grid.Row="2" Content="Вземи уверение" IsEnabled="{Binding IsLoading, Converter={StaticResource enableButtonConverter}}" Click="getDoc_Click" />
+        <Label Content="Picture" Grid.Column="1" Grid.Row="1" Style="{StaticResource MaterialDesignLabel}"/>
+        <Button x:Name="getDoc"  Grid.Column="1" Grid.Row="2" Content="Вземи уверение" IsEnabled="{Binding IsLoading, Converter={StaticResource enableButtonConverter}}" Click="getDoc_Click" Style="{StaticResource MaterialDesignRaisedButton}" Background="DarkCyan"/>
 
-        <ProgressBar Grid.Column="1" Grid.Row="3" IsIndeterminate="True" IsEnabled="{Binding IsLoading}" Visibility="{Binding IsLoading, Converter={StaticResource visibleConverter}}"/>
+        <ProgressBar Grid.Column="1" Grid.Row="3" IsIndeterminate="True" IsEnabled="{Binding IsLoading}" Visibility="{Binding IsLoading, Converter={StaticResource visibleConverter}}" Style="{StaticResource MaterialDesignCircularProgressBar}"/>
 
     </Grid>
 </Window>
