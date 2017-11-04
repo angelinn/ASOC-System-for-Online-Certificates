@@ -10,6 +10,10 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Lime.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <Color x:Key="AsocPrimary">#D0D494</Color>
+            <Color x:Key="AsocSecondary">#F9FCD0</Color>
+            <SolidColorBrush x:Key="AsocPrimaryBrush" Color="{StaticResource AsocPrimary}" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

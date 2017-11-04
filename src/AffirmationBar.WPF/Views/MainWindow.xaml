@@ -19,28 +19,31 @@
         </ResourceDictionary>
 	</Window.Resources>
 
-    <StackPanel>
-        <StackPanel.Background>
-            <SolidColorBrush Color="#F9FCD0"/>
-        </StackPanel.Background>
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.504,1.5" StartPoint="0.504,0.03">
+                <GradientStop Color="{StaticResource AsocPrimary}" Offset="0"/>
+                <GradientStop Color="{StaticResource AsocSecondary}" Offset="0.33"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+        <Grid>
+            <Image Source="pack://application:,,,/AffirmationBar.WPF;component/Resources/logo.png" Width="150" Height="150" VerticalAlignment="Center" Margin="0,0,0,10" />
+            <Separator Background="{StaticResource AsocPrimaryBrush}" Margin="0,0,0,-20" VerticalAlignment="Bottom" />
+        </Grid>
+    
+        <StackPanel Margin="10" Grid.Row="1" VerticalAlignment="Center">
 
-        <StackPanel>
-            <StackPanel.Background>
-                <SolidColorBrush Color="#D0D494"/>
-            </StackPanel.Background>
+            <TextBox x:Name="txtUsername" Width="300" Style="{StaticResource  MaterialDesignTextBox}" materialDesign:HintAssist.Hint="Enter username"  TextWrapping="Wrap" Text="{Binding Username}" GotFocus="OnUsernameFocus" />
 
-            <Image Source="pack://application:,,,/AffirmationBar.WPF;component/Resources/logo.png" Width="150" Height="150"/>
-        </StackPanel>
+            <PasswordBox x:Name="txtBoxPassword" Width="300" KeyUp="OnPasswordKeyUp" Style="{StaticResource MaterialDesignPasswordBox}" materialDesign:HintAssist.Hint="Enter password" GotFocus="OnPasswordFocus" Margin="0,20,0,0"/>
 
-        <StackPanel Margin="10">
-            <TextBox x:Name="txtUsername"  Style="{StaticResource  MaterialDesignTextBox}" materialDesign:HintAssist.Hint="Enter username"  TextWrapping="Wrap" Text="{Binding Username}" GotFocus="OnUsernameFocus" />
+            <Button x:Name="getDocBttn" Width="200" Content="Вход" Style="{StaticResource MaterialDesignRaisedButton}" IsEnabled="{Binding IsLoading, Converter={StaticResource enableButtonConverter}}" Background="#D0D494" Click="getDocBttn_Click" Margin="0,30,0,20" />
 
-
-            <PasswordBox x:Name="txtBoxPassword" KeyUp="OnPasswordKeyUp" Style="{StaticResource MaterialDesignPasswordBox}" materialDesign:HintAssist.Hint="Enter password" GotFocus="OnPasswordFocus"/>
-
-            <Button x:Name="getDocBttn" Content="Вход" Style="{StaticResource MaterialDesignRaisedButton}" IsEnabled="{Binding IsLoading, Converter={StaticResource enableButtonConverter}}" Background="#D0D494" Click="getDocBttn_Click" Margin="0,10,0,10" />
-
-            <ProgressBar IsIndeterminate="True" Style="{StaticResource MaterialDesignCircularProgressBar}" IsEnabled="{Binding IsLoading}" Visibility="{Binding IsLoading, Converter={StaticResource visibleConverter}}"/>
+            <ProgressBar IsIndeterminate="True" Style="{StaticResource MaterialDesignCircularProgressBar}" IsEnabled="{Binding IsLoading}" Visibility="{Binding IsLoading, Converter={StaticResource visibleConverter}}" Height="32" Width="32"/>
 		</StackPanel>
-	</StackPanel>
+	</Grid>
 </Window>
