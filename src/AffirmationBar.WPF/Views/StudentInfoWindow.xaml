@@ -20,9 +20,8 @@
     
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -37,12 +36,12 @@
         </Grid.Background>
 
         <StackPanel Grid.Column="1" Grid.Row="0">
-            <Label Content="{Binding FirstName}" ContentStringFormat="Здравей, {0}!" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignLabel}" />
+            <Label Content="{Binding FirstName}" ContentStringFormat="Здравейте, {0}!" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignLabel}" />
 
             <Label Content="Изберете къде да послужи" Margin="0,10,0,0" HorizontalAlignment="Center" />
             <ComboBox  x:Name="txtReason"  Grid.Column="1" Grid.Row="0" ItemsSource ="{Binding Reasons}" SelectedValue="{Binding Student.Reason}" />
         </StackPanel>
-        <Label Content="Picture" Grid.Column="1" Grid.Row="1" Style="{StaticResource MaterialDesignLabel}"/>
+        <Image Grid.ColumnSpan="4" Grid.Row="1" Source="pack://application:,,,/AffirmationBar.WPF;component/Resources/reason.png" VerticalAlignment="Center" Margin="0,0,0,10" />
         <Button x:Name="getDoc"  Grid.Column="1" Grid.Row="2" Content="Вземи уверение" IsEnabled="{Binding IsLoading, Converter={StaticResource enableButtonConverter}}" Click="getDoc_Click" Style="{StaticResource MaterialDesignRaisedButton}" Background="#D0D494"/>
 
         <ProgressBar Grid.Column="1" Grid.Row="3" IsIndeterminate="True" IsEnabled="{Binding IsLoading}" Visibility="{Binding IsLoading, Converter={StaticResource visibleConverter}}" Style="{StaticResource MaterialDesignCircularProgressBar}"/>

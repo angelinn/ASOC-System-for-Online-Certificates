@@ -32,7 +32,7 @@
         </Grid.RowDefinitions>
         <Grid>
             <Image Source="pack://application:,,,/AffirmationBar.WPF;component/Resources/logo.png" Width="150" Height="150" VerticalAlignment="Center" Margin="0,0,0,10" />
-            <Separator Background="{StaticResource AsocPrimaryBrush}" Margin="0,0,0,-20" VerticalAlignment="Bottom" />
+            <Separator Background="{StaticResource AsocPrimaryBrush}" Margin="15,0,15,-20" VerticalAlignment="Bottom" />
         </Grid>
     
         <StackPanel Margin="10" Grid.Row="1" VerticalAlignment="Center">
