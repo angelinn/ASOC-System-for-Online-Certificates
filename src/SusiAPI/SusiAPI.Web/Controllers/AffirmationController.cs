@@ -8,6 +8,7 @@ using System.Net;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using SusiAPICommon.Models;
+using SusiAPI.Common.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -30,18 +31,31 @@ namespace SusiAPI.Web.Controllers
             if (await susiService.LoginAsync(login.Username, login.Password))
             {
                 StudentInfo info = await susiService.GetStudentInfoAsync();
-                return new SusiAPIResponse(StatusCodes.Status200OK, info);
+                return new SusiAPIResponse(StatusCodes.Status200OK, new SusiAPIResponseObject
+                {
+                    ResponseCode = SusiAPIResponseCode.Success,
+                    Message = "OK",
+                    Data = info
+                });
             }
 
-            return new SusiAPIResponse(StatusCodes.Status422UnprocessableEntity, new { Result = "Username or password is wrong" });
+            return new SusiAPIResponse(StatusCodes.Status422UnprocessableEntity, new SusiAPIResponseObject
+            {
+                ResponseCode = SusiAPIResponseCode.InvalidCredentials,
+                Message = "Username or password is wrong,"
+            });
         }
 
         [HttpPost]
         [Route("Generate")]
-        [Produces("text/html")]
-        public string GetAffirmation([FromBody]StudentInfo studentInfo)
+        public SusiAPIResponse GetAffirmation([FromBody]StudentInfo studentInfo)
         {
-            return CertificateService.GetCertificate(studentInfo);
+            return new SusiAPIResponse(StatusCodes.Status200OK, new SusiAPIResponseObject
+            {
+                ResponseCode = SusiAPIResponseCode.Success,
+                Message = "Certificate generated.",
+                Data = CertificateService.GetCertificate(studentInfo)
+            });
         }
     }
 }

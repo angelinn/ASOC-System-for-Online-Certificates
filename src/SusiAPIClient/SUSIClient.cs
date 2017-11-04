@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using SusiAPI.Common.Models;
 using SusiAPICommon.Models;
 using System;
 using System.Net.Http;
@@ -16,20 +17,13 @@ namespace SusiAPIClient
 
         private const string JSON_MEDIA_TYPE = "application/json";
 
+        public string LastError { get; set; }
+
         private HttpClient client = new HttpClient();
         private bool isAuthenticated;
 
-        public async Task<bool> LoginAsync(string username, string password)
-        {
-            string json = JsonConvert.SerializeObject(new { Username = username, Password = password });
-            HttpResponseMessage response = await client.PostAsync(LOGIN_URL, new StringContent(json, Encoding.UTF8, JSON_MEDIA_TYPE));
-
-            return true;
-        }
-
         public async Task<StudentInfo> GetStudentInfoAsync(string username, string password)
         {
-
             try
             {
                 string json = JsonConvert.SerializeObject(new { Username = username, Password = password });
@@ -37,7 +31,11 @@ namespace SusiAPIClient
                 HttpResponseMessage response = await client.PostAsync(STUDENT_INFO_URL, new StringContent(json, Encoding.UTF8, JSON_MEDIA_TYPE));
                 string resJson = await response.Content.ReadAsStringAsync();
 
-                return JsonConvert.DeserializeObject<StudentInfo>(resJson);
+                SusiAPIResponseObject responseObject = JsonConvert.DeserializeObject<SusiAPIResponseObject>(resJson);
+                if (responseObject.ResponseCode == SusiAPIResponseCode.Success)
+                    return responseObject.Parse<StudentInfo>();
+
+                return null;
             }
             catch (Exception e)
             {
@@ -45,14 +43,20 @@ namespace SusiAPIClient
             }
         } 
 
-        public async Task<byte[]> GetCertificate(StudentInfo studentInfo)
+        public async Task<Certificate> GetCertificate(StudentInfo studentInfo)
         {
             try
             {
                 string json = JsonConvert.SerializeObject(studentInfo);
 
                 HttpResponseMessage response = await client.PostAsync(CERTIFICATE_URL, new StringContent(json, Encoding.UTF8, JSON_MEDIA_TYPE));
-                return await response.Content.ReadAsByteArrayAsync();
+                string resJson = await response.Content.ReadAsStringAsync();
+
+                SusiAPIResponseObject responseObject = JsonConvert.DeserializeObject<SusiAPIResponseObject>(resJson);
+                if (responseObject.ResponseCode == SusiAPIResponseCode.Success)
+                    return responseObject.Parse<Certificate>();
+
+                return null;
             }
             catch (Exception e)
             {

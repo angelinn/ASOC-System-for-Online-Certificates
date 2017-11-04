@@ -10,7 +10,7 @@ namespace SusiAPI
     public static class CertificateService
     {
         private const string TEMPLATE_PATH = "./Template/certificate_template.html";
-        public static string GetCertificate(StudentInfo studentInfo)
+        public static Certificate GetCertificate(StudentInfo studentInfo)
         {
             string lines = File.ReadAllText(TEMPLATE_PATH);
 
@@ -52,7 +52,7 @@ namespace SusiAPI
             lines = Regex.Replace(lines, "{REASON_LINE_1}", "e");
             lines = Regex.Replace(lines, "{REASON_LINE_2}", "студент");
 
-            return lines;
+            return new Certificate { Content = lines };
         }
     }
 }

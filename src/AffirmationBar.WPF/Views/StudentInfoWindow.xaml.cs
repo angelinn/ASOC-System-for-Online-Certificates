@@ -1,6 +1,7 @@
 ﻿using AffirmationBar.ViewModels;
 using Microsoft.Win32;
 using SusiAPICommon.Models;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
@@ -29,7 +30,9 @@ namespace AffirmationBar.WPF.Views
 
         private async void getDoc_Click(object sender, RoutedEventArgs e)
         {
-            byte[] certificate = await certificateOptions.GetCertificateAsync();
+            Certificate certificate = await certificateOptions.GetCertificateAsync();
+            if (certificate == null)
+                MessageBox.Show("Could not generate certificate.");
 
             SaveFileDialog openFileDialog = new SaveFileDialog();
             openFileDialog.Filter = "HTML Files (*.html)|*.html";
@@ -38,7 +41,8 @@ namespace AffirmationBar.WPF.Views
 
             if (openFileDialog.ShowDialog() == true)
             {
-                File.WriteAllBytes(openFileDialog.FileName, certificate);
+                File.WriteAllBytes(openFileDialog.FileName, certificate.ToByteArray());
+                Process.Start(openFileDialog.FileName);
             }
         }
 

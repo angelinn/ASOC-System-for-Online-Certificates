@@ -30,10 +30,10 @@ namespace AffirmationBar.ViewModels
             "ПСБО"
         };
         
-        public async Task<byte[]> GetCertificateAsync()
+        public async Task<Certificate> GetCertificateAsync()
         {
             IsLoading = true;
-            byte[] bytes = await susiClient.GetCertificate(Student);
+            Certificate bytes = await susiClient.GetCertificate(Student);
             IsLoading = false;
 
             return bytes;
