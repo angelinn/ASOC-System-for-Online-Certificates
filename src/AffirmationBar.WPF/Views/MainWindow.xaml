@@ -21,21 +21,24 @@
 
     <StackPanel>
         <StackPanel.Background>
-            <SolidColorBrush Color="AliceBlue"/>
+            <SolidColorBrush Color="#F9FCD0"/>
         </StackPanel.Background>
 
         <StackPanel>
-            <Label x:Name="nameLbl" Content="Бар за уверения" Foreground="White" Background="DarkCyan" FontFamily="Sitka Small" FontSize="24" VerticalAlignment="Top" VerticalContentAlignment="Bottom" />
-		</StackPanel>
+            <StackPanel.Background>
+                <SolidColorBrush Color="#D0D494"/>
+            </StackPanel.Background>
 
-		<StackPanel Margin="10">
-            <Label x:Name="lblUsername" Content="Потребителско име" Style="{StaticResource MaterialDesignLabel}"/>
-            <TextBox x:Name="txtUsername"  Style="{StaticResource  MaterialDesignTextBox}" TextWrapping="Wrap" Text="{Binding Username}" GotFocus="clearText" />
+            <Image Source="pack://application:,,,/AffirmationBar.WPF;component/Resources/logo.png" Width="150" Height="150"/>
+        </StackPanel>
 
-            <Label x:Name="lblPassword" Content="Парола" RenderTransformOrigin="0.179,0.548" Style="{StaticResource MaterialDesignLabel}" />
-            <PasswordBox x:Name="txtBoxPassword" KeyUp="OnPasswordKeyUp" Style="{StaticResource MaterialDesignPasswordBox}"/>
+        <StackPanel Margin="10">
+            <TextBox x:Name="txtUsername"  Style="{StaticResource  MaterialDesignTextBox}" materialDesign:HintAssist.Hint="Enter username"  TextWrapping="Wrap" Text="{Binding Username}" GotFocus="OnUsernameFocus" />
 
-            <Button x:Name="getDocBttn" Content="Вход" Style="{StaticResource MaterialDesignRaisedButton}" IsEnabled="{Binding IsLoading, Converter={StaticResource enableButtonConverter}}" Background="DarkCyan" Click="getDocBttn_Click" Margin="0,10,0,0" />
+
+            <PasswordBox x:Name="txtBoxPassword" KeyUp="OnPasswordKeyUp" Style="{StaticResource MaterialDesignPasswordBox}" materialDesign:HintAssist.Hint="Enter password" GotFocus="OnPasswordFocus"/>
+
+            <Button x:Name="getDocBttn" Content="Вход" Style="{StaticResource MaterialDesignRaisedButton}" IsEnabled="{Binding IsLoading, Converter={StaticResource enableButtonConverter}}" Background="#D0D494" Click="getDocBttn_Click" Margin="0,10,0,10" />
 
             <ProgressBar IsIndeterminate="True" Style="{StaticResource MaterialDesignCircularProgressBar}" IsEnabled="{Binding IsLoading}" Visibility="{Binding IsLoading, Converter={StaticResource visibleConverter}}"/>
 		</StackPanel>

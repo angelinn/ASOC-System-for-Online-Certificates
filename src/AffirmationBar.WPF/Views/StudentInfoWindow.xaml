@@ -33,7 +33,7 @@
         </Grid.ColumnDefinitions>
         
         <Grid.Background>
-            <SolidColorBrush Color="AliceBlue"/>
+            <SolidColorBrush Color="#F9FCD0"/>
         </Grid.Background>
 
         <StackPanel Grid.Column="1" Grid.Row="0">
@@ -41,7 +41,7 @@
             <ComboBox  x:Name="txtReason"  Grid.Column="1" Grid.Row="0" Text="Изберете къде да послужи" ItemsSource ="{Binding Reasons}" SelectedValue="{Binding Student.Reason}" />
         </StackPanel>
         <Label Content="Picture" Grid.Column="1" Grid.Row="1" Style="{StaticResource MaterialDesignLabel}"/>
-        <Button x:Name="getDoc"  Grid.Column="1" Grid.Row="2" Content="Вземи уверение" IsEnabled="{Binding IsLoading, Converter={StaticResource enableButtonConverter}}" Click="getDoc_Click" Style="{StaticResource MaterialDesignRaisedButton}" Background="DarkCyan"/>
+        <Button x:Name="getDoc"  Grid.Column="1" Grid.Row="2" Content="Вземи уверение" IsEnabled="{Binding IsLoading, Converter={StaticResource enableButtonConverter}}" Click="getDoc_Click" Style="{StaticResource MaterialDesignRaisedButton}" Background="#D0D494"/>
 
         <ProgressBar Grid.Column="1" Grid.Row="3" IsIndeterminate="True" IsEnabled="{Binding IsLoading}" Visibility="{Binding IsLoading, Converter={StaticResource visibleConverter}}" Style="{StaticResource MaterialDesignCircularProgressBar}"/>
 

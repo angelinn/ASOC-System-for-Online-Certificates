@@ -22,14 +22,22 @@ namespace AffirmationBar.WPF
 			DataContext = LoginViewModel;
 		}
 
-		private void clearText(object sender, RoutedEventArgs e)
+		private void OnUsernameFocus(object sender, RoutedEventArgs e)
 		{
 			TextBox tb = (TextBox)sender;
 			tb.Text = string.Empty;
-			tb.GotFocus -= clearText;
+			tb.GotFocus -= OnUsernameFocus;
 		}
 
-		private async Task LoginAsync()
+        private void OnPasswordFocus(object sender, RoutedEventArgs e)
+        {
+            PasswordBox tb = (PasswordBox)sender;
+            tb.Password = string.Empty;
+            tb.GotFocus -= OnPasswordFocus;
+        }
+
+
+        private async Task LoginAsync()
 		{
 			LoginViewModel.Password = txtBoxPassword.Password;
 			StudentInfo studentInfo = await LoginViewModel.GetStudentInfoAsync();
