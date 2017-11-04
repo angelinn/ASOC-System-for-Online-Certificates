@@ -5,6 +5,17 @@
 	<Application.Resources>
 
 		<!-- Application resource dictionary -->
-
+        <ResourceDictionary>
+            <Color x:Key="AsocPrimary">#D0D494</Color>
+            <Color x:Key="AsocSecondary">#F9FCD0</Color>
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="#E8EBB6"/>
+                <Setter Property="BarTextColor" Value="#ACB165"/>
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource AsocPrimary}" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+        </ResourceDictionary>
 	</Application.Resources>
 </Application>

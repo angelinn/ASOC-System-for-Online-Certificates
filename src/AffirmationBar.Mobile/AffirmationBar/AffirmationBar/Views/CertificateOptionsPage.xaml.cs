@@ -30,12 +30,14 @@ namespace AffirmationBar.Views
 
         private async void OnGenerateClicked(object sender, EventArgs e)
         {
-            byte[] certificate = await CertificateOptionsViewModel.GetCertificateAsync();
+            Certificate certificate = await CertificateOptionsViewModel.GetCertificateAsync();
+            if (certificate != null)
+            {
+                IStorageService storageService = DependencyService.Get<IStorageService>();
 
-            IStorageService storageService = DependencyService.Get<IStorageService>();
-
-            if (await storageService.SaveFile($"certificate_{CertificateOptionsViewModel.Student.FacultyNumber}.html", certificate))
-                await DisplayAlert("Успех", $"Файлът беше запазен в {storageService.FilePath}.", "OK");
+                if (await storageService.SaveFile($"certificate_{CertificateOptionsViewModel.Student.FacultyNumber}.html", certificate.ToByteArray()))
+                    await DisplayAlert("Успех", $"Файлът беше запазен в {storageService.FilePath}.", "OK");
+            }
         }
     }
 }
