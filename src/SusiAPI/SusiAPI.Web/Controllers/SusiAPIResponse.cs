@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Net.Http.Headers;
 using Newtonsoft.Json;
+using SusiAPI.Common.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
