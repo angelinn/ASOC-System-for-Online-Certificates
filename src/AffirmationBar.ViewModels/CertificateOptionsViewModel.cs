@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
@@ -18,6 +19,7 @@ namespace AffirmationBar.ViewModels
         public CertificateOptionsViewModel(StudentInfo studentInfo)
         {
             this.Student = studentInfo;
+            this.Student.Reason = Reasons.First();
         }
 
         public StudentInfo Student { get; set; }

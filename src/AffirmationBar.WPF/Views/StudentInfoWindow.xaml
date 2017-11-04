@@ -38,7 +38,9 @@
 
         <StackPanel Grid.Column="1" Grid.Row="0">
             <Label Content="{Binding FirstName}" ContentStringFormat="Здравей, {0}!" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignLabel}" />
-            <ComboBox  x:Name="txtReason"  Grid.Column="1" Grid.Row="0" Text="Изберете къде да послужи" ItemsSource ="{Binding Reasons}" SelectedValue="{Binding Student.Reason}" />
+
+            <Label Content="Изберете къде да послужи" Margin="0,10,0,0" HorizontalAlignment="Center" />
+            <ComboBox  x:Name="txtReason"  Grid.Column="1" Grid.Row="0" ItemsSource ="{Binding Reasons}" SelectedValue="{Binding Student.Reason}" />
         </StackPanel>
         <Label Content="Picture" Grid.Column="1" Grid.Row="1" Style="{StaticResource MaterialDesignLabel}"/>
         <Button x:Name="getDoc"  Grid.Column="1" Grid.Row="2" Content="Вземи уверение" IsEnabled="{Binding IsLoading, Converter={StaticResource enableButtonConverter}}" Click="getDoc_Click" Style="{StaticResource MaterialDesignRaisedButton}" Background="#D0D494"/>
