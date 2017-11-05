@@ -18,7 +18,7 @@ namespace SusiAPI.Test
             susi.LoginAsync(username, password).Wait();
 
             StudentInfo studentInfo = susi.GetStudentInfoAsync().Result;
-            File.WriteAllText("D:\\cert.html", CertificateService.GetCertificate(studentInfo));
+            File.WriteAllText("D:\\cert.html", CertificateService.GetCertificate(studentInfo).ToString());
         }
     }
 }
