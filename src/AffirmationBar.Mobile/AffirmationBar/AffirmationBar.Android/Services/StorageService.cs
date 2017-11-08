@@ -25,8 +25,9 @@ namespace AffirmationBar.Droid.Services
         {
             try
             {
-                string documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-                string filePath = Path.Combine(documentsPath, fileName);
+                Java.IO.File javaFile = Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryDownloads);
+
+                string filePath = Path.Combine(javaFile.AbsolutePath, fileName);
                 File.WriteAllBytes(filePath, bytes);
 
                 FilePath = filePath;
