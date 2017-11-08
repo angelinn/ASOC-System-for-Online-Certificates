@@ -10,14 +10,14 @@
         FontFamily="{StaticResource MaterialDesignFont}"
 		xmlns:cv="clr-namespace:AffirmationBar.WPF.Converters"
         Title="Избор на институция" Height="500" Width="500" >
-    
+
     <Window.Resources>
         <ResourceDictionary>
             <cv:VisibilityConverter x:Key="visibleConverter" />
             <cv:BoolValuesConverter x:Key="enableButtonConverter" />
         </ResourceDictionary>
     </Window.Resources>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -30,7 +30,7 @@
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        
+
         <Grid.Background>
             <SolidColorBrush Color="#F9FCD0"/>
         </Grid.Background>
@@ -41,7 +41,7 @@
             <Label Content="Изберете къде да послужи" Margin="0,10,0,0" HorizontalAlignment="Center" />
             <ComboBox  x:Name="txtReason"  Grid.Column="1" Grid.Row="0" ItemsSource ="{Binding Reasons}" SelectedValue="{Binding Student.Reason}" />
         </StackPanel>
-        <Image Grid.ColumnSpan="4" Grid.Row="1" Source="pack://application:,,,/AffirmationBar.WPF;component/Resources/reason.png" VerticalAlignment="Center" Margin="0,0,0,10" />
+        <Image Grid.ColumnSpan="3" Source="pack://application:,,,/AffirmationBar.WPF;component/Resources/reason.png" VerticalAlignment="Center" Margin="-113,82,-127.4,97.4" Height="291" Grid.RowSpan="3" />
         <Button x:Name="getDoc"  Grid.Column="1" Grid.Row="2" Content="Вземи уверение" IsEnabled="{Binding IsLoading, Converter={StaticResource enableButtonConverter}}" Click="getDoc_Click" Style="{StaticResource MaterialDesignRaisedButton}" Background="#D0D494"/>
 
         <ProgressBar Grid.Column="1" Grid.Row="3" IsIndeterminate="True" IsEnabled="{Binding IsLoading}" Visibility="{Binding IsLoading, Converter={StaticResource visibleConverter}}" Style="{StaticResource MaterialDesignCircularProgressBar}"/>
