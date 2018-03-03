@@ -48,9 +48,12 @@ namespace SusiAPI.Parser
                 }
 
                 formData.Add(id, (node.Attributes["value"] == null) ? String.Empty : node.Attributes["value"].Value);
+                Console.WriteLine(value: formData);
             }
 
             HtmlNode nodeEventTarget = htmlDocument.DocumentNode.SelectSingleNode("//*[@id=\"rptRoles_ctl02_lblRoleName\"]");
+
+            //give the chosen role
             formData.Add("__EVENTTARGET", nodeEventTarget.Attributes["id"].Value.Replace('_', '$'));
             formData.Add("__EVENTARGUMENT", String.Empty);
 
