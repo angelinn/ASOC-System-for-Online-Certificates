@@ -1,0 +1,24 @@
+﻿<Window x:Class="AffirmationBar.WPF.Views.ChoosingRoleWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        TextElement.Foreground="{StaticResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{StaticResource MaterialDesignPaper}"
+        FontFamily="{StaticResource MaterialDesignFont}"
+        Title="Избор на роля" Height="500" Width="500" >
+
+    <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="#F9FCD0"/>
+        </Grid.Background>
+
+
+        <StackPanel Grid.Row="0" Margin="0,100,-1.0,1.0">
+            <Label Content="Изберете факултетен номер, за който да се генерира уверение" Margin="0,10,0,0" HorizontalAlignment="Center" />
+            <ComboBox  x:Name="txtFacultyNumber"  Grid.Column="1" Grid.Row="0" ItemsSource="{Binding Roles}" />
+        </StackPanel>
+    </Grid>
+</Window>
