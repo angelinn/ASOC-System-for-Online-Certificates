@@ -5,7 +5,7 @@ using System.Windows.Data;
 
 namespace AffirmationBar.WPF.Converters
 {
-	class VisibilityConverter : IValueConverter
+    public class VisibilityConverter : IValueConverter
 	{
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
@@ -21,9 +21,5 @@ namespace AffirmationBar.WPF.Converters
 
 		}
 
-		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-		{
-			throw new NotImplementedException();
-		}
 	}
 }
