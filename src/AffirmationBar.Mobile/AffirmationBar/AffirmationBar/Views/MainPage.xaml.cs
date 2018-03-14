@@ -16,6 +16,7 @@ namespace AffirmationBar.Views
         {
             InitializeComponent();
 
+            NavigationPage.SetHasNavigationBar(this, false);
             BindingContext = LoginViewModel;
         }
 

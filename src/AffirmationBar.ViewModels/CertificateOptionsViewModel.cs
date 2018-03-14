@@ -59,7 +59,7 @@ namespace AffirmationBar.ViewModels
         {
             get
             {
-                return Student.Names.Split(' ')[0];
+                return Student.Names?.Split(' ')[0];
             }
         }
 

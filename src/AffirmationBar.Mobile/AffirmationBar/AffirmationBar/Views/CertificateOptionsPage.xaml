@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AffirmationBar.Views.CertificateOptionsPage">
 
-    <Grid BackgroundColor="#F9FCD0">
+    <Grid BackgroundColor="{StaticResource AsocSecondary}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="2*"/>

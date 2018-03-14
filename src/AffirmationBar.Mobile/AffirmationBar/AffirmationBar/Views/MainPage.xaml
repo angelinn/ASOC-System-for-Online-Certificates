@@ -11,33 +11,37 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <Grid Padding="10" BackgroundColor="{StaticResource AsocSecondary}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="2*" />
-            <RowDefinition Height="30" />
-        </Grid.RowDefinitions>
-        <Grid VerticalOptions="Center" HorizontalOptions="Center">
-            <Image Source="logo.png" />
-        </Grid>
-        <Grid Grid.Row="1" Margin="0,30,0,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="3*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <StackLayout Grid.Column="1">
-                <Entry Text="{Binding Username}" Placeholder="Потребителско име"  />
-                <Entry Text="{Binding Password}" Placeholder="Парола" IsPassword="True" Completed="OnPasswordCompleted" Margin="0,10,0,20" />
+    <Grid>
+        <Image Opacity="0.8"
+				Source="fmi.png"
+				Aspect="AspectFill"/>
+        <Grid BackgroundColor="Black" Opacity="0.5" />
 
-                <Button Text="Влизане" Clicked="OnLoginClicked" HeightRequest="50" IsEnabled="{Binding IsLoading, Converter={StaticResource InverseBool}}"/>
-                <ActivityIndicator IsEnabled="{Binding IsLoading}" IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" />
+        <StackLayout Orientation="Horizontal" Spacing="0" VerticalOptions="Center" Margin="0,0,0,0" HorizontalOptions="FillAndExpand" HeightRequest="150"  BackgroundColor="#77000000" >
+
+            <Image WidthRequest="80"
+				Opacity="0.8"
+				Source="su.jpg"
+				Aspect="AspectFit" Scale="1" />
+
+
+            <StackLayout HorizontalOptions="Start"  Padding="20"  VerticalOptions="Center"  >
+                <Label TextColor="White" Text="ASOC" 
+					FontAttributes="Bold" FontSize="30" />
+                <Label TextColor="White" Text="Система за онлайн уверения" 
+					FontSize="20" />
             </StackLayout>
-        </Grid>
 
-        <Label VerticalOptions="End" Grid.Row="2" Text="Това приложение е open source." TextColor="DodgerBlue" HorizontalOptions="Center" />
 
+        </StackLayout>
+        <StackLayout Padding="20" VerticalOptions="End" Spacing="10" >
+
+            <Entry Text="{Binding Username}" TextColor="Silver" Placeholder="Потребителско име" PlaceholderColor="Silver" />
+            <Entry Text="{Binding Password}" TextColor="Silver" IsPassword="True" Completed="OnPasswordCompleted" Placeholder="Парола" PlaceholderColor="Silver"/>
+            <Button Text="Влизане" TextColor="White" Clicked="OnLoginClicked" BackgroundColor="#f50057" HeightRequest="50" IsEnabled="{Binding IsLoading, Converter={StaticResource InverseBool}}"></Button>
+
+            <Label Text="Данните се взимат от СУСИ." HorizontalTextAlignment="Center" FontSize="12" TextColor="White"></Label>
+        </StackLayout>
     </Grid>
-
 </ContentPage>
     
