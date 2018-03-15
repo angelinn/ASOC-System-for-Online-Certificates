@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
 
 namespace AffirmationBar.Views
 {
@@ -37,9 +38,9 @@ namespace AffirmationBar.Views
             if (studentInfo != null)
             { 
                 LoginViewModel.Password = String.Empty;
-
+                
                 await grid.FadeTo(0, 500);
-                await Navigation.PushAsync(new CertificateOptionsPage(studentInfo));
+                await Navigation.PushAsync(new CertificateOptionsPage(studentInfo), false);
             }
             else
             {

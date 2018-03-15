@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:AffirmationBar"
              x:Class="AffirmationBar.Views.MainPage"
-             xmlns:cv="clr-namespace:AffirmationBar.Converters">
+             xmlns:cv="clr-namespace:AffirmationBar.Converters"
+             BackgroundImage="fmi_opacity.png">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -12,9 +13,6 @@
     </ContentPage.Resources>
 
     <Grid >
-        <Image Opacity="0.8"
-				Source="fmi.png"
-				Aspect="AspectFill"/>
         <Grid BackgroundColor="Black" Opacity="0.5" />
 
         <Grid x:Name="grid">
@@ -29,7 +27,7 @@
             <StackLayout HorizontalOptions="Start"  Padding="20"  VerticalOptions="Center"  >
                 <Label TextColor="White" Text="ASOC" 
 					FontAttributes="Bold" FontSize="30" />
-                <Label TextColor="White" Text="Система за онлайн уверения" 
+                <Label TextColor="White" Text="Система за генериране на уверения" 
 					FontSize="20" />
             </StackLayout>
 
