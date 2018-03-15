@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using HockeyApp.Android;
 
 namespace AffirmationBar.Droid
 {
@@ -23,6 +24,12 @@ namespace AffirmationBar.Droid
             LoadApplication(new App());
 
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+            CrashManager.Register(this, "212665a3789d4a0198f3490fb9b7eef6");
         }
 
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
