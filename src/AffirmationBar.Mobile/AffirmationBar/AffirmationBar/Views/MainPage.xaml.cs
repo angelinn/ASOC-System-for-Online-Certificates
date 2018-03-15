@@ -18,6 +18,7 @@ namespace AffirmationBar.Views
 
             NavigationPage.SetHasNavigationBar(this, false);
             BindingContext = LoginViewModel;
+            
         }
 
         private async void OnLoginClicked(object sender, EventArgs e)
@@ -36,6 +37,8 @@ namespace AffirmationBar.Views
             if (studentInfo != null)
             { 
                 LoginViewModel.Password = String.Empty;
+
+                await grid.FadeTo(0, 500);
                 await Navigation.PushAsync(new CertificateOptionsPage(studentInfo));
             }
             else

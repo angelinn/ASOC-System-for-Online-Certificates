@@ -11,12 +11,13 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <Grid>
+    <Grid >
         <Image Opacity="0.8"
 				Source="fmi.png"
 				Aspect="AspectFill"/>
         <Grid BackgroundColor="Black" Opacity="0.5" />
 
+        <Grid x:Name="grid">
         <StackLayout Orientation="Horizontal" Spacing="0" VerticalOptions="Center" Margin="0,0,0,20" HorizontalOptions="FillAndExpand" HeightRequest="150"  BackgroundColor="#77000000" >
 
             <Image WidthRequest="80"
@@ -42,6 +43,7 @@
 
             <Label Text="Данните се взимат от СУСИ." HorizontalTextAlignment="Center" FontSize="12" TextColor="White"></Label>
         </StackLayout>
+        </Grid>
     </Grid>
 </ContentPage>
     
