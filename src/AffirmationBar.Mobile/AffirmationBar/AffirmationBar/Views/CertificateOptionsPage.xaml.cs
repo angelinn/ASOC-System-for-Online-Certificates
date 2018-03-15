@@ -39,5 +39,11 @@ namespace AffirmationBar.Views
                     await DisplayAlert("Успех", $"Файлът беше запазен в {storageService.FilePath}.", "OK");
             }
         }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            await grid.FadeTo(1, 500);
+        }
     }
 }
