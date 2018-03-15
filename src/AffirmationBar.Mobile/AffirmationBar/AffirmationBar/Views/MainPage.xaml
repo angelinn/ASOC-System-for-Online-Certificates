@@ -22,7 +22,7 @@
             <Image WidthRequest="80"
 				Opacity="0.8"
 				Source="su.jpg"
-				Aspect="AspectFit" Scale="1" />
+				Aspect="AspectFit" VerticalOptions="Center" Scale="1" />
 
 
             <StackLayout HorizontalOptions="Start"  Padding="20"  VerticalOptions="Center"  >
