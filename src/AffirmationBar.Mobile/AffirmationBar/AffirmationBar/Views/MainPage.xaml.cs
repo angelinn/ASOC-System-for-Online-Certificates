@@ -41,6 +41,7 @@ namespace AffirmationBar.Views
                 
                 await grid.FadeTo(0, 500);
                 await Navigation.PushAsync(new CertificateOptionsPage(studentInfo), false);
+                grid.Opacity = 1;
             }
             else
             {
