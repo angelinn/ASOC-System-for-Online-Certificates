@@ -2,7 +2,11 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>bin\Debug\netcoreapp2.0\</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,5 +16,9 @@
   <ItemGroup>
     <ProjectReference Include="..\SusiAPI\SusiAPI.csproj" />
   </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy &quot;../SusiAPI.Web/Template&quot; &quot;bin/Debug/netcoreapp2.0/Template&quot; /e /i /y /s" />
+  </Target>
 
 </Project>
