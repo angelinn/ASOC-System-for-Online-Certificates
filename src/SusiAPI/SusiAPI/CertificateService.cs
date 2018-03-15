@@ -48,7 +48,7 @@ namespace SusiAPI
             lines = Regex.Replace(lines, "{PROGRAM_LINE_1}", studentInfo.Program);
             lines = Regex.Replace(lines, "{FACULTY_NUM}", studentInfo.FacultyNumber.ToString());
             lines = Regex.Replace(lines, "{FACULTY_NAME}", studentInfo.FacultyName);
-            lines = Regex.Replace(lines, "{AUTHORITY_LINE_1}", studentInfo.Reason);
+            lines = Regex.Replace(lines, "{AUTHORITY_LINE_1}", studentInfo.Reason ?? String.Empty);
             lines = Regex.Replace(lines, "{REASON_LINE_1}", "e");
             lines = Regex.Replace(lines, "{REASON_LINE_2}", "студент");
 
