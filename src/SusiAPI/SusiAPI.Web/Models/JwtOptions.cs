@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SusiAPI.Web
+namespace SusiAPI.Web.Models
 {
     public class JwtOptions
     {

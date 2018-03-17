@@ -11,7 +11,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace SusiAPI.Web.Controllers
+namespace SusiAPI.Web.Models
 {
     public class SusiAPIResponse : IActionResult
     {

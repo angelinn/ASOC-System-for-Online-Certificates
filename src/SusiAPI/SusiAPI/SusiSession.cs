@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace SusiAPI
 {
-    public class SusiService
+    public class SusiSession
     {
         private ISusiParser parser;
-        public SusiService(ISusiParser parser = null)
+        public SusiSession(ISusiParser parser = null)
         {
             this.parser = parser ?? new ClassicSusiParser();
         }
