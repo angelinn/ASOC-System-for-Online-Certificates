@@ -9,40 +9,38 @@ using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using SusiAPICommon.Models;
 using SusiAPI.Common.Models;
+using SusiAPI.Web.Services;
+using Microsoft.AspNetCore.Authorization;
+using SusiAPI.Web.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace SusiAPI.Web.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     public class AffirmationController : Controller
     {
-        private readonly SusiService susiService;
+        private readonly SessionManager sessionManager;
 
-        public AffirmationController(SusiService susiService)
+        public AffirmationController(SessionManager sessionManager)
         {
-            this.susiService = susiService;
+            this.sessionManager = sessionManager;
         }
 
         [HttpPost]
         [Route("")]
         public async Task<IActionResult> GetStudentInfo([FromBody]LoginViewModel login)
         {
-            if (await susiService.LoginAsync(login.Username, login.Password))
-            {
-                StudentInfo info = await susiService.GetStudentInfoAsync();
-                return new SusiAPIResponse(StatusCodes.Status200OK, new SusiAPIResponseObject
-                {
-                    ResponseCode = SusiAPIResponseCode.Success,
-                    Message = "OK",
-                    Data = info
-                });
-            }
+            if (!sessionManager.TryGetSession(login.Username, out SusiSession susiService))
+                return Unauthorized();
 
-            return new SusiAPIResponse(StatusCodes.Status422UnprocessableEntity, new SusiAPIResponseObject
+            StudentInfo info = await susiService.GetStudentInfoAsync();
+            return new SusiAPIResponse(StatusCodes.Status200OK, new SusiAPIResponseObject
             {
-                ResponseCode = SusiAPIResponseCode.InvalidCredentials,
-                Message = "Username or password is wrong,"
+                ResponseCode = SusiAPIResponseCode.Success,
+                Message = "OK",
+                Data = info
             });
         }
 

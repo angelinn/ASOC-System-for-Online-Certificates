@@ -4,9 +4,13 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using SusiAPI.Common.Models;
+using SusiAPI.Web.Models;
+using SusiAPI.Web.Services;
 using SusiAPI.Web.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -17,12 +21,14 @@ namespace SusiAPI.Web.Controllers
     public class TokenController : Controller
     {
         private readonly JwtOptions jwtOptions;
-        private readonly SusiService susiService;
+        private readonly SusiSession susiService;
+        private readonly SessionManager sessionManager;
 
-        public TokenController(IOptions<JwtOptions> jwtOptions, SusiService susiService)
+        public TokenController(IOptions<JwtOptions> jwtOptions, SusiSession susiService, SessionManager sessionManager)
         {
             this.jwtOptions = jwtOptions.Value;
             this.susiService = susiService;
+            this.sessionManager = sessionManager;
         }
 
         [HttpPost]
@@ -33,10 +39,20 @@ namespace SusiAPI.Web.Controllers
             if (await susiService.LoginAsync(login.Username, login.Password))
             {
                 var tokenString = BuildToken(login.Username, login.Password);
-                response = Ok(new { token = tokenString });
+                sessionManager.AddSession(login.Username, susiService);
+
+                return new SusiAPIResponse(StatusCodes.Status200OK, new SusiAPIResponseObject
+                {
+                    ResponseCode = SusiAPIResponseCode.Success,
+                    Message = tokenString
+                });
             }
 
-            return response;
+            return new SusiAPIResponse(StatusCodes.Status422UnprocessableEntity, new SusiAPIResponseObject
+            {
+                ResponseCode = SusiAPIResponseCode.InvalidCredentials,
+                Message = "Username or password is wrong,"
+            });
         }
 
         private string BuildToken(string username, string password)
