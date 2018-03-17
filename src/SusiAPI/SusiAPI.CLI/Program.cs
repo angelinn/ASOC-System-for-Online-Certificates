@@ -14,7 +14,7 @@ namespace SusiAPI.Test
             string username = Console.ReadLine();
             string password = Console.ReadLine();
 
-            SusiService susi = new SusiService();
+            SusiSession susi = new SusiSession();
             susi.LoginAsync(username, password).Wait();
 
             StudentInfo studentInfo = susi.GetStudentInfoAsync().Result;
