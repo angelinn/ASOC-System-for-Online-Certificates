@@ -142,6 +142,10 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\SusiAPICommon\SusiAPICommon.csproj">
+      <Project>{82f8fde8-529d-4760-a0d9-e434fc4b7a92}</Project>
+      <Name>SusiAPICommon</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AffirmationBar\AffirmationBar.csproj">
       <Project>{5a82fa68-7398-442e-b850-5de316f999f9}</Project>
       <Name>AffirmationBar</Name>

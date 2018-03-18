@@ -1,4 +1,5 @@
 ﻿using Microsoft.HockeyApp;
+using SusiAPICommon;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -18,7 +19,7 @@ namespace AffirmationBar.WPF
         {
             base.OnStartup(e);
 
-            HockeyClient.Current.Configure("212665a3789d4a0198f3490fb9b7eef6");
+            HockeyClient.Current.Configure(Configuration.HockeyAppID);
             await HockeyClient.Current.SendCrashesAsync();
         }
     }

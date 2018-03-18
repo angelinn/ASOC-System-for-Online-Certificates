@@ -159,6 +159,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\SusiAPICommon\SusiAPICommon.csproj">
+      <Project>{82F8FDE8-529D-4760-A0D9-E434FC4B7A92}</Project>
+      <Name>SusiAPICommon</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AffirmationBar\AffirmationBar.csproj">
       <Project>{6a8028f7-8869-4948-92f4-730941168b5c}</Project>
       <Name>AffirmationBar</Name>

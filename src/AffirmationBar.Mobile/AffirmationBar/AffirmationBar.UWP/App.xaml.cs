@@ -1,5 +1,6 @@
 ﻿using AffirmationBar.UWP.Services;
 using Microsoft.HockeyApp;
+using SusiAPICommon;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -33,7 +34,7 @@ namespace AffirmationBar.UWP
             this.InitializeComponent();
             this.Suspending += OnSuspending;
 
-            Microsoft.HockeyApp.HockeyClient.Current.Configure("212665a3789d4a0198f3490fb9b7eef6");
+            HockeyClient.Current.Configure(Configuration.HockeyAppID);
         }
 
         /// <summary>

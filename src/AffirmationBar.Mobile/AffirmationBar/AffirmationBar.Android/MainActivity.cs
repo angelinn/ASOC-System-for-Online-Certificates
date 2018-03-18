@@ -7,6 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using HockeyApp.Android;
+using SusiAPICommon;
 
 namespace AffirmationBar.Droid
 {
@@ -29,7 +30,7 @@ namespace AffirmationBar.Droid
         protected override void OnResume()
         {
             base.OnResume();
-            CrashManager.Register(this, "212665a3789d4a0198f3490fb9b7eef6");
+            CrashManager.Register(this, Configuration.HockeyAppID);
         }
 
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
