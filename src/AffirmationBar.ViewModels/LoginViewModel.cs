@@ -11,7 +11,7 @@ namespace AffirmationBar.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
-        private SusiClient susiClient = new SusiClient();
+        public SusiClient SusiClient = new SusiClient();
 
         public async Task<StudentInfo> GetStudentInfoAsync()
         {
@@ -20,7 +20,10 @@ namespace AffirmationBar.ViewModels
             if (!String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(password))
             {
                 IsLoading = true;
-                studentInfo = await susiClient.GetStudentInfoAsync(username, password);
+
+                await SusiClient.LoginAsync(username, password);
+                studentInfo = await SusiClient.GetStudentInfoAsync();
+
                 IsLoading = false;
             }
 

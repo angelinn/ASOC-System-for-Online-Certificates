@@ -14,12 +14,14 @@ namespace AffirmationBar.ViewModels
 {
     public class CertificateOptionsViewModel : BaseViewModel
     {
-        private SusiClient susiClient = new SusiClient();
+        private SusiClient susiClient;
 
-        public CertificateOptionsViewModel(StudentInfo studentInfo)
+        public CertificateOptionsViewModel(StudentInfo studentInfo, SusiClient client)
         {
             this.Student = studentInfo;
             this.Student.Reason = Reasons.First();
+
+            susiClient = client;
         }
 
         public StudentInfo Student { get; set; }
@@ -35,7 +37,7 @@ namespace AffirmationBar.ViewModels
         public async Task<Certificate> GetCertificateAsync()
         {
             IsLoading = true;
-            Certificate bytes = await susiClient.GetCertificate(Student);
+            Certificate bytes = await susiClient.GetCertificate(Student.Reason);
             IsLoading = false;
 
             return bytes;

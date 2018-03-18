@@ -2,6 +2,7 @@
 using AffirmationBar.ViewModels;
 using Plugin.FilePicker;
 using Plugin.FilePicker.Abstractions;
+using SusiAPIClient;
 using SusiAPICommon.Models;
 using System;
 using System.Collections.Generic;
@@ -18,9 +19,9 @@ namespace AffirmationBar.Views
     public partial class CertificateOptionsPage : ContentPage
     {
         public CertificateOptionsViewModel CertificateOptionsViewModel { get; private set; }
-        public CertificateOptionsPage(StudentInfo info)
+        public CertificateOptionsPage(StudentInfo info, SusiClient client)
         {
-            CertificateOptionsViewModel = new CertificateOptionsViewModel(info);
+            CertificateOptionsViewModel = new CertificateOptionsViewModel(info, client);
             CertificateOptionsViewModel.Student.Reason = CertificateOptionsViewModel.Reasons[0];
 
             BindingContext = CertificateOptionsViewModel;

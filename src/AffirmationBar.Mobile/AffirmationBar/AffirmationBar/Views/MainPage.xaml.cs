@@ -40,7 +40,7 @@ namespace AffirmationBar.Views
                 LoginViewModel.Password = String.Empty;
                 
                 await grid.FadeTo(0, 500);
-                await Navigation.PushAsync(new CertificateOptionsPage(studentInfo), false);
+                await Navigation.PushAsync(new CertificateOptionsPage(studentInfo, LoginViewModel.SusiClient), false);
                 grid.Opacity = 1;
             }
             else
