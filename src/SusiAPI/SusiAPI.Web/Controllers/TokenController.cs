@@ -36,7 +36,6 @@ namespace SusiAPI.Web.Controllers
         [Route("Create")]
         public async Task<IActionResult> Create([FromBody]LoginViewModel login)
         {
-            IActionResult response = Unauthorized();
             if (await susiService.LoginAsync(login.Username, login.Password))
             {
                 var tokenString = BuildToken(login.Username, login.Password);

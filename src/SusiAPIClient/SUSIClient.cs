@@ -27,9 +27,10 @@ namespace SusiAPIClient
         {
             try
             {
-                string response = await client.GetStringAsync(STUDENT_INFO_URL);
+                HttpResponseMessage response = await client.GetAsync(STUDENT_INFO_URL);
+                string resJson = await response.Content.ReadAsStringAsync();
 
-                SusiAPIResponseObject responseObject = JsonConvert.DeserializeObject<SusiAPIResponseObject>(response);
+                SusiAPIResponseObject responseObject = JsonConvert.DeserializeObject<SusiAPIResponseObject>(resJson);
                 if (responseObject.ResponseCode == SusiAPIResponseCode.Success)
                     return responseObject.Parse<StudentInfo>();
 

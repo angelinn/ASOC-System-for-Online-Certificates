@@ -21,8 +21,8 @@ namespace AffirmationBar.ViewModels
             {
                 IsLoading = true;
 
-                await SusiClient.LoginAsync(username, password);
-                studentInfo = await SusiClient.GetStudentInfoAsync();
+                if (await SusiClient.LoginAsync(username, password))
+                    studentInfo = await SusiClient.GetStudentInfoAsync();
 
                 IsLoading = false;
             }
