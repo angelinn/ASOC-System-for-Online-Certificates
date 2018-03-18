@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SusiAPIClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -10,7 +11,10 @@ namespace AffirmationBar.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
+        protected static SusiClient SusiClient { get; } = new SusiClient();
+
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
+
         public void OnPropertyChanged([CallerMemberName]string propertyName = "")
         {
             PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));

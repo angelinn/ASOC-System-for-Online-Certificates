@@ -11,7 +11,7 @@ namespace SusiAPIClient
 {
     public class SusiClient
     {
-        private const string API_URL = "http://localhost:61737";//"https://susiapi.azurewebsites.net";
+        private const string API_URL = /*"http://localhost:61737";*/"https://susiapi.azurewebsites.net";
         private static readonly string TOKEN_URL = $"{API_URL}/api/token/create";
         private static readonly string STUDENT_INFO_URL = $"{API_URL}/api/affirmation";
         private static readonly string CERTIFICATE_URL = $"{API_URL}/api/affirmation/generate";

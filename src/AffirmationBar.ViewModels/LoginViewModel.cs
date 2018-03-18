@@ -11,8 +11,6 @@ namespace AffirmationBar.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
-        public SusiClient SusiClient = new SusiClient();
-
         public async Task<StudentInfo> GetStudentInfoAsync()
         {
             StudentInfo studentInfo = null;

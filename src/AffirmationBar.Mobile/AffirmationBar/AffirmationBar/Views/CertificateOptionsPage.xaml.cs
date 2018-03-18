@@ -19,9 +19,9 @@ namespace AffirmationBar.Views
     public partial class CertificateOptionsPage : ContentPage
     {
         public CertificateOptionsViewModel CertificateOptionsViewModel { get; private set; }
-        public CertificateOptionsPage(StudentInfo info, SusiClient client)
+        public CertificateOptionsPage(StudentInfo info)
         {
-            CertificateOptionsViewModel = new CertificateOptionsViewModel(info, client);
+            CertificateOptionsViewModel = new CertificateOptionsViewModel(info);
             CertificateOptionsViewModel.Student.Reason = CertificateOptionsViewModel.Reasons[0];
 
             BindingContext = CertificateOptionsViewModel;
