@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using SusiAPI.Common.Models;
@@ -24,21 +25,25 @@ namespace SusiAPI.Web.Controllers
         private readonly JwtOptions jwtOptions;
         private readonly SusiSession susiService;
         private readonly SessionManager sessionManager;
+        private readonly ILogger<TokenController> logger;
 
-        public TokenController(IOptions<JwtOptions> jwtOptions, SusiSession susiService, SessionManager sessionManager)
+        public TokenController(IOptions<JwtOptions> jwtOptions, ILogger<TokenController> logger, SusiSession susiService, SessionManager sessionManager)
         {
             this.jwtOptions = jwtOptions.Value;
             this.susiService = susiService;
             this.sessionManager = sessionManager;
+            this.logger = logger;
         }
 
         [HttpPost]
         [Route("Create")]
         public async Task<IActionResult> Create([FromBody]LoginViewModel login)
         {
+            logger.LogInformation($"Request token from user {login.Username}");
             if (await susiService.LoginAsync(login.Username, login.Password))
             {
-                var tokenString = BuildToken(login.Username, login.Password);
+                logger.LogInformation("Login successful");
+                var tokenString = BuildToken(login.Username);
                 sessionManager.AddSession(login.Username, susiService);
 
                 return new SusiAPIResponse(StatusCodes.Status200OK, new SusiAPIResponseObject
@@ -48,6 +53,7 @@ namespace SusiAPI.Web.Controllers
                 });
             }
 
+            logger.LogInformation($"Unsuccessful login for user {login.Username}");
             return new SusiAPIResponse(StatusCodes.Status422UnprocessableEntity, new SusiAPIResponseObject
             {
                 ResponseCode = SusiAPIResponseCode.InvalidCredentials,
@@ -55,14 +61,14 @@ namespace SusiAPI.Web.Controllers
             });
         }
 
-        private string BuildToken(string username, string password)
+        private string BuildToken(string username)
         {
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions.Key));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken(jwtOptions.Issuer,
               jwtOptions.Issuer,
-              expires: DateTime.Now.AddMinutes(30),
+              expires: DateTime.Now.AddMinutes(5),
               signingCredentials: creds,
               claims: new List<Claim>() { new Claim("username", username) });
 

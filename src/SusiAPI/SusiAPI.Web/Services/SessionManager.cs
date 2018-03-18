@@ -1,4 +1,5 @@
-﻿using SusiAPICommon.Models;
+﻿using Microsoft.Extensions.Logging;
+using SusiAPICommon.Models;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -17,16 +18,19 @@ namespace SusiAPI.Web.Services
 
     public class SessionManager
     {
-        private ConcurrentDictionary<string, SessionEntry> clients = new ConcurrentDictionary<string, SessionEntry>();
-        private Timer timer;
+        private readonly ConcurrentDictionary<string, SessionEntry> clients = new ConcurrentDictionary<string, SessionEntry>();
+        private readonly Timer timer;
+        private readonly ILogger<SessionManager> logger;
 
-        public SessionManager()
+        public SessionManager(ILogger<SessionManager> logger)
         {
             timer = new Timer((e) => Cleanup(), null, TimeSpan.Zero, TimeSpan.FromMinutes(5));
+            this.logger = logger;
         }
 
         public void AddSession(string username, SusiSession service)
         {
+            logger.LogInformation($"Creating session entry for user {username}");
             clients[username] = new SessionEntry
             {
                 Session = service,
@@ -49,7 +53,10 @@ namespace SusiAPI.Web.Services
             foreach (var tuple in clients)
             {
                 if (DateTime.Now > tuple.Value.Expiration)
+                {
+                    logger.LogInformation($"Cleaning up session for user {tuple.Key}");
                     clients.Remove(tuple.Key, out SessionEntry value);
+                }
             }
         }
     }
