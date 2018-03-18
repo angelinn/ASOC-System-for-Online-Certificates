@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using System.Text;
 using SusiAPI.Web.Models;
+using SusiAPI.Web.Services;
 
 namespace SusiAPI.Web
 {
@@ -40,6 +41,7 @@ namespace SusiAPI.Web
             services.AddMvc();
 
             services.AddScoped<SusiSession>();
+            services.AddSingleton<SessionManager>();
     
             services.AddAuthentication(o =>
             {
@@ -50,11 +52,10 @@ namespace SusiAPI.Web
             {
                 o.TokenValidationParameters = new TokenValidationParameters{
                     ValidateIssuer = true,
-                    ValidateAudience = true,
                     ValidateLifetime = true,
+                    ValidateAudience = false,
                     ValidateIssuerSigningKey = true,
                     ValidIssuer = Configuration["Jwt:Issuer"],
-                    ValidAudience = Configuration["Jwt:Issuer"],
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
                 };
             });

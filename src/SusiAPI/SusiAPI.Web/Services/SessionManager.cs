@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SusiAPICommon.Models;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +11,13 @@ namespace SusiAPI.Web.Services
     public class SessionEntry
     {
         public SusiSession Session { get; set; }
+        public StudentInfo StudentInfo { get; set; } 
         public DateTime Expiration { get; set; }
     }
 
     public class SessionManager
     {
-        private ConcurrentDictionary<string, SessionEntry> clients;
+        private ConcurrentDictionary<string, SessionEntry> clients = new ConcurrentDictionary<string, SessionEntry>();
         private Timer timer;
 
         public SessionManager()
@@ -32,13 +34,13 @@ namespace SusiAPI.Web.Services
             };
         }
 
-        public bool TryGetSession(string username, out SusiSession session)
+        public bool TryGetSession(string username, out SessionEntry session)
         {
             session = null;
             if (!clients.ContainsKey(username))
                 return false;
 
-            session = clients[username].Session;
+            session = clients[username];
             return true;
         }
 
