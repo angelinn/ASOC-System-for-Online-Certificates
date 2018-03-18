@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -44,7 +45,7 @@ namespace SusiAPI.Web.Controllers
                 return new SusiAPIResponse(StatusCodes.Status200OK, new SusiAPIResponseObject
                 {
                     ResponseCode = SusiAPIResponseCode.Success,
-                    Message = tokenString
+                    Data = tokenString
                 });
             }
 
@@ -63,7 +64,8 @@ namespace SusiAPI.Web.Controllers
             var token = new JwtSecurityToken(jwtOptions.Issuer,
               jwtOptions.Issuer,
               expires: DateTime.Now.AddMinutes(30),
-              signingCredentials: creds);
+              signingCredentials: creds,
+              claims: new List<Claim>() { new Claim("username", username) });
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }

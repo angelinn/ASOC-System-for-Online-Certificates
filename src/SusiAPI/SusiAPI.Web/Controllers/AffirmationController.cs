@@ -12,6 +12,7 @@ using SusiAPI.Common.Models;
 using SusiAPI.Web.Services;
 using Microsoft.AspNetCore.Authorization;
 using SusiAPI.Web.Models;
+using System.Security.Claims;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -28,14 +29,17 @@ namespace SusiAPI.Web.Controllers
             this.sessionManager = sessionManager;
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("")]
-        public async Task<IActionResult> GetStudentInfo([FromBody]LoginViewModel login)
+        public async Task<IActionResult> GetStudentInfo()
         {
-            if (!sessionManager.TryGetSession(login.Username, out SusiSession susiService))
+            Claim usernameClaim = User.FindFirst("username");
+            if (!sessionManager.TryGetSession(usernameClaim.Value, out SessionEntry sessionEntry))
                 return Unauthorized();
 
-            StudentInfo info = await susiService.GetStudentInfoAsync();
+            StudentInfo info = await sessionEntry.Session.GetStudentInfoAsync();
+            sessionEntry.StudentInfo = info;
+
             return new SusiAPIResponse(StatusCodes.Status200OK, new SusiAPIResponseObject
             {
                 ResponseCode = SusiAPIResponseCode.Success,
@@ -44,10 +48,16 @@ namespace SusiAPI.Web.Controllers
             });
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("Generate")]
-        public SusiAPIResponse GetAffirmation([FromBody]StudentInfo studentInfo)
+        public IActionResult GenerateCertificate(string reason)
         {
+            Claim usernameClaim = User.FindFirst("username");
+            if (!sessionManager.TryGetSession(usernameClaim.Value, out SessionEntry sessionEntry))
+                return Unauthorized();
+
+            StudentInfo studentInfo = sessionEntry.StudentInfo;
+            studentInfo.Reason = reason;
             return new SusiAPIResponse(StatusCodes.Status200OK, new SusiAPIResponseObject
             {
                 ResponseCode = SusiAPIResponseCode.Success,
