@@ -51,6 +51,25 @@ namespace SusiAPI.Web.Controllers
             });
         }
 
+        [Route("GetRoles")]
+        public async Task<IActionResult> GetStudentRolesAsync()
+        {
+            Claim usernameClaim = User.FindFirst("username");
+            if (!sessionManager.TryGetSession(usernameClaim.Value, out SessionEntry sessionEntry))
+                return Unauthorized();
+
+            List<string> roles = await sessionEntry.Session.GetStudentRolesAsync();
+            //sessionEntry.StudentInfo = info;
+
+            return new SusiAPIResponse(StatusCodes.Status200OK, new SusiAPIResponseObject
+            {
+                ResponseCode = SusiAPIResponseCode.Success,
+                Message = "OK",
+                Data = roles
+            });
+        }
+
+
         [HttpGet]
         [Route("Generate")]
         public IActionResult GenerateCertificate(string reason)

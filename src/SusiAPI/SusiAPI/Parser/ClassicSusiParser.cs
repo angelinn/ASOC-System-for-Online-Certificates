@@ -175,5 +175,29 @@ namespace SusiAPI.Parser
 
             return isAuthenticated;
         }
+
+        public Task<List<string>> GetStudentRolesAsync()
+        {
+            List<string> roles = new List<string>();
+            HttpResponseMessage response = client.GetAsync(ROLES_URL).Result;
+            string stringResult = response.Content.ReadAsStringAsync().Result;
+
+            HtmlDocument htmlDocument = new HtmlDocument();
+            htmlDocument.LoadHtml(stringResult);
+
+
+            HtmlNodeCollection nodes = htmlDocument.DocumentNode.SelectNodes("//input");
+
+            foreach (HtmlNode node in nodes)
+            {
+                string id = node.Id.TrimStart('\r', '\n');
+                if (id.Contains("rptRoles"))
+                {
+                    roles.Add(node.InnerText);
+                }
+            }
+
+            return Task.FromResult<List<string>>(roles);
+        }
     }
 }

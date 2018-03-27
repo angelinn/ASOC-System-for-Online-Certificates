@@ -12,5 +12,6 @@ namespace SusiAPI.Parser
         bool IsAuthenticated { get; }
         bool IsCurrentlyAStudent { get; }
         Task<StudentInfo> GetStudentInfoAsync();
+        Task<List<string>> GetStudentRolesAsync();
     }
 }

@@ -1,6 +1,7 @@
 ﻿using SusiAPI.Parser;
 using SusiAPICommon.Models;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace SusiAPI
@@ -32,6 +33,14 @@ namespace SusiAPI
                 throw new Exception("Use login method first.");
 
             return await parser.GetStudentInfoAsync();
+        }
+
+        public async Task<List<string>> GetStudentRolesAsync()
+        {
+            if (!parser.IsAuthenticated)
+                throw new Exception("Use login method first.");
+
+            return await parser.GetStudentRolesAsync();
         }
     }
 }
