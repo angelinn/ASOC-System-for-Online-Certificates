@@ -14,21 +14,17 @@ namespace AffirmationBar.ViewModels
 {
     public class RolesViewModel : BaseViewModel
     {
-        private SusiClient susiClient = new SusiClient();
-
-        public RolesViewModel(StudentInfo studentInfo)
+        List<string> roles;
+        public RolesViewModel(List<string> studentRoles)
         {
-            this.Student = studentInfo;
-            this.Student.Reason = Roles.First();
+            roles = studentRoles;
         }
 
         public StudentInfo Student { get; set; }
 
         public IList<string> Roles { get; set; } = new List<string>()
         {
-            //we have to fill the list with all roles from the html
-            "25605",
-            "71462"
+            
         };
         
 
