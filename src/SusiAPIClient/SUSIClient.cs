@@ -12,7 +12,7 @@ namespace SusiAPIClient
 {
     public class SusiClient
     {
-        private const string API_URL = "http://localhost:61737"; // "https://susiapi.azurewebsites.net";
+        private const string API_URL = "https://susiapi.azurewebsites.net"; //"http://localhost:61737"; // "https://susiapi.azurewebsites.net";
         private static readonly string TOKEN_URL = $"{API_URL}/api/token/create";
         private static readonly string STUDENT_INFO_URL = $"{API_URL}/api/affirmation";
         private static readonly string CERTIFICATE_URL = $"{API_URL}/api/affirmation/generate";
@@ -30,7 +30,7 @@ namespace SusiAPIClient
             {
                 string url = STUDENT_INFO_URL;
                 if (!String.IsNullOrEmpty(number))
-                    url += "?number={number}";
+                    url += $"?number={number}";
 
                 HttpResponseMessage response = await client.GetAsync(url);
                 string resJson = await response.Content.ReadAsStringAsync();
