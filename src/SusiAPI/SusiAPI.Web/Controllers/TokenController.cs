@@ -45,13 +45,13 @@ namespace SusiAPI.Web.Controllers
             if (loginResponse.LoggedIn)
             {
                 logger.LogInformation("Login successful");
-                var tokenString = BuildToken(login.Username);
+                loginResponse.Token = BuildToken(login.Username);
                 sessionManager.AddSession(login.Username, susiService);
 
                 return new SusiAPIResponse(StatusCodes.Status200OK, new SusiAPIResponseObject
                 {
                     ResponseCode = SusiAPIResponseCode.Success,
-                    Data = tokenString
+                    Data = loginResponse
                 });
             }
 

@@ -9,6 +9,8 @@ namespace SusiAPI.Responses
         public bool LoggedIn { get; set; }
         public List<string> Roles { get; set; }
         public bool HasMultipleRoles { get; set; }
+        public string Token { get; set; }
+            
 
         public LoginResponse(bool loggedIn, bool hasMultipleRoles = false, List<string> roles = null)
         {

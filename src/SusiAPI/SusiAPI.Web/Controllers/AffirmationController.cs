@@ -34,13 +34,13 @@ namespace SusiAPI.Web.Controllers
 
         [HttpGet]
         [Route("")]
-        public async Task<IActionResult> GetStudentInfo()
+        public async Task<IActionResult> GetStudentInfo([FromQuery]string number = null)
         {
             Claim usernameClaim = User.FindFirst("username");
             if (!sessionManager.TryGetSession(usernameClaim.Value, out SessionEntry sessionEntry))
                 return Unauthorized();
 
-            StudentInfo info = await sessionEntry.Session.GetStudentInfoAsync();
+            StudentInfo info = await sessionEntry.Session.GetStudentInfoAsync(number);
             sessionEntry.StudentInfo = info;
 
             return new SusiAPIResponse(StatusCodes.Status200OK, new SusiAPIResponseObject
