@@ -109,9 +109,16 @@
     <Compile Include="Converters\SemesterTypeConverter.cs" />
     <Compile Include="Converters\StudyYearConverter.cs" />
     <Compile Include="Converters\VisibilityConverter.cs" />
+    <Compile Include="Views\ChooseRoleWindow.xaml.cs">
+      <DependentUpon>ChooseRoleWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\StudentInfoWindow.xaml.cs">
       <DependentUpon>StudentInfoWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\ChooseRoleWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
