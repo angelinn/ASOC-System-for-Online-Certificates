@@ -20,11 +20,12 @@ namespace AffirmationBar.WPF.Views
     /// </summary>
     public partial class ChooseRoleWindow : Window
     {
-        public ChooseRoleViewModel ChooseRoleViewModel { get; private set; } = new ChooseRoleViewModel();
-        public ChooseRoleWindow()
+        public ChooseRoleViewModel ChooseRoleViewModel { get; private set; }
+        public ChooseRoleWindow(List<string> roles)
         {
             InitializeComponent();
 
+            ChooseRoleViewModel = new ChooseRoleViewModel(roles);
             DataContext = ChooseRoleViewModel;
         }
     }

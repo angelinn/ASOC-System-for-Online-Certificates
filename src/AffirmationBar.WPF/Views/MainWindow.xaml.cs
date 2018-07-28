@@ -1,5 +1,6 @@
 ﻿using AffirmationBar.ViewModels;
 using AffirmationBar.WPF.Views;
+using SusiAPI.Responses;
 using SusiAPICommon.Models;
 using System.Threading.Tasks;
 using System.Windows;
@@ -40,19 +41,28 @@ namespace AffirmationBar.WPF
         private async Task LoginAsync()
 		{
 			LoginViewModel.Password = txtBoxPassword.Password;
-			StudentInfo studentInfo = await LoginViewModel.GetStudentInfoAsync();
-			if (studentInfo != null)
-			{
-				
-				var newForm = new StudentInfoWindow(studentInfo); //create your new form.
-				newForm.ShowInTaskbar = false;
-				newForm.Owner = Application.Current.MainWindow;
-				newForm.ShowDialog(); //show the new form.
-			}
-			else
-			{
-				MessageBox.Show("Грешка", "Възникна грешка. Проверете името и паролата си.");
-			}
+            LoginResponse loginResponse = await LoginViewModel.LoginAsync();
+            if (!loginResponse.LoggedIn)
+                MessageBox.Show("Грешка", "Възникна грешка. Проверете името и паролата си.");
+            else
+            {
+                if (loginResponse.HasMultipleRoles)
+                {
+                    ChooseRoleWindow chooseRoleWindow = new ChooseRoleWindow(loginResponse.Roles);
+                    chooseRoleWindow.ShowInTaskbar = false;
+                    chooseRoleWindow.Owner = this;
+                    chooseRoleWindow.ShowDialog();
+
+                }
+                else
+                {
+                    StudentInfo studentInfo = await LoginViewModel.GetStudentInfoAsync();
+                    var newForm = new StudentInfoWindow(studentInfo); //create your new form.
+                    newForm.ShowInTaskbar = false;
+                    newForm.Owner = Application.Current.MainWindow;
+                    newForm.ShowDialog(); //show the new form.
+                }
+            }
 		}
 
 		private async void getDocBttn_Click(object sender, RoutedEventArgs e)

@@ -7,11 +7,12 @@ namespace AffirmationBar.ViewModels
 {
     public class ChooseRoleViewModel : BaseViewModel
     {
-        public List<string> Roles { get; set; } = new List<string>()
+        public List<string> Roles { get; set; }
+
+        public ChooseRoleViewModel(List<string> roles)
         {
-            "71497",
-            "25771"
-        };
+            Roles = roles;  
+        }
 
         private string selectedRole;
         public string SelectedRole

@@ -1,4 +1,5 @@
-﻿using SusiAPIClient;
+﻿using SusiAPI.Responses;
+using SusiAPIClient;
 using SusiAPICommon.Models;
 using System;
 using System.Collections.Generic;
@@ -11,16 +12,20 @@ namespace AffirmationBar.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
-        public async Task<StudentInfo> GetStudentInfoAsync()
+        public async Task<LoginResponse> LoginAsync()
+        {
+            return await SusiClient.LoginAsync(username, password);
+        }
+
+        public async Task<StudentInfo> GetStudentInfoAsync(string number = null)
         {
             StudentInfo studentInfo = null;
 
             if (!String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(password))
             {
                 IsLoading = true;
-
-                if (await SusiClient.LoginAsync(username, password))
-                    studentInfo = await SusiClient.GetStudentInfoAsync();
+                
+                studentInfo = await SusiClient.GetStudentInfoAsync(number);
 
                 IsLoading = false;
             }
