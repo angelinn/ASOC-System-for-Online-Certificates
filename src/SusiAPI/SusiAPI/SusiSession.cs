@@ -1,4 +1,5 @@
 ﻿using SusiAPI.Parser;
+using SusiAPI.Responses;
 using SusiAPICommon.Models;
 using System;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace SusiAPI
             this.parser = parser ?? new ClassicSusiParser();
         }
         
-        public async Task<bool> LoginAsync(string username, string password)
+        public async Task<LoginResponse> LoginAsync(string username, string password)
         {
             return await parser.LoginAsync(username, password);
         }

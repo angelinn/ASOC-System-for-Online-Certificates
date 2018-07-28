@@ -5,6 +5,9 @@ using System.Net;
 using HtmlAgilityPack;
 using System.Threading.Tasks;
 using SusiAPICommon.Models;
+using SusiAPI.Responses;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace SusiAPI.Parser
 {
@@ -22,6 +25,8 @@ namespace SusiAPI.Parser
         private HttpClient client;
         private HttpClientHandler handler;
 
+        private HtmlNodeCollection roles;
+
         //(poolparty)..may be :D
         private StudentInfo student = new StudentInfo();
 
@@ -31,11 +36,16 @@ namespace SusiAPI.Parser
         private bool isCurrentlyAStudent;
         public bool IsCurrentlyAStudent => isCurrentlyAStudent;
 
-        private async Task<string> ProcessMasterAsync(string loginHtml)
+        private void FetchRolesAsync(string loginHtml)
         {
             HtmlDocument htmlDocument = new HtmlDocument();
             htmlDocument.LoadHtml(loginHtml);
 
+            roles = htmlDocument.DocumentNode.SelectNodes("//*[contains(@id, 'lblRoleName')]");
+        }
+
+        private async Task<string> SelectRoleAsync(HtmlDocument htmlDocument, HtmlNode role)
+        {
             HtmlNodeCollection nodes = htmlDocument.DocumentNode.SelectNodes("//input");
 
             Dictionary<string, string> formData = new Dictionary<string, string>();
@@ -51,10 +61,7 @@ namespace SusiAPI.Parser
                 Console.WriteLine(value: formData);
             }
 
-            HtmlNode nodeEventTarget = htmlDocument.DocumentNode.SelectSingleNode("//*[@id=\"rptRoles_ctl02_lblRoleName\"]");
-
-            //give the chosen role
-            formData.Add("__EVENTTARGET", nodeEventTarget.Attributes["id"].Value.Replace('_', '$'));
+            formData.Add("__EVENTTARGET", role.Attributes["id"].Value.Replace('_', '$'));
             formData.Add("__EVENTARGUMENT", String.Empty);
 
             HttpResponseMessage response = await client.PostAsync(ROLES_URL, new FormUrlEncodedContent(formData));
@@ -114,7 +121,7 @@ namespace SusiAPI.Parser
             string form = educationPlan.Substring(educationPlan.LastIndexOf("(") + 1, 2);
             student.FormOfEducation = (form.Contains("р")) ? FormOfEducation.Regular : FormOfEducation.Distance;
 
-            int programStartIndex= educationPlan.LastIndexOf("-") + 1;
+            int programStartIndex = educationPlan.LastIndexOf("-") + 1;
             student.Program = educationPlan.Substring(programStartIndex, educationPlan.LastIndexOf("(") - programStartIndex);
 
             node = rootDocument.DocumentNode.SelectSingleNode("//*[@id=\"StudentPersonalData1_lblStudentEntranceTypeName\"]");
@@ -128,7 +135,7 @@ namespace SusiAPI.Parser
 
         }
 
-        public async Task<bool> LoginAsync(string username, string password)
+        public async Task<LoginResponse> LoginAsync(string username, string password)
         {
             HtmlDocument rootDocument = new HtmlWeb().Load(SUSI_URL);
             HtmlNodeCollection nodes = rootDocument.DocumentNode.SelectNodes("//input");
@@ -145,8 +152,20 @@ namespace SusiAPI.Parser
 
             if (stringResult.Contains("Избор на роля"))
             {
-                stringResult = await ProcessMasterAsync(stringResult);
+                FetchRolesAsync(stringResult);
+
+                Regex numberRegex = new Regex(".*(\\d{5}).*");
+
+                List<string> numbers = new List<string>();
+                foreach (HtmlNode role in roles)
+                {
+                    Match match = numberRegex.Match(role.InnerText);
+                    numbers.Add(match.Groups[1].Value);
+                }
+                return new LoginResponse(true, true, numbers);
             }
+
+            // save session
 
             if (stringResult.Contains("header start"))
             {
@@ -173,7 +192,7 @@ namespace SusiAPI.Parser
             else
                 isAuthenticated = false;
 
-            return isAuthenticated;
+            return new LoginResponse(isAuthenticated);
         }
     }
 }

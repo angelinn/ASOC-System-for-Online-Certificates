@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using SusiAPI.Responses;
 using SusiAPICommon.Models;
 using System;
 using System.IO;
@@ -15,8 +16,15 @@ namespace SusiAPI.Test
             string password = Console.ReadLine();
 
             SusiSession susi = new SusiSession();
-            susi.LoginAsync(username, password).Wait();
+            LoginResponse loginResponse = susi.LoginAsync(username, password).Result;
+            if (loginResponse.HasMultipleRoles)
+            {
+                foreach (string role in loginResponse.Roles)
+                    Console.WriteLine($"Found role {role}");
+            }
 
+            int key = Convert.ToInt32(Console.ReadLine());
+            
             StudentInfo studentInfo = susi.GetStudentInfoAsync().Result;
             File.WriteAllText("D:\\cert.html", CertificateService.GetCertificate(studentInfo).Content);
         }
