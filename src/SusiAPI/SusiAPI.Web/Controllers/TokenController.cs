@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using SusiAPI.Common.Models;
+using SusiAPI.Responses;
 using SusiAPI.Web.Models;
 using SusiAPI.Web.Services;
 using SusiAPI.Web.ViewModels;
@@ -40,7 +41,8 @@ namespace SusiAPI.Web.Controllers
         public async Task<IActionResult> Create([FromBody]LoginViewModel login)
         {
             logger.LogInformation($"Request token from user {login.Username}");
-            if (await susiService.LoginAsync(login.Username, login.Password))
+            LoginResponse loginResponse = await susiService.LoginAsync(login.Username, login.Password);
+            if (loginResponse.LoggedIn)
             {
                 logger.LogInformation("Login successful");
                 var tokenString = BuildToken(login.Username);

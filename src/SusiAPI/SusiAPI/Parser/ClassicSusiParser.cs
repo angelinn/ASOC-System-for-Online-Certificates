@@ -26,6 +26,7 @@ namespace SusiAPI.Parser
         private HttpClientHandler handler;
 
         private HtmlNodeCollection roles;
+        private HtmlDocument loginDocument;
 
         //(poolparty)..may be :D
         private StudentInfo student = new StudentInfo();
@@ -36,17 +37,19 @@ namespace SusiAPI.Parser
         private bool isCurrentlyAStudent;
         public bool IsCurrentlyAStudent => isCurrentlyAStudent;
 
-        private void FetchRolesAsync(string loginHtml)
+        public async Task<bool> SelectRoleAsync(string role)
         {
-            HtmlDocument htmlDocument = new HtmlDocument();
-            htmlDocument.LoadHtml(loginHtml);
+            HtmlNode roleNode = null;
+            foreach (HtmlNode node in roles)
+            {
+                if (node.InnerText.Contains(role))
+                {
+                    roleNode = node;
+                    break;
+                }
+            }
 
-            roles = htmlDocument.DocumentNode.SelectNodes("//*[contains(@id, 'lblRoleName')]");
-        }
-
-        private async Task<string> SelectRoleAsync(HtmlDocument htmlDocument, HtmlNode role)
-        {
-            HtmlNodeCollection nodes = htmlDocument.DocumentNode.SelectNodes("//input");
+            HtmlNodeCollection nodes = loginDocument.DocumentNode.SelectNodes("//input");
 
             Dictionary<string, string> formData = new Dictionary<string, string>();
             foreach (HtmlNode node in nodes)
@@ -61,18 +64,34 @@ namespace SusiAPI.Parser
                 Console.WriteLine(value: formData);
             }
 
-            formData.Add("__EVENTTARGET", role.Attributes["id"].Value.Replace('_', '$'));
+            formData.Add("__EVENTTARGET", roleNode.Attributes["id"].Value.Replace('_', '$'));
             formData.Add("__EVENTARGUMENT", String.Empty);
 
             HttpResponseMessage response = await client.PostAsync(ROLES_URL, new FormUrlEncodedContent(formData));
-
-            return await response.Content.ReadAsStringAsync();
+            return response.IsSuccessStatusCode;
         }
 
         public ClassicSusiParser()
         {
             handler = new HttpClientHandler { CookieContainer = new CookieContainer() };
             client = new HttpClient(handler);
+        }
+
+        public LoginResponse FetchRoles()
+        {
+            roles = loginDocument.DocumentNode.SelectNodes("//*[contains(@id, 'lblRoleName')]");
+
+            Regex numberRegex = new Regex(".*(\\d{5}).*");
+
+            List<string> numbers = new List<string>();
+            foreach (HtmlNode role in roles)
+            {
+                Match match = numberRegex.Match(role.InnerText);
+                numbers.Add(match.Groups[1].Value);
+            }
+
+            isAuthenticated = true;
+            return new LoginResponse(isAuthenticated, true, numbers);
         }
 
         public Task<StudentInfo> GetStudentInfoAsync()
@@ -137,8 +156,8 @@ namespace SusiAPI.Parser
 
         public async Task<LoginResponse> LoginAsync(string username, string password)
         {
-            HtmlDocument rootDocument = new HtmlWeb().Load(SUSI_URL);
-            HtmlNodeCollection nodes = rootDocument.DocumentNode.SelectNodes("//input");
+            loginDocument = new HtmlWeb().Load(SUSI_URL);
+            HtmlNodeCollection nodes = loginDocument.DocumentNode.SelectNodes("//input");
 
             Dictionary<string, string> formData = new Dictionary<string, string>();
             foreach (HtmlNode node in nodes)
@@ -149,33 +168,16 @@ namespace SusiAPI.Parser
 
             HttpResponseMessage response = await client.PostAsync(LOGIN_URL, new FormUrlEncodedContent(formData));
             string stringResult = await response.Content.ReadAsStringAsync();
+            loginDocument.LoadHtml(stringResult);
 
             if (stringResult.Contains("Избор на роля"))
-            {
-                FetchRolesAsync(stringResult);
-
-                Regex numberRegex = new Regex(".*(\\d{5}).*");
-
-                List<string> numbers = new List<string>();
-                foreach (HtmlNode role in roles)
-                {
-                    Match match = numberRegex.Match(role.InnerText);
-                    numbers.Add(match.Groups[1].Value);
-                }
-                return new LoginResponse(true, true, numbers);
-            }
-
-            // save session
+                return FetchRoles();
 
             if (stringResult.Contains("header start"))
             {
                 isAuthenticated = true;
 
-                //get student year
-                HtmlDocument htmlDocument = new HtmlDocument();
-                htmlDocument.LoadHtml(stringResult);
-
-                HtmlNode nodeTemp = htmlDocument.DocumentNode.SelectSingleNode("//*[@id=\"StudentInfo1_lblCourse\"]");
+                HtmlNode nodeTemp = loginDocument.DocumentNode.SelectSingleNode("//*[@id=\"StudentInfo1_lblCourse\"]");
                 string educationYear = nodeTemp.InnerText;
 
                 if (educationYear.Contains("Курс"))

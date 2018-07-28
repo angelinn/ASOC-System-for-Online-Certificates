@@ -17,15 +17,18 @@ namespace SusiAPI.Test
 
             SusiSession susi = new SusiSession();
             LoginResponse loginResponse = susi.LoginAsync(username, password).Result;
+
+            string key = null;
             if (loginResponse.HasMultipleRoles)
             {
                 foreach (string role in loginResponse.Roles)
                     Console.WriteLine($"Found role {role}");
-            }
 
-            int key = Convert.ToInt32(Console.ReadLine());
+                key = Console.ReadLine();
+            }
             
-            StudentInfo studentInfo = susi.GetStudentInfoAsync().Result;
+            
+            StudentInfo studentInfo = susi.GetStudentInfoAsync(key).Result;
             File.WriteAllText("D:\\cert.html", CertificateService.GetCertificate(studentInfo).Content);
         }
     }
