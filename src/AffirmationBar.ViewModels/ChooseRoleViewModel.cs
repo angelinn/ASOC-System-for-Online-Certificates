@@ -9,11 +9,11 @@ namespace AffirmationBar.ViewModels
     public class ChooseRoleViewModel : BaseViewModel
     {
         public List<string> Roles { get; set; }
-        public StudentInfo StudentInfo { get; set; }
 
         public ChooseRoleViewModel(List<string> roles)
         {
-            Roles = roles;  
+            Roles = roles;
+            SelectedRole = Roles[1];
         }
 
         private string selectedRole;
