@@ -46,6 +46,7 @@ namespace AffirmationBar.WPF
                 MessageBox.Show("Грешка", "Възникна грешка. Проверете името и паролата си.");
             else
             {
+                string number = null;
                 if (loginResponse.HasMultipleRoles)
                 {
                     ChooseRoleWindow chooseRoleWindow = new ChooseRoleWindow(loginResponse.Roles);
@@ -53,15 +54,14 @@ namespace AffirmationBar.WPF
                     chooseRoleWindow.Owner = this;
                     chooseRoleWindow.ShowDialog();
 
+                    number = chooseRoleWindow.ChooseRoleViewModel.SelectedRole;
                 }
-                else
-                {
-                    StudentInfo studentInfo = await LoginViewModel.GetStudentInfoAsync();
-                    var newForm = new StudentInfoWindow(studentInfo); //create your new form.
-                    newForm.ShowInTaskbar = false;
-                    newForm.Owner = Application.Current.MainWindow;
-                    newForm.ShowDialog(); //show the new form.
-                }
+
+                StudentInfo studentInfo = await LoginViewModel.GetStudentInfoAsync(number);
+                var newForm = new StudentInfoWindow(studentInfo); //create your new form.
+                newForm.ShowInTaskbar = false;
+                newForm.Owner = Application.Current.MainWindow;
+                newForm.ShowDialog(); //show the new form.
             }
 		}
 

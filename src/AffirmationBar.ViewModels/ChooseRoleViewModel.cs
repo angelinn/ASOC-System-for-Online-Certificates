@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SusiAPICommon.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ namespace AffirmationBar.ViewModels
     public class ChooseRoleViewModel : BaseViewModel
     {
         public List<string> Roles { get; set; }
+        public StudentInfo StudentInfo { get; set; }
 
         public ChooseRoleViewModel(List<string> roles)
         {
@@ -26,11 +28,6 @@ namespace AffirmationBar.ViewModels
                 selectedRole = value;
                 OnPropertyChanged();
             }
-        }
-
-        public async Task LoadRolesAsync()
-        {
-
         }
     }
 }

@@ -28,5 +28,10 @@ namespace AffirmationBar.WPF.Views
             ChooseRoleViewModel = new ChooseRoleViewModel(roles);
             DataContext = ChooseRoleViewModel;
         }
+
+        private void OnChooseClicked(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
